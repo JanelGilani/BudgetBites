@@ -1,11 +1,14 @@
 package Entities;
 
-public class Order {
-    private foodItem[] orderedItems;
-    private String dateOrdered;
-    private double totalCost;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-    public Order (foodItem[] orderedItems, String dateOrdered) {
+public class Order {
+    public ArrayList<foodItem> orderedItems;
+    public LocalDateTime dateOrdered;
+    public double totalCost;
+
+    public Order (ArrayList<foodItem> orderedItems, LocalDateTime dateOrdered) {
         this.orderedItems = orderedItems;
         this.dateOrdered = dateOrdered;
         this.totalCost = 0;
@@ -15,5 +18,15 @@ public class Order {
         }
 
     }
+
+    public Order (LocalDateTime dateOrdered) {
+        this.orderedItems = new ArrayList<>();
+        this.dateOrdered = dateOrdered;
+        this.totalCost = 0;
+    }
+    public void addFoodItem (foodItem item) {
+        this.orderedItems.add(item);
+        this.totalCost += item.getItemCost();
+        }
 
 }
