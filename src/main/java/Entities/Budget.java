@@ -8,4 +8,9 @@ public class Budget {
         this.initialBudget = initialBudget;
         this.currentBudget = currentBudget;
     }
+
+    public Budget () {
+        this.initialBudget = 0;
+        this.currentBudget = 0;
+    }
 }

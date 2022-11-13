@@ -1,5 +1,6 @@
 package Entities;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -20,11 +21,17 @@ public class Order {
     }
 
     public Order (LocalDateTime dateOrdered) {
-        this.orderedItems = new ArrayList<>();
+        this.orderedItems = new ArrayList<foodItem>();
         this.dateOrdered = dateOrdered;
         this.totalCost = 0;
     }
-    public void addFoodItem (foodItem item) {
+
+    public ArrayList<foodItem> getOrderedItems () {
+        return this.orderedItems;
+    }
+
+
+    public void addToOrder (foodItem item) {
         this.orderedItems.add(item);
         this.totalCost += item.getItemCost();
         }

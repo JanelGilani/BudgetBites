@@ -20,9 +20,9 @@ public class foodItem {
     }
 
     public void addToItemCart (itemCart cart) {
-        cart.currentOrder.add(this);
+        cart.addToCart(this);
     }
     public void addToOrder (Order order) {
-        order.addFoodItem(this);
+        order.addToOrder(this);
     }
 }
