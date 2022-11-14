@@ -5,13 +5,16 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Order {
-    public ArrayList<foodItem> orderedItems;
-    public LocalDateTime dateOrdered;
-    public double totalCost;
+    protected ArrayList<foodItem> orderedItems;
+    protected LocalDateTime dateOrdered;
+    protected double totalCost;
+    protected Restaurant restaurant;
 
-    public Order (ArrayList<foodItem> orderedItems, LocalDateTime dateOrdered) {
+
+    public Order (ArrayList<foodItem> orderedItems, LocalDateTime dateOrdered, Restaurant restaurant) {
         this.orderedItems = orderedItems;
         this.dateOrdered = dateOrdered;
+        this.restaurant = restaurant;
         this.totalCost = 0;
 
         for (foodItem item: orderedItems) {
@@ -20,9 +23,10 @@ public class Order {
 
     }
 
-    public Order (LocalDateTime dateOrdered) {
+    public Order (LocalDateTime dateOrdered, Restaurant restaurant) {
         this.orderedItems = new ArrayList<foodItem>();
         this.dateOrdered = dateOrdered;
+        this.restaurant = restaurant;
         this.totalCost = 0;
     }
 
@@ -30,10 +34,20 @@ public class Order {
         return this.orderedItems;
     }
 
+    public double getTotalCost () {
+        return this.totalCost;
+    }
+
+    public LocalDateTime getDateOrdered () {
+        return this.dateOrdered;
+    }
+
 
     public void addToOrder (foodItem item) {
         this.orderedItems.add(item);
         this.totalCost += item.getItemCost();
         }
+
+
 
 }
