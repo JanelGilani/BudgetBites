@@ -1,6 +1,5 @@
 package Use_Cases;
 
-import Entities.Restaurant;
 import Entities.foodItem;
 import java.util.ArrayList;
 import java.util.HashMap;
