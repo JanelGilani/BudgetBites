@@ -30,7 +30,7 @@ public class budgetManager extends Budget {
     }
 
     public void orderedMealsBudget(){
-        currentBudget = currentBudget + pastOrders;
+        currentBudget = currentBudget;
     }
 
 }
