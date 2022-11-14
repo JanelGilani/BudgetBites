@@ -1,17 +1,17 @@
 package Entities;
 
 public class Budget {
-    public double initialBudget;
-    public double currentBudget;
+    protected double initialBudget;
+    protected double currentBudget;
 
     public Budget () {
-        this.initialBudget = 0;
-        this.currentBudget = 0;
+        this.initialBudget = 1000000;
+        this.currentBudget = 1000000;
     }
 
-    public Budget (double initialBudget, double currentBudget){
+    public Budget (double initialBudget){
         this.initialBudget = initialBudget;
-        this.currentBudget = currentBudget;
+        this.currentBudget = initialBudget;
     }
 
     public double getInitialBudget() {

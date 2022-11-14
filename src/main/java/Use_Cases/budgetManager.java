@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class budgetManager extends Budget {
 
-    public budgetManager(double initialBudget, double currentBudget) {
-        super(initialBudget, currentBudget);
+    public budgetManager(double initialBudget) {
+        super(initialBudget);
     }
 
     public void adjustMonthlyBudget(double newBudgetSize) {
