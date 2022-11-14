@@ -3,6 +3,7 @@ package Use_Cases;
 import Entities.Restaurant;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class filterManager {
     private restaurantFilter cuisineFilter;
@@ -21,8 +22,21 @@ public class filterManager {
         ArrayList<Restaurant> cuisineChoice = cuisineFilter.filter(prefs.getCuisinePreference());
         ArrayList<Restaurant> foodTypeChoice = foodTypeFilter.filter(prefs.getFoodTypePreference());
         ArrayList<Restaurant> priceChoice = priceFilter.filter((prefs.getPricePreference()));
-        cuisineChoice.retainAll(foodTypeChoice);
-        cuisineChoice.retainAll(priceChoice);
-        return cuisineChoice;
+        if (!Objects.isNull(cuisineChoice)) {
+            if (!Objects.isNull(foodTypeChoice)) {
+                cuisineChoice.retainAll(foodTypeChoice);
+            }
+            if (!Objects.isNull(priceChoice)) {
+                cuisineChoice.retainAll(priceChoice);
+            }
+            return cuisineChoice;
+        } else if (!Objects.isNull(foodTypeChoice)) {
+            if (!Objects.isNull(priceChoice)) {
+                foodTypeChoice.retainAll(priceChoice);
+            }
+            return foodTypeChoice;
+        } else {
+            return priceChoice;
+        }
     }
 }
