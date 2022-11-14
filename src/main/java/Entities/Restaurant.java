@@ -28,7 +28,7 @@ public class Restaurant {
     }
 
     public String getFoodType() {
-        return this.foodType
+        return this.foodType;
     }
 
 
