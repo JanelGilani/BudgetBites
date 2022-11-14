@@ -16,8 +16,12 @@ public class pastOrders {
         this.lastOrdered = null;
     }
 
-    public ArrayList<foodItem> getOrderByDate (LocalDateTime dateTime) {
+    public ArrayList<foodItem> getOrderedItemsByDate (LocalDateTime dateTime) {
         return this.pastOrders.get(dateTime).getOrderedItems();
+    }
+
+    public Order getOrderByDate (LocalDateTime dateTime) {
+        return this.pastOrders.get(dateTime);
     }
 
     public LocalDateTime getLastOrdered () {
@@ -27,5 +31,18 @@ public class pastOrders {
     public void addOrder (Order order) {
         this.pastOrders.put(order.dateOrdered, order);
         this.lastOrdered = order.dateOrdered;
+    }
+
+    public double getTotalCost () {
+        double cost = 0;
+        for (Order order: this.pastOrders.values()){
+            cost += order.totalCost;
+        }
+
+        return cost;
+    }
+
+    public double getCostOfLastOrdered () {
+        return this.getOrderByDate(this.lastOrdered).totalCost;
     }
 }
