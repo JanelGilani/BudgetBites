@@ -3,12 +3,12 @@ package Entities;
 import java.util.List;
 
 public class Restaurant {
-    protected String priceRange;
-    protected String cuisine;
-    protected String foodType;
-    protected double avgRating;
+    private String priceRange;
+    private String cuisine;
+    private String foodType;
+    public double avgRating;
     protected foodItem[] menu;
-    protected List<Object[]> reviews;
+    public List<Object[]> reviews;
 
     public Restaurant (String priceRange, String cuisine, String foodType, double avgRating, foodItem[] menu) {
         this.priceRange = priceRange;
