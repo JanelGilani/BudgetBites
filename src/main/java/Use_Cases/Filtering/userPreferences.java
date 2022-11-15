@@ -1,4 +1,4 @@
-package Use_Cases;
+package Use_Cases.Filtering;
 
 public class userPreferences {
     private String pricePreference;

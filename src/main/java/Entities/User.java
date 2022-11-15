@@ -1,7 +1,7 @@
 package Entities;
 
-import Use_Cases.itemCart;
-import Use_Cases.pastOrders;
+import Use_Cases.ItemCart.itemCart;
+import Use_Cases.ItemCart.pastOrders;
 
 public class User {
     private String firstName;

@@ -1,9 +1,8 @@
-package Use_Cases.RatingManager;
+package Use_Cases.Ratings;
 
 import Entities.Restaurant;
 
 import java.util.Arrays;
-import java.util.List;
 
 public class SortRestaurants {
     private Restaurant[] SortRestaurants(Restaurant[] r){

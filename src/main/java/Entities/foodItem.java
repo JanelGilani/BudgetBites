@@ -1,6 +1,6 @@
 package Entities;
 
-import Use_Cases.itemCart;
+import Use_Cases.ItemCart.itemCart;
 
 public class foodItem {
     public String itemName;

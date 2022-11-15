@@ -1,6 +1,7 @@
-package Use_Cases;
+package Use_Cases.FoodSuggestions;
 import Entities.foodItem;
-import Entities.Budget;
+import Use_Cases.ItemCart.pastOrders;
+
 import java.time.LocalDateTime;
 import java.util.*;
 
