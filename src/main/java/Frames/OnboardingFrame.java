@@ -9,5 +9,6 @@ public class OnboardingFrame extends JFrame {
         this.setResizable(false);
         this.setSize(420, 620);
         this.setVisible(true);
+
     }
 }

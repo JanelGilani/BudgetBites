@@ -3,11 +3,11 @@ package Entities;
 import java.util.List;
 
 public class Restaurant {
-    public String priceRange;
-    public String cuisine;
-    public String foodType;
+    private String priceRange;
+    private String cuisine;
+    private String foodType;
     public double avgRating;
-    public foodItem[] menu;
+    protected foodItem[] menu;
     public List<Object[]> reviews;
 
     public Restaurant (String priceRange, String cuisine, String foodType, double avgRating, foodItem[] menu) {
@@ -17,4 +17,19 @@ public class Restaurant {
         this.avgRating = avgRating;
         this.menu = menu;
     }
+
+
+    public String getPriceRange(){
+        return this.priceRange;
+    }
+
+    public String getCuisine() {
+        return this.cuisine;
+    }
+
+    public String getFoodType() {
+        return this.foodType;
+    }
+
+
 }
