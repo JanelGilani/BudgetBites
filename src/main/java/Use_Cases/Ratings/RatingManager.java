@@ -1,11 +1,7 @@
-package Use_Cases.RatingManager;
+package Use_Cases.Ratings;
 
 import Entities.Restaurant;
 import Entities.User;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class RatingManager {
     private User reviewUser;

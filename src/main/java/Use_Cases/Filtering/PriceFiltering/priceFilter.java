@@ -1,4 +1,4 @@
-package Use_Cases;
+package Use_Cases.Filtering.PriceFiltering;
 
 import Entities.foodItem;
 import java.util.ArrayList;

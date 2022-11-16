@@ -1,4 +1,4 @@
-package Use_Cases.RatingManager;
+package Use_Cases.Ratings;
 
 import Entities.Restaurant;
 
