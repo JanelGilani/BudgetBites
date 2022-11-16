@@ -29,8 +29,7 @@ public class budgetManager extends Budget {
         }
     }
 
-    public void orderedMealsBudget(){
-        currentBudget = currentBudget;
+    public void orderedMealsBudget(pastOrders pastOrders){
+        currentBudget = currentBudget - pastOrders.getCostOfLastOrdered();
     }
-
 }
