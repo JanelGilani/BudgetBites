@@ -20,7 +20,7 @@ public class suggestionToUser {
     private final ArrayList<foodItem> currentOrderFoodItem = currentOrder.getOrderedItemsByDate(currentOrder.getLastOrdered());
 
     public void itemCount() {
-        if (currentOrder.lastOrdered != lastOrderDate) {
+        if (currentOrder.getLastOrdered() != lastOrderDate) {
             for (foodItem item : currentOrderFoodItem) {
                 if (!countItems.containsKey(item.getItemName())) {
                     countItems.put(item.getItemName(), 1);
@@ -29,7 +29,7 @@ public class suggestionToUser {
                 }
             }
         }
-        lastOrderDate = currentOrder.lastOrdered;
+        lastOrderDate = currentOrder.getLastOrdered();
     }
 
     public HashMap<String, Integer> sortingHashMap() {
