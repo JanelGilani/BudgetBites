@@ -31,4 +31,36 @@ public class User {
         this.pastOrders = new pastOrders();
         this.itemCart = new itemCart();
     }
+
+    public User (String firstName, String lastName, String username, String password, pastOrders pastOrders) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.budget = new Budget();
+        this.pastOrders = pastOrders;
+        this.itemCart = new itemCart();
+    }
+
+    public String getFirstName () {
+        return this.firstName;
+    }
+
+    public String getLastName () {
+        return this.lastName;
+    }
+
+    public String getUsername () {
+        return this.username;
+    }
+
+    public String getPassword () {
+        return this.password;
+    }
+
+    public pastOrders getPastOrders () {
+        return this.pastOrders;
+    }
+
+
 }
