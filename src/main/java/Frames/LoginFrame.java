@@ -1,6 +1,8 @@
 package Frames;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame{
 
@@ -9,6 +11,7 @@ public class LoginFrame extends JFrame{
     private static JLabel passwordLabel;
     private static JPasswordField passwordText;
     private static JButton loginButton;
+    private static JButton backButton;
     private static JLabel successLogin;
 
     public LoginFrame() {
@@ -23,7 +26,7 @@ public class LoginFrame extends JFrame{
 
 
         // the user label for user log in text
-        userLabel = new JLabel("User:");
+        userLabel = new JLabel("UTORid:");
         userLabel.setBounds(10, 20, 80, 25);
         panel.add(userLabel);
         // text field for the user to input their username
@@ -45,6 +48,16 @@ public class LoginFrame extends JFrame{
         loginButton = new JButton("Login");
         loginButton.setBounds(10, 80, 80, 25);
         panel.add(loginButton);
+
+        backButton = new JButton("Back");
+        backButton.setBounds(10, 120, 80, 25);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                OnboardingFrame onboardingFrame = new OnboardingFrame();
+            }
+        });
+        panel.add(backButton);
 
         // login label to return message upon login attempt
         successLogin = new JLabel();
