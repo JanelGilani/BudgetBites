@@ -16,6 +16,11 @@ public class pastOrders {
         this.lastOrdered = null;
     }
 
+    public pastOrders (HashMap<String, Order> pastOrdersMap, LocalDateTime lastOrdered) {
+        this.pastOrdersMap = pastOrdersMap;
+        this.lastOrdered = lastOrdered;
+    }
+
     public ArrayList<foodItem> getOrderedItemsByDate (LocalDateTime dateTime) {
         return this.pastOrdersMap.get(dateTime).getOrderedItems();
     }

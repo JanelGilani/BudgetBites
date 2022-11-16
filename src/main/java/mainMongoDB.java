@@ -2,10 +2,13 @@ import Entities.Order;
 import Entities.Restaurant;
 import Entities.User;
 import Use_Cases.pastOrders;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.mongodb.DBObject;
 import com.mongodb.client.*;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
+import org.bson.BsonDocument;
 import org.bson.Document;
 import Use_Cases.itemCart;
 import Entities.foodItem;
@@ -13,15 +16,18 @@ import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static com.mongodb.client.model.Filters.eq;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+
 
 public class mainMongoDB {
 
@@ -36,7 +42,7 @@ public class mainMongoDB {
     public mainMongoDB () {
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 //        List<foodItem> newFood = new ArrayList<>();
 //        foodItem chicken = new foodItem("chicken", 10);
 //        newFood.add(chicken);
@@ -97,7 +103,14 @@ public class mainMongoDB {
 //        System.out.println(findAttributeByUsername("aryangoel24", "firstName"));
 //        System.out.println(findAttributeByRestaurantName(""));
 
+//        System.out.println(findPastOrders("nikita"));
+//        System.out.println(userExists("ag"));
+
+//        System.out.println(findAttributeByUsername("nikita", "pastOrders"));
+
         System.out.println(findPastOrders("nikita"));
+
+
     }
 
     public static void saveUser (User user) {
@@ -128,11 +141,47 @@ public class mainMongoDB {
         return userDoc.get(attribute);
     }
 
-    public static Object findPastOrders (String username) {
-        Document pastOrders = userRepo.find(eq("username", username)).first();
-        return pastOrders.get("pastOrdersMap");
-
+    public static boolean userExists (String username) {
+        if (userRepo.find(eq("username", username)).first() != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
+
+
+    public static Object findPastOrders (String username) throws IOException {
+        Document pastOrders = (Document) userRepo.find(eq("username", username)).first().get("pastOrders");
+        Document orders = (Document) pastOrders.get("pastOrdersMap");
+
+        String pastOrdersMap = orders.toJson();
+        String lastOrdered = pastOrders.toJson();
+
+        ObjectMapper mapper = new ObjectMapper();
+
+        HashMap map = mapper.readValue(pastOrdersMap, HashMap.class);
+//        LocalDateTime date = mapper.readValue(lastOrdered, HashMap.class).
+        HashMap map1 = mapper.readValue(lastOrdered, HashMap.class);
+
+//        pastOrders pastOrders1 = new pastOrders(map, map1.get("lastOrdered"));
+
+//        pastOrders pastOrders1 = new pastOrders(map, map.get());
+//        pastOrders pastOrders1 = new pastOrders(map, map.get("lastOrdered"));
+
+//        Object orders = ((Document) pastOrders.get("pastOrders")).get("pastOrdersMap");
+//        HashMap orders = new HashMap();
+//        pastOrders.putAll(orders);
+
+        String date = (String) ((LinkedHashMap) map1.get("lastOrdered")).get("$date");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+//        pastOrders pastOrders1 = new pastOrders(map, LocalDateTime.parse(date));
+
+        return map.get("2022-11-15T21:59:47.533450");
+    }
+
+
 
     public static Object findAttributeByRestaurantName (String restaurantName, String attribute) {
 //        Attribute must match exactly to one of the following: restaurantName, cuisine, priceRange, foodType, avgRating, menu, reviews
