@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class pastOrders {
-    public HashMap<LocalDateTime, Order> pastOrders;
-    public LocalDateTime lastOrdered;
+    protected HashMap<LocalDateTime, Order> pastOrders;
+    protected LocalDateTime lastOrdered;
 
     public pastOrders () {
         this.pastOrders = new HashMap<LocalDateTime, Order>();
@@ -29,20 +29,20 @@ public class pastOrders {
     }
 
     public void addOrder (Order order) {
-        this.pastOrders.put(order.dateOrdered, order);
-        this.lastOrdered = order.dateOrdered;
+        this.pastOrders.put(order.getDateOrdered(), order);
+        this.lastOrdered = order.getDateOrdered();
     }
 
     public double getTotalCost () {
         double cost = 0;
         for (Order order: this.pastOrders.values()){
-            cost += order.totalCost;
+            cost += order.getTotalCost();
         }
 
         return cost;
     }
 
     public double getCostOfLastOrdered () {
-        return this.getOrderByDate(this.lastOrdered).totalCost;
+        return this.getOrderByDate(this.lastOrdered).getTotalCost();
     }
 }
