@@ -51,7 +51,7 @@ public class UserPreferenceFrame extends JFrame {
         panel.add(userMealText);
 
 
-        // Submit button
+        // Submit button.
         submitButton = new JButton("Submit Preferences");
         submitButton.setBounds(10, 110, 160, 25);
         panel.add(submitButton);
