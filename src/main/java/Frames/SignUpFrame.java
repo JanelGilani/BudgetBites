@@ -15,6 +15,7 @@ public class SignUpFrame extends JFrame{
 
     public SignUpFrame() {
 
+        //sign-up frame panel
         JPanel panel = new JPanel();
         this.setTitle("BudgetBites - SignUpFrame");
         this.setSize(420, 600);
