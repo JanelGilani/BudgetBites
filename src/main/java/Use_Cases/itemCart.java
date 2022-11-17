@@ -19,7 +19,7 @@ public class itemCart {
     }
 
     public Order makeOrder (pastOrders userPastOrders) {
-        LocalDateTime dateTime = LocalDateTime.now();
+        String dateTime = LocalDateTime.now().toString();
         Order tempOrder = new Order(dateTime);
 
         for (foodItem item: this.currentOrder) {

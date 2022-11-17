@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class suggestionToUser {
-    private LocalDateTime lastOrderDate;
+    private String lastOrderDate;
 
     private final HashMap<String, Integer> countItems = new HashMap<>();
     public LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
@@ -19,7 +19,7 @@ public class suggestionToUser {
     private final ArrayList<foodItem> currentOrderFoodItem = currentOrder.getOrderedItemsByDate(currentOrder.getLastOrdered());
 
     public void itemCount() {
-        if (currentOrder.lastOrdered != lastOrderDate) {
+        if (currentOrder.getLastOrdered() != lastOrderDate) {
             for (foodItem item : currentOrderFoodItem) {
                 if (!countItems.containsKey(item.getItemName())) {
                     countItems.put(item.getItemName(), 1);
@@ -28,7 +28,7 @@ public class suggestionToUser {
                 }
             }
         }
-        lastOrderDate = currentOrder.lastOrdered;
+        lastOrderDate = currentOrder.getLastOrdered();
     }
 
     public HashMap<String, Integer> sortingHashMap() {

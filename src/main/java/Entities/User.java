@@ -2,6 +2,7 @@ package Entities;
 
 import Use_Cases.itemCart;
 import Use_Cases.pastOrders;
+import org.bson.codecs.pojo.annotations.BsonProperty;
 
 public class User {
     private String firstName;
@@ -10,57 +11,73 @@ public class User {
     private String password;
     private Budget budget;
     private pastOrders pastOrders;
+
     private itemCart itemCart;
 
-    public User (String firstName, String lastName, String username, String password, Budget budget) {
+//    public User (String firstName, String lastName, String username, String password, Budget budget) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.username = username;
+//        this.password = password;
+//        this.budget = budget;
+//        this.pastOrders = new pastOrders();
+//        this.itemCart = new itemCart();
+//    }
+//
+//    public User (String firstName, String lastName, String username, String password) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.username = username;
+//        this.password = password;
+//        this.budget = new Budget();
+//        this.pastOrders = new pastOrders();
+//        this.itemCart = new itemCart();
+//    }
+//
+//    public User (String firstName, String lastName, String username, String password, pastOrders pastOrders) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.username = username;
+//        this.password = password;
+////        this.budget = new Budget();
+//        this.pastOrders = pastOrders;
+////        this.itemCart = new itemCart();
+//    }
+
+    public User () {
+    }
+
+    public User (String firstName, String lastName, String username, String password, pastOrders pastOrders, Budget budget) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
         this.budget = budget;
-        this.pastOrders = new pastOrders();
-        this.itemCart = new itemCart();
-    }
-
-    public User (String firstName, String lastName, String username, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.budget = new Budget();
-        this.pastOrders = new pastOrders();
-        this.itemCart = new itemCart();
-    }
-
-    public User (String firstName, String lastName, String username, String password, pastOrders pastOrders) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.username = username;
-        this.password = password;
-        this.budget = new Budget();
         this.pastOrders = pastOrders;
-        this.itemCart = new itemCart();
+//        this.itemCart = new itemCart();
     }
 
     public String getFirstName () {
-        return this.firstName;
+        return firstName;
     }
 
     public String getLastName () {
-        return this.lastName;
+        return lastName;
     }
 
     public String getUsername () {
-        return this.username;
+        return username;
     }
 
     public String getPassword () {
-        return this.password;
+        return password;
     }
 
     public pastOrders getPastOrders () {
-        return this.pastOrders;
+        return pastOrders;
     }
+
+    public Budget getBudget () {return budget;}
 
 
 }

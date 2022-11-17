@@ -6,10 +6,12 @@ import java.util.ArrayList;
 
 public class Order {
     public ArrayList<foodItem> orderedItems;
-    public LocalDateTime dateOrdered;
+    public String dateOrdered;
     public double totalCost;
 
-    public Order (ArrayList<foodItem> orderedItems, LocalDateTime dateOrdered) {
+
+
+    public Order (ArrayList<foodItem> orderedItems, String dateOrdered) {
         this.orderedItems = orderedItems;
         this.dateOrdered = dateOrdered;
         this.totalCost = 0;
@@ -20,7 +22,13 @@ public class Order {
 
     }
 
-    public Order (LocalDateTime dateOrdered) {
+    public Order () {
+        this.dateOrdered = null;
+        this.totalCost = 0;
+        this.orderedItems = new ArrayList<>();
+    }
+
+    public Order (String dateOrdered) {
         this.orderedItems = new ArrayList<foodItem>();
         this.dateOrdered = dateOrdered;
         this.totalCost = 0;

@@ -8,28 +8,28 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class pastOrders {
-    public HashMap<String, Order> pastOrdersMap;
-    public LocalDateTime lastOrdered;
+    private HashMap<String, Order> pastOrdersMap;
+    private String lastOrdered;
 
     public pastOrders () {
         this.pastOrdersMap = new HashMap<String, Order>();
         this.lastOrdered = null;
     }
 
-    public pastOrders (HashMap<String, Order> pastOrdersMap, LocalDateTime lastOrdered) {
+    public pastOrders (HashMap<String, Order> pastOrdersMap, String lastOrdered) {
         this.pastOrdersMap = pastOrdersMap;
         this.lastOrdered = lastOrdered;
     }
 
-    public ArrayList<foodItem> getOrderedItemsByDate (LocalDateTime dateTime) {
+    public ArrayList<foodItem> getOrderedItemsByDate (String dateTime) {
         return this.pastOrdersMap.get(dateTime).getOrderedItems();
     }
 
-    public Order getOrderByDate (LocalDateTime dateTime) {
+    public Order getOrderByDate (String dateTime) {
         return this.pastOrdersMap.get(dateTime);
     }
 
-    public LocalDateTime getLastOrdered () {
+    public String getLastOrdered () {
         return this.lastOrdered;
     }
 

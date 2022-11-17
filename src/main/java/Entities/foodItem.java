@@ -11,6 +11,10 @@ public class foodItem {
         this.itemCost = itemCost;
     }
 
+    public foodItem () {
+
+    }
+
     public double getItemCost () {
         return this.itemCost;
     }
