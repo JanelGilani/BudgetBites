@@ -1,31 +1,18 @@
 import Entities.*;
 import Use_Cases.pastOrders;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.mongodb.ConnectionString;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClientSettings;
 import com.mongodb.client.*;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
-import org.bson.BsonDocument;
 import org.bson.Document;
 import Use_Cases.itemCart;
-import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.*;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static com.mongodb.client.model.Filters.eq;
-import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 
@@ -129,6 +116,7 @@ public class mainMongoDB {
 //        foodItem f1 = new foodItem("Hamburger", 20);
 //        order.addToOrder(f1);
 //        addToPastOrders("aryangoel24", order);
+        System.out.println(findUserByUsername("ab23").getUsername());
     }
 
 //    Save new User or Restaurant to Database
