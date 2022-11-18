@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Restaurant {
-    private String restaurantName;
-    private String priceRange;
-    private String cuisine;
-    private String foodType;
+    public String restaurantName;
+    public String priceRange;
+    public String cuisine;
+    public String foodType;
     public double avgRating;
-    protected ArrayList<foodItem> menu;
+    public ArrayList<foodItem> menu;
     public List<Object[]> reviews;
 
     public Restaurant (String name, String priceRange, String cuisine, String foodType, double avgRating, ArrayList<foodItem> menu) {

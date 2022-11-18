@@ -4,14 +4,14 @@ import Use_Cases.ItemCart.itemCart;
 import Use_Cases.ItemCart.pastOrders;
 
 public class User {
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private Budget budget;
-    private pastOrders pastOrders;
+    public String firstName;
+    public String lastName;
+    public String username;
+    public String password;
+    public Budget budget;
+    public pastOrders pastOrders;
 
-    private itemCart itemCart;
+    public itemCart itemCart;
     
     public User () {
     }
@@ -27,7 +27,7 @@ public class User {
     }
 
     public String getFirstName () {
-        return firstName;
+        return this.firstName;
     }
 
     public String getLastName () {

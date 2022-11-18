@@ -3,14 +3,12 @@ package Entities;
 import Use_Cases.ItemCart.itemCart;
 
 public class foodItem {
-    protected String itemName;
-    protected double itemCost;
-    protected Restaurant restaurant;
+    public String itemName;
+    public double itemCost;
 
-    public foodItem (String itemName, double itemCost, Restaurant restaurant) {
+    public foodItem (String itemName, double itemCost) {
         this.itemName = itemName;
         this.itemCost = itemCost;
-        this.restaurant = restaurant;
     }
 
     public foodItem () {
@@ -23,10 +21,6 @@ public class foodItem {
 
     public String getItemName () {
         return this.itemName;
-    }
-
-    public Restaurant getRestaurant () {
-        return this.restaurant;
     }
 
     public void addToItemCart (itemCart cart) {

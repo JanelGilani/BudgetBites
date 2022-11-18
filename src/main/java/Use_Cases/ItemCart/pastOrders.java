@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class pastOrders {
-    private HashMap<String, Order> pastOrdersMap;
-    private String lastOrdered;
+    public HashMap<String, Order> pastOrdersMap;
+    public String lastOrdered;
 
     public pastOrders () {
         this.pastOrdersMap = new HashMap<String, Order>();

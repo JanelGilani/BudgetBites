@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class itemCart {
-    protected ArrayList<foodItem> currentOrder;
+    public ArrayList<foodItem> currentOrder;
 
     public itemCart () {
         this.currentOrder = new ArrayList<foodItem>();
