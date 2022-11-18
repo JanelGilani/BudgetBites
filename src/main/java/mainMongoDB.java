@@ -149,29 +149,24 @@ public class mainMongoDB {
         return restaurantRepo.find(eq("restaurantName", restaurantName)).first();
     }
 
-
 //    Check if user exists
     public static boolean userExists (String username) {
-        return userRepo.find(eq("username", username)).first() != null;
+        if (userRepo.find(eq("username", username)).first() != null) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 //    Past Orders
     public static pastOrders findPastOrders (String username) {
         User user = userRepo.find(eq("username", username)).first();
-        if (user != null) {
-            pastOrders currentPastOrder = user.getPastOrders();
-            try {
-                return currentPastOrder;
-            } catch (NullPointerException e) {
-                return null;
-            }
-        }
-        return null;
+        return user.getPastOrders();
     }
 
-    public static boolean addToPastOrders (String username, Order order) {
+    public static void addToPastOrders (String username, Order order) {
         User user = userRepo.find(eq("username", username)).first();
-        assert user != null;
         pastOrders pastOrders = user.getPastOrders();
         pastOrders.addOrder(order);
 
@@ -180,33 +175,13 @@ public class mainMongoDB {
         UpdateOptions options = new UpdateOptions().upsert(true);
 
         userRepo.updateOne(query, updates, options);
-        return true;
     }
-
-    //Find attribute by username
-    public static Object getAttribute (String username, String attribute) {
-        User user = userRepo.find(eq("username", username)).first();
-        assert user != null;
-        switch (attribute) {
-            case "budget":
-                return user.getBudget();
-            case "password":
-                return user.getPassword();
-            case "firstname":
-                return user.getFirstName();
-            case "lastname":
-                return user.getLastName();
-        }
-        return null;
-    }
-
 
 //    Budget
-//    public static Budget findBudget (String username) {
-//        User user = userRepo.find(eq("username", username)).first();
-//        assert user != null;
-//        return user.getBudget();
-//    }
+    public static Budget findBudget (String username) {
+        User user = userRepo.find(eq("username", username)).first();
+        return user.getBudget();
+    }
 
     public static void updateBudget (String username) {
 
