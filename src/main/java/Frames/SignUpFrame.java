@@ -1,6 +1,8 @@
 package Frames;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SignUpFrame extends JFrame{
 
@@ -12,6 +14,7 @@ public class SignUpFrame extends JFrame{
     private static JPasswordField confirmPasswordText;
     private static JButton signUpButton;
     private static JLabel successSignUp;
+    private static JButton backButton;
 
     public SignUpFrame() {
 
@@ -58,6 +61,18 @@ public class SignUpFrame extends JFrame{
         signUpButton.setBounds(10, 110, 80, 25);
         panel.add(signUpButton);
 
+        backButton = new JButton("Back");
+        backButton.setBounds(10, 140, 80, 25);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                OnboardingFrame onboardingFrame = new OnboardingFrame();
+            }
+        });
+        panel.add(backButton);
+
+
         // login label to return message upon login attempt
         successSignUp = new JLabel();
         successSignUp.setBounds(10, 140, 300, 25);
@@ -68,6 +83,9 @@ public class SignUpFrame extends JFrame{
 
     }
 
-
+    private void exit() {
+        this.setVisible(false);
+        this.dispose();
+    }
 
 }

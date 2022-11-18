@@ -54,6 +54,7 @@ public class LoginFrame extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                exit();
                 OnboardingFrame onboardingFrame = new OnboardingFrame();
             }
         });
@@ -69,4 +70,8 @@ public class LoginFrame extends JFrame{
 
     }
 
+    private void exit() {
+        this.setVisible(false);
+        this.dispose();
+    }
 }

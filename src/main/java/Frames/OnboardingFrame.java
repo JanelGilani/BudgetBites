@@ -33,7 +33,8 @@ public class OnboardingFrame extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 LoginFrame loginFrame = new LoginFrame();
+                exit();
+                LoginFrame loginFrame = new LoginFrame();
             }
         });
         panel.add(loginButton);
@@ -44,7 +45,8 @@ public class OnboardingFrame extends JFrame{
         signinButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                SignInFrame signInFrame = new SignInFrame();
+                exit();
+                SignUpFrame signUpFrame = new SignUpFrame();
             }
         });
         panel.add(signinButton);
@@ -60,4 +62,8 @@ public class OnboardingFrame extends JFrame{
     }
 
 
+    private void exit() {
+        this.setVisible(false);
+        this.dispose();
+    }
 }
