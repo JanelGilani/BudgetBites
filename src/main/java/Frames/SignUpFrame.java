@@ -59,6 +59,13 @@ public class SignUpFrame extends JFrame{
         // login button
         signUpButton = new JButton("SignUp");
         signUpButton.setBounds(10, 110, 80, 25);
+        signUpButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+            }
+        });
         panel.add(signUpButton);
 
         backButton = new JButton("Back");
