@@ -4,20 +4,23 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginFrame extends JFrame{
+public class SignUpFrame extends JFrame{
 
     private static JLabel userLabel;
     private static JTextField userText;
     private static JLabel passwordLabel;
     private static JPasswordField passwordText;
-    private static JButton loginButton;
+    private static  JLabel confirmPasswordLabel;
+    private static JPasswordField confirmPasswordText;
+    private static JButton signUpButton;
+    private static JLabel successSignUp;
     private static JButton backButton;
-    private static JLabel successLogin;
 
-    public LoginFrame() {
+    public SignUpFrame() {
 
+        //sign-up frame panel
         JPanel panel = new JPanel();
-        this.setTitle("BudgetBites");
+        this.setTitle("BudgetBites - SignUpFrame");
         this.setSize(420, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(panel);
@@ -26,38 +29,47 @@ public class LoginFrame extends JFrame{
 
 
         // the user label for user log in text
-        userLabel = new JLabel("UTORid:");
-        userLabel.setBounds(10, 20, 80, 25);
+        userLabel = new JLabel("Enter your UTORid:");
+        userLabel.setBounds(10, 20, 200, 25);
         panel.add(userLabel);
         // text field for the user to input their username
         userText = new JTextField();
-        userText.setBounds(100, 20 , 165, 25);
+        userText.setBounds(200, 20 , 165, 25);
         panel.add(userText);
 
         // the password label for password log in text
-        passwordLabel = new JLabel("Password:");
-        passwordLabel.setBounds(10, 50, 80, 25);
+        passwordLabel = new JLabel("Enter your new password:");
+        passwordLabel.setBounds(10, 50, 200, 25);
         panel.add(passwordLabel);
         // text field for the user to input their password, characters entered will not be visible
         passwordText = new JPasswordField();
-        passwordText.setBounds(100, 50 , 165, 25);
+        passwordText.setBounds(200, 50 , 165, 25);
         panel.add(passwordText);
+
+        // the confirmation password label for password log in text
+        confirmPasswordLabel = new JLabel("Confirm your new password:");
+        confirmPasswordLabel.setBounds(10, 80, 200, 25);
+        panel.add(confirmPasswordLabel);
+        // text field for the user to confirm their password, characters entered will not be visible
+        confirmPasswordText = new JPasswordField();
+        confirmPasswordText.setBounds(200, 80 , 165, 25);
+        panel.add(confirmPasswordText);
 
 
         // login button
-        loginButton = new JButton("Login");
-        loginButton.setBounds(10, 80, 80, 25);
-        loginButton.addActionListener(new ActionListener() {
+        signUpButton = new JButton("SignUp");
+        signUpButton.setBounds(10, 110, 80, 25);
+        signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 exit();
                 UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
             }
         });
-        panel.add(loginButton);
+        panel.add(signUpButton);
 
         backButton = new JButton("Back");
-        backButton.setBounds(10, 120, 80, 25);
+        backButton.setBounds(10, 140, 80, 25);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -67,10 +79,11 @@ public class LoginFrame extends JFrame{
         });
         panel.add(backButton);
 
+
         // login label to return message upon login attempt
-        successLogin = new JLabel();
-        successLogin.setBounds(10, 110, 300, 25);
-        panel.add(successLogin);
+        successSignUp = new JLabel();
+        successSignUp.setBounds(10, 140, 300, 25);
+        panel.add(successSignUp);
 
 
         this.setVisible(true);
@@ -81,4 +94,5 @@ public class LoginFrame extends JFrame{
         this.setVisible(false);
         this.dispose();
     }
+
 }

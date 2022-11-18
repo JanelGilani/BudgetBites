@@ -1,10 +1,9 @@
 import Frames.LoginFrame;
+import Frames.OnboardingFrame;
 
 public class main{
 
     public static void main(String[] args) {
-
-        LoginFrame loginFrame = new LoginFrame();
-
+        OnboardingFrame onboardingFrame = new OnboardingFrame();
     }
 }
