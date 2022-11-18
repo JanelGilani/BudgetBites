@@ -10,18 +10,6 @@ public class Order {
     public double totalCost;
 
 
-
-    public Order (ArrayList<foodItem> orderedItems, String dateOrdered) {
-        this.orderedItems = orderedItems;
-        this.dateOrdered = dateOrdered;
-        this.totalCost = 0;
-
-        for (foodItem item: orderedItems) {
-            totalCost += item.itemCost;
-        }
-
-    }
-
     public Order () {
         this.dateOrdered = null;
         this.totalCost = 0;
@@ -29,13 +17,21 @@ public class Order {
     }
 
     public Order (String dateOrdered) {
-        this.orderedItems = new ArrayList<foodItem>();
         this.dateOrdered = dateOrdered;
         this.totalCost = 0;
+        this.orderedItems = new ArrayList<>();
     }
 
     public ArrayList<foodItem> getOrderedItems () {
         return this.orderedItems;
+    }
+
+    public double getTotalCost () {
+        return this.totalCost;
+    }
+
+    public String getDateOrdered () {
+        return this.dateOrdered;
     }
 
 
@@ -43,5 +39,7 @@ public class Order {
         this.orderedItems.add(item);
         this.totalCost += item.getItemCost();
         }
+
+
 
 }

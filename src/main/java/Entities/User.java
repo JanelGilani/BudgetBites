@@ -1,8 +1,13 @@
 package Entities;
 
+<<<<<<< HEAD
 import Use_Cases.itemCart;
 import Use_Cases.pastOrders;
 import org.bson.codecs.pojo.annotations.BsonProperty;
+=======
+import Use_Cases.ItemCart.itemCart;
+import Use_Cases.ItemCart.pastOrders;
+>>>>>>> ba837d9ef596f639fc25b433f4ea0f634f33bd10
 
 public class User {
     private String firstName;

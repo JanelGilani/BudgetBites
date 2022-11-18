@@ -1,5 +1,5 @@
 import Entities.*;
-import Use_Cases.pastOrders;
+import Use_Cases.ItemCart.pastOrders;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.mongodb.ConnectionString;
@@ -10,7 +10,7 @@ import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import org.bson.BsonDocument;
 import org.bson.Document;
-import Use_Cases.itemCart;
+import Use_Cases.ItemCart.itemCart;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
