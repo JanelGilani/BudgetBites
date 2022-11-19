@@ -3,28 +3,25 @@ package Frames;
 import javax.swing.*;
 
 public class RestaurantListingsFrame extends JFrame{
-    // frame
-    private static;
     // Table
     JTable j;
 
     // Constructor
     public RestaurantListingsFrame() {
-        // panel initialization
         JPanel panel = new JPanel();
+        this.setTitle("BudgetBites - Restaurant Listings");
+        this.setSize(420, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.add(panel);
 
 
-        // Frame Title
-        f.setTitle("JTable Example");
-
-        // Data to be displayed in the JTable
         String[][] data = {
-                { "Kundan Kumar Jha", "4031", "CSE" },
-                { "Anand Jha", "6014", "IT" }
+                { "Kundan Kumar Jha", "4031", "CSE", "2.0" },
+                { "Anand Jha", "6014", "IT", "5.0" }
         };
 
         // Column Names
-        String[] columnNames = { "Name", "Roll Number", "Department" };
+        String[] columnNames = { "Restaurant", "Cuisine", "Price Range", "Rating"};
 
         // Initializing the JTable
         j = new JTable(data, columnNames);
@@ -32,14 +29,13 @@ public class RestaurantListingsFrame extends JFrame{
 
         // adding it to JScrollPane
         JScrollPane sp = new JScrollPane(j);
-        f.add(sp);
+        this.add(sp);
         // Frame Size
-        f.setSize(500, 200);
+        this.setSize(500, 200);
         // Frame Visible = true
-        f.setVisible(true);
+        this.setVisible(true);
     }
 
-    // Driver  method
     public static void main(String[] args)
     {
         new RestaurantListingsFrame();
