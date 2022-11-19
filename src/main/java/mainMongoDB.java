@@ -17,8 +17,11 @@ import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 
+import javax.print.attribute.standard.JobKOctets;
+
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Filters.nin;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 
@@ -65,22 +68,26 @@ public class mainMongoDB {
 
 //    Check if user exists
     public static boolean userExists (String username) {
-        if (userRepo.find(eq("username", username)).first() != null) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return userRepo.find(eq("username", username)).first() != null;
     }
 
 //    Past Orders
     public static pastOrders findPastOrders (String username) {
         User user = userRepo.find(eq("username", username)).first();
-        return user.getPastOrders();
+        if (user != null) {
+            pastOrders currentPastOrder = user.getPastOrders();
+            try {
+                return currentPastOrder;
+            } catch (NullPointerException e) {
+                return null;
+            }
+        }
+        return null;
     }
 
-    public static void addToPastOrders (String username, Order order) {
+    public static boolean addToPastOrders (String username, Order order) {
         User user = userRepo.find(eq("username", username)).first();
+        assert user != null;
         pastOrders pastOrders = user.getPastOrders();
         pastOrders.addOrder(order);
 
@@ -89,12 +96,45 @@ public class mainMongoDB {
         UpdateOptions options = new UpdateOptions().upsert(true);
 
         userRepo.updateOne(query, updates, options);
+        return true;
     }
 
-//    Budget
-    public static Budget findBudget (String username) {
-        User user = userRepo.find(eq("username", username)).first();
-        return user.getBudget();
+    // Find attribute by username
+
+    public static Object getUserAttribute (String username, String attribute) {
+        User user  = userRepo.find(eq("username", username)).first();
+        assert user !=  null;
+        switch (attribute) {
+            case "budget":
+                return user.getBudget();
+            case "firstName":
+                return user.getFirstName();
+            case "lastName":
+                return user.getLastName();
+            case "password":
+                return user.getPassword();
+        }
+        return null;
+    }
+
+    // Find attribute by Restaurant
+
+    public static Object getRestaurantAttribute (String restaurantName, String attribute) {
+        Restaurant restaurant = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
+        assert restaurant != null;
+        switch (attribute) {
+            case "restaurantName":
+                return restaurant.getRestaurantName();
+            case "cuisine":
+                return restaurant.getCuisine();
+            case "priceRange":
+                return restaurant.getPriceRange();
+            case "foodType":
+                return restaurant.getFoodType();
+            case "avgRating":
+                return restaurant.getAvgRating();
+        }
+        return null;
     }
 
     public static void updateBudget (String username) {
