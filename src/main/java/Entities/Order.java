@@ -5,29 +5,24 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Order {
-    protected ArrayList<foodItem> orderedItems;
-    protected LocalDateTime dateOrdered;
-    protected double totalCost;
-    protected Restaurant restaurant;
+    public ArrayList<foodItem> orderedItems;
+    public String dateOrdered;
+    public double totalCost;
+    public String restaurantName;
 
 
-    public Order (ArrayList<foodItem> orderedItems, LocalDateTime dateOrdered, Restaurant restaurant) {
-        this.orderedItems = orderedItems;
-        this.dateOrdered = dateOrdered;
-        this.restaurant = restaurant;
+    public Order () {
+        this.dateOrdered = null;
         this.totalCost = 0;
-
-        for (foodItem item: orderedItems) {
-            totalCost += item.itemCost;
-        }
-
+        this.orderedItems = new ArrayList<>();
+        this.restaurantName = "";
     }
 
-    public Order (LocalDateTime dateOrdered, Restaurant restaurant) {
-        this.orderedItems = new ArrayList<foodItem>();
+    public Order (String dateOrdered, String restaurantName) {
         this.dateOrdered = dateOrdered;
-        this.restaurant = restaurant;
         this.totalCost = 0;
+        this.orderedItems = new ArrayList<>();
+        this.restaurantName = restaurantName;
     }
 
     public ArrayList<foodItem> getOrderedItems () {
@@ -38,9 +33,10 @@ public class Order {
         return this.totalCost;
     }
 
-    public LocalDateTime getDateOrdered () {
+    public String getDateOrdered () {
         return this.dateOrdered;
     }
+    public String getRestaurantName () {return this.restaurantName;}
 
 
     public void addToOrder (foodItem item) {
