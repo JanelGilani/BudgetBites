@@ -21,6 +21,7 @@ import org.bson.conversions.Bson;
 
 import javax.print.attribute.standard.JobKOctets;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -56,6 +57,9 @@ public class mainMongoDB {
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
 //    Save new User or Restaurant to Database
+    public static void main(String[] args) {
+
+    }
     public static void saveUser (User user) {
         userRepo.insertOne(user);
     }
@@ -120,6 +124,8 @@ public class mainMongoDB {
                 return user.getLastName();
             case "password":
                 return user.getPassword();
+            case "username":
+                return user.getUsername();
         }
         return null;
     }
@@ -144,6 +150,18 @@ public class mainMongoDB {
         return null;
     }
 
+    public ArrayList<String> getAllRestaurants () {
+        ArrayList<String> restaurants = new ArrayList<String>();
+        restaurantRepo.find().forEach(restaurant -> restaurants.add(restaurant.getRestaurantName()));
+        return restaurants;
+    }
+
+    public ArrayList<String> getAllUsers () {
+        ArrayList<String> users = new ArrayList<String>();
+        userRepo.find().forEach(user -> users.add(user.getFirstName()));
+        return users;
+    }
+
     public static Object getMenu (String restaurantName){
         Restaurant res = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
         if (res != null) {
@@ -157,13 +175,9 @@ public class mainMongoDB {
         return null;
     }
 
-    public static void updateBudget (String username) {
-
-    }
-
 //    Update basic User or Restaurant attribute
 
-    public static void updateAttributeByUsername (String username, String attribute, String attValue) {
+    public static void updateAttributeByUsername (String username, String attribute, Object attValue) {
         Document query = new Document("username", username);
 
         Bson updates = Updates.combine(
