@@ -19,9 +19,9 @@ public class itemCart {
         currentOrder.add(item);
     }
 
-    public Order makeOrder (pastOrders userPastOrders) {
+    public Order makeOrder (pastOrders userPastOrders, String restaurantName) {
         String dateTime = LocalDateTime.now().toString();
-        Order tempOrder = new Order(dateTime);
+        Order tempOrder = new Order(dateTime, restaurantName);
 //        Get the current date and time of when the order is being placed
 //        Create the order with the dateTime and restaurant
 

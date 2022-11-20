@@ -8,18 +8,21 @@ public class Order {
     public ArrayList<foodItem> orderedItems;
     public String dateOrdered;
     public double totalCost;
+    public String restaurantName;
 
 
     public Order () {
         this.dateOrdered = null;
         this.totalCost = 0;
         this.orderedItems = new ArrayList<>();
+        this.restaurantName = "";
     }
 
-    public Order (String dateOrdered) {
+    public Order (String dateOrdered, String restaurantName) {
         this.dateOrdered = dateOrdered;
         this.totalCost = 0;
         this.orderedItems = new ArrayList<>();
+        this.restaurantName = restaurantName;
     }
 
     public ArrayList<foodItem> getOrderedItems () {
@@ -33,6 +36,7 @@ public class Order {
     public String getDateOrdered () {
         return this.dateOrdered;
     }
+    public String getRestaurantName () {return this.restaurantName;}
 
 
     public void addToOrder (foodItem item) {
