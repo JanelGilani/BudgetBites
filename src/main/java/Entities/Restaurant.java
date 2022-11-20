@@ -12,6 +12,10 @@ public class Restaurant {
     public ArrayList<foodItem> menu;
     public List<Object[]> reviews;
 
+    public Restaurant () {
+
+    }
+
     public Restaurant (String name, String priceRange, String cuisine, String foodType, double avgRating, ArrayList<foodItem> menu) {
         this.restaurantName = name;
         this.priceRange = priceRange;

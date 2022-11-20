@@ -33,6 +33,10 @@ public class pastOrders {
         return this.lastOrdered;
     }
 
+    public HashMap<String, Order> getPastOrdersMap () {
+        return this.pastOrdersMap;
+    }
+
     public void addOrder (Order order) {
         this.pastOrdersMap.put(order.dateOrdered, order);
         this.lastOrdered = order.dateOrdered;

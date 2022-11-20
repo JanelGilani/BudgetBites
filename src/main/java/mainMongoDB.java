@@ -19,6 +19,9 @@ import org.bson.conversions.Bson;
 
 import javax.print.attribute.standard.JobKOctets;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Filters.nin;
@@ -41,17 +44,15 @@ public class mainMongoDB {
     static CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
 
 //    Connect to MongoDB server to the budgetbites database
-    static MongoClient client = MongoClients.create("mongodb+srv://budgetbites:budgetbites@cluster0.vemeub4.mongodb.net/?retryWrites=true&w=majority");
-    static MongoDatabase db = client.getDatabase("budgetbites2").withCodecRegistry(codecRegistry);
+    static MongoClient client = MongoClients.create("mongodb+srv://budgetbites:budgetbites@cluster0.f1q9roc.mongodb.net/?retryWrites=true&w=majority");
+    static MongoDatabase db = client.getDatabase("budgetbites").withCodecRegistry(codecRegistry);
 
 //    Obtain the User and Restaurant collections
     static MongoCollection<Restaurant> restaurantRepo = db.getCollection("restaurants", Restaurant.class);
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
 //    Save new User or Restaurant to Database
-    public static void saveUser (User user) {
-        userRepo.insertOne(user);
-    }
+    public static void saveUser (User user) {userRepo.insertOne(user);}
 
     public static void saveRestaurant (Restaurant restaurant) {
         restaurantRepo.insertOne(restaurant);
@@ -133,6 +134,19 @@ public class mainMongoDB {
                 return restaurant.getFoodType();
             case "avgRating":
                 return restaurant.getAvgRating();
+        }
+        return null;
+    }
+
+    public static Object getMenu (String restaurantName){
+        Restaurant res = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
+        if (res != null) {
+            ArrayList<foodItem> menu = res.getMenu();
+            try {
+                return menu;
+            } catch (NullPointerException e) {
+                return null;
+            }
         }
         return null;
     }
