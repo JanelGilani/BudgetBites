@@ -150,13 +150,13 @@ public class mainMongoDB {
         return null;
     }
 
-    public ArrayList<String> getAllRestaurants () {
+    public static ArrayList<String> getAllRestaurants () {
         ArrayList<String> restaurants = new ArrayList<String>();
         restaurantRepo.find().forEach(restaurant -> restaurants.add(restaurant.getRestaurantName()));
         return restaurants;
     }
 
-    public ArrayList<String> getAllUsers () {
+    public static ArrayList<String> getAllUsers () {
         ArrayList<String> users = new ArrayList<String>();
         userRepo.find().forEach(user -> users.add(user.getFirstName()));
         return users;
