@@ -1,26 +1,27 @@
 package Use_Cases.FoodSuggestions;
 import Entities.foodItem;
 import Use_Cases.ItemCart.pastOrders;
-
-import java.time.LocalDateTime;
+import Use_Cases.mainMongoDB;
 import java.util.*;
 
 public class suggestionToUser {
+    public ArrayList<String> suggestionToUser(String userName) {
+        pastOrders currentPastOrder = mainMongoDB.findPastOrders(userName);
+        assert currentPastOrder != null;
+        HashMap<String, Integer> currentItemCount = itemCount(currentPastOrder);
+        LinkedHashMap<String, Integer> sortedList = sortingHashMap(currentItemCount);
+        return getFinalSuggestion(userName, sortedList);
+    }
+
     private String lastOrderDate;
 
-    private final HashMap<String, Integer> countItems = new HashMap<>();
-    public LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
-    ArrayList<Integer> list = new ArrayList<>();
-
-    public ArrayList<String> finalSuggestion = new ArrayList<>();
-
-    private double currentSuggesitonBudget = 0;
-
-    private final pastOrders currentOrder = new pastOrders();
-    private final ArrayList<foodItem> currentOrderFoodItem = currentOrder.getOrderedItemsByDate(currentOrder.getLastOrdered());
-
-    public void itemCount() {
-        if (currentOrder.getLastOrdered() != lastOrderDate) {
+    private HashMap<String, Integer> itemCount(pastOrders currentOrder) {
+        if (currentOrder == null) {
+            return null;
+        }
+        ArrayList<foodItem> currentOrderFoodItem = currentOrder.getOrderedItemsByDate(currentOrder.getLastOrdered());
+        HashMap<String, Integer> countItems = new HashMap<>();
+        if (!currentOrder.getLastOrdered().equals(lastOrderDate)) {
             for (foodItem item : currentOrderFoodItem) {
                 if (!countItems.containsKey(item.getItemName())) {
                     countItems.put(item.getItemName(), 1);
@@ -30,16 +31,17 @@ public class suggestionToUser {
             }
         }
         lastOrderDate = currentOrder.getLastOrdered();
+        return countItems;
     }
-
-    public HashMap<String, Integer> sortingHashMap() {
-
-        for (Map.Entry<String, Integer> entry : countItems.entrySet()) {
+    private LinkedHashMap<String, Integer> sortingHashMap(HashMap<String, Integer> populatedCountItem) {
+        ArrayList<Integer> list = new ArrayList<>();
+        LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Integer> entry : populatedCountItem.entrySet()) {
             list.add(entry.getValue());
         }
-        Collections.sort(list, Collections.reverseOrder());
+        list.sort(Collections.reverseOrder());
         for (int num : list) {
-            for (Map.Entry<String, Integer> entry : countItems.entrySet()) {
+            for (Map.Entry<String, Integer> entry : populatedCountItem.entrySet()) {
                 if (entry.getValue().equals(num)) {
                     sortedMap.put(entry.getKey(), num);
                 }
@@ -47,12 +49,13 @@ public class suggestionToUser {
         }
         return sortedMap;
     }
-
-    double budgetSoFar = 0;
-    public ArrayList<String> getFinalSuggestion() {
-        for (String item: sortedMap.keySet()) {
-            ///
-            if (budgetSoFar > currentSuggesitonBudget) {
+    private ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<String, Integer> populatedSortedMap) {
+        double budgetSoFar = 0;
+        assert mainMongoDB.getUserAttribute(userName, "budget") != null;
+        double currentBudget = (double) mainMongoDB.getUserAttribute(userName, "budget");
+        ArrayList<String> finalSuggestion = new ArrayList<>();
+        for (String item: populatedSortedMap.keySet()) {
+            if (budgetSoFar > currentBudget) {
                 break;
             }
             finalSuggestion.add(item);
