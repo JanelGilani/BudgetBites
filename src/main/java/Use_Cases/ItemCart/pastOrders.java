@@ -8,34 +8,43 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class pastOrders {
-    protected HashMap<LocalDateTime, Order> pastOrders;
-    protected LocalDateTime lastOrdered;
+    public HashMap<String, Order> pastOrdersMap;
+    public String lastOrdered;
 
     public pastOrders () {
-        this.pastOrders = new HashMap<LocalDateTime, Order>();
+        this.pastOrdersMap = new HashMap<String, Order>();
         this.lastOrdered = null;
     }
 
-    public ArrayList<foodItem> getOrderedItemsByDate (LocalDateTime dateTime) {
-        return this.pastOrders.get(dateTime).getOrderedItems();
+    public pastOrders (HashMap<String, Order> pastOrdersMap, String lastOrdered) {
+        this.pastOrdersMap = pastOrdersMap;
+        this.lastOrdered = lastOrdered;
     }
 
-    public Order getOrderByDate (LocalDateTime dateTime) {
-        return this.pastOrders.get(dateTime);
+    public ArrayList<foodItem> getOrderedItemsByDate (String dateTime) {
+        return this.pastOrdersMap.get(dateTime).getOrderedItems();
     }
 
-    public LocalDateTime getLastOrdered () {
+    public Order getOrderByDate (String dateTime) {
+        return this.pastOrdersMap.get(dateTime);
+    }
+
+    public String getLastOrdered () {
         return this.lastOrdered;
     }
 
+    public HashMap<String, Order> getPastOrdersMap () {
+        return this.pastOrdersMap;
+    }
+
     public void addOrder (Order order) {
-        this.pastOrders.put(order.getDateOrdered(), order);
-        this.lastOrdered = order.getDateOrdered();
+        this.pastOrdersMap.put(order.dateOrdered, order);
+        this.lastOrdered = order.dateOrdered;
     }
 
     public double getTotalCost () {
         double cost = 0;
-        for (Order order: this.pastOrders.values()){
+        for (Order order: this.pastOrdersMap.values()){
             cost += order.getTotalCost();
         }
 

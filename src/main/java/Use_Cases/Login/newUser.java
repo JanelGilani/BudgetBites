@@ -1,4 +1,4 @@
-package Login;
+package Use_Cases.Login;
 
 public class newUser {
 	

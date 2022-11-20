@@ -5,10 +5,11 @@ import Entities.Restaurant;
 import Entities.foodItem;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class itemCart {
-    protected ArrayList<foodItem> currentOrder;
+    public ArrayList<foodItem> currentOrder;
 
     public itemCart () {
         this.currentOrder = new ArrayList<foodItem>();
@@ -18,13 +19,11 @@ public class itemCart {
         currentOrder.add(item);
     }
 
-    public Order makeOrder (pastOrders userPastOrders) {
-//        Get the restaurant of the order from the first item in current order
-        Restaurant restaurant = this.currentOrder.get(0).getRestaurant();
+    public Order makeOrder (pastOrders userPastOrders, String restaurantName) {
+        String dateTime = LocalDateTime.now().toString();
+        Order tempOrder = new Order(dateTime, restaurantName);
 //        Get the current date and time of when the order is being placed
-        LocalDateTime dateTime = LocalDateTime.now();
 //        Create the order with the dateTime and restaurant
-        Order tempOrder = new Order(dateTime, restaurant);
 
         for (foodItem item: this.currentOrder) {
             item.addToOrder(tempOrder);
