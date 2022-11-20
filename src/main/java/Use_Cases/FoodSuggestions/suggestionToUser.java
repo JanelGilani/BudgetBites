@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class suggestionToUser {
-    private LocalDateTime lastOrderDate;
+    private String lastOrderDate;
 
     private final HashMap<String, Integer> countItems = new HashMap<>();
     public LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
