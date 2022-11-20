@@ -1,4 +1,4 @@
-package Login;
+package Use_Cases.Login;
 //Swami Shriji
 import java.util.Scanner;
 public class logiccode {
