@@ -1,13 +1,11 @@
 package Use_Cases.Filtering.RestaurantFiltering;
-import Entities.Restaurant;
 import Use_Cases.mainMongoDB;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RestaurantFilteringGateway {
     public static ArrayList<String> getListOfRestaurants() {
-        return null;
+        return mainMongoDB.getAllRestaurants();
     }
 
     public static String getRestaurantCuisine(String name) {
