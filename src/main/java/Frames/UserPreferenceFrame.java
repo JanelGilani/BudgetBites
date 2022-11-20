@@ -1,6 +1,7 @@
 package Frames;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class UserPreferenceFrame extends JFrame {
     private static JLabel userPriceLabel;
@@ -10,6 +11,9 @@ public class UserPreferenceFrame extends JFrame {
     private static JLabel userMealLabel;
     private static JComboBox userMealText;
     private static JButton submitButton;
+    private JPanel middle;
+    private JList restaurants;
+    private JScrollPane scroll;
 
     public UserPreferenceFrame() {
 
@@ -17,9 +21,10 @@ public class UserPreferenceFrame extends JFrame {
         this.setTitle("BudgetBites-UserPreference");
         this.setSize(420, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.add(panel);
 
-        panel.setLayout(null);
+        this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+        panel.setPreferredSize(new Dimension(100, 100));
+
         // the user label for user price preference text
         userPriceLabel = new JLabel("Price Preference");
         userPriceLabel.setBounds(10, 20, 120, 25);
@@ -56,7 +61,40 @@ public class UserPreferenceFrame extends JFrame {
         submitButton.setBounds(10, 110, 160, 25);
         panel.add(submitButton);
 
+        middle = new JPanel(new BorderLayout());
+        middle.setBackground(Color.WHITE);
+        middle.setPreferredSize(new Dimension(420,500));
+
+        //TODO Use presenter here
+        String week[]= { "Monday","Tuesday","Wednesday",
+                "Thursday","Friday","Saturday","Sunday", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "Sunday"};
+
+
+        //create list
+        restaurants = new JList(week);
+
+        //set a selected index
+        restaurants.setSelectedIndex(2);
+
+        //create scroll plane
+        scroll = new JScrollPane();
+        scroll.setViewportView(restaurants);
+
+        //configure scroll plane
+        restaurants.setLayoutOrientation(JList.VERTICAL);
+
+        //add scroll plane to panel
+        middle.add(scroll);
+
+
+        this.add(panel);
+        this.add(middle);
+        this.pack();
         this.setVisible(true);
 
+    }
+
+    public static void main(String[] args) {
+        new UserPreferenceFrame();
     }
 }
