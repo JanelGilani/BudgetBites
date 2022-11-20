@@ -54,28 +54,6 @@ public class mainMongoDB {
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
 //    Save new User or Restaurant to Database
-    public static void main(String[] args) {
-        ArrayList menu = (ArrayList) getMenu("Food from East");
-        Order o1 = new Order(LocalDateTime.now().minusDays(1).toString(), "Food from East");
-        Order o2 = new Order(LocalDateTime.now().toString(), "Food from East");
-        o1.addToOrder((foodItem) menu.get(0));
-        o1.addToOrder((foodItem) menu.get(1));
-        o1.addToOrder((foodItem) menu.get(2));
-        o2.addToOrder((foodItem) menu.get(3));
-        o2.addToOrder((foodItem) menu.get(4));
-        o2.addToOrder((foodItem) menu.get(5));
-        pastOrders p1 = new pastOrders();
-        p1.addOrder(o1);
-        p1.addOrder(o2);
-
-        Budget b1 = new Budget(1000);
-
-        User user = new User("Aryan", "Goel", "aryangoel24", "goelaryan25", p1, b1);
-        saveUser(user);
-
-
-
-    }
     public static void saveUser (User user) {
         userRepo.insertOne(user);
     }
