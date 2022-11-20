@@ -5,7 +5,14 @@ import Use_Cases.mainMongoDB;
 import java.util.*;
 
 public class suggestionToUser {
-    public ArrayList<String> suggestionToUser(String userName) {
+
+    public static void main(String[] args) {
+//       pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
+//       System.out.println(itemCount(order));
+       System.out.println(mainMongoDB.findPastOrders("aryangoel24"));
+    }
+
+    public static ArrayList<String> getSuggestionToUser(String userName) {
         pastOrders currentPastOrder = mainMongoDB.findPastOrders(userName);
         assert currentPastOrder != null;
         HashMap<String, Integer> currentItemCount = itemCount(currentPastOrder);
@@ -13,9 +20,9 @@ public class suggestionToUser {
         return getFinalSuggestion(userName, sortedList);
     }
 
-    private String lastOrderDate;
+    private static String lastOrderDate;
 
-    private HashMap<String, Integer> itemCount(pastOrders currentOrder) {
+    public static HashMap<String, Integer> itemCount(pastOrders currentOrder) {
         if (currentOrder == null) {
             return null;
         }
@@ -33,7 +40,7 @@ public class suggestionToUser {
         lastOrderDate = currentOrder.getLastOrdered();
         return countItems;
     }
-    private LinkedHashMap<String, Integer> sortingHashMap(HashMap<String, Integer> populatedCountItem) {
+    private static LinkedHashMap<String, Integer> sortingHashMap(HashMap<String, Integer> populatedCountItem) {
         ArrayList<Integer> list = new ArrayList<>();
         LinkedHashMap<String, Integer> sortedMap = new LinkedHashMap<>();
         for (Map.Entry<String, Integer> entry : populatedCountItem.entrySet()) {
@@ -49,7 +56,7 @@ public class suggestionToUser {
         }
         return sortedMap;
     }
-    private ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<String, Integer> populatedSortedMap) {
+    private static ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<String, Integer> populatedSortedMap) {
         double budgetSoFar = 0;
         assert mainMongoDB.getUserAttribute(userName, "budget") != null;
         double currentBudget = (double) mainMongoDB.getUserAttribute(userName, "budget");
