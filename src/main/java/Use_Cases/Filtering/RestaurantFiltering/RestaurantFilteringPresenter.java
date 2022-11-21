@@ -1,9 +1,9 @@
 package Use_Cases.Filtering.RestaurantFiltering;
-import java.util.ArrayList;
+import javax.swing.*;
 
 
 public interface RestaurantFilteringPresenter {
-    ArrayList<String> fullList();
+    JPanel allRestaurants();
 
-    ArrayList<String> updateList();
+    JPanel updateRestaurants(String pricePref, String cuisinePref, String foodTypePref);
 }
