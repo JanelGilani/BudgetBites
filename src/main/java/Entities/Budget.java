@@ -7,7 +7,7 @@ public class Budget {
     public Budget () {
     }
 
-    public Budget (double initialBudget, double currentBudget){
+    public Budget (double initialBudget){
         this.initialBudget = initialBudget;
         Budget.currentBudget = initialBudget;
     }
