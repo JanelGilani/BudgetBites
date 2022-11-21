@@ -1,9 +1,13 @@
 package Frames;
 
+import Use_Cases.Filtering.RestaurantFiltering.RestaurantFilteringPresenter;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class UserPreferenceFrame extends JFrame {
+public class UserPreferenceFrame extends JFrame implements ActionListener {
     private static JLabel userPriceLabel;
     private static JComboBox userPriceText;
     private static JLabel userCuisineLabel;
@@ -11,9 +15,9 @@ public class UserPreferenceFrame extends JFrame {
     private static JLabel userMealLabel;
     private static JComboBox userMealText;
     private static JButton submitButton;
-    private JPanel middle;
-    private JList restaurants;
-    private JScrollPane scroll;
+    private JPanel restaurants;
+
+    private RestaurantFilteringPresenter restaurantPresenter;
 
     public UserPreferenceFrame() {
 
@@ -30,7 +34,7 @@ public class UserPreferenceFrame extends JFrame {
         userPriceLabel.setBounds(10, 20, 120, 25);
         panel.add(userPriceLabel);
         // combobox for the user to choose their price preference
-        String[] priceRanges = {"Cheap", "Intermediate", "Expensive"};
+        String[] priceRanges = {"No Preference", "Cheap", "Intermediate", "Expensive"};
         userPriceText = new JComboBox(priceRanges);
         userPriceText.setBounds(140, 20 , 165, 25);
         panel.add(userPriceText);
@@ -40,7 +44,7 @@ public class UserPreferenceFrame extends JFrame {
         userCuisineLabel.setBounds(10, 50, 120, 25);
         panel.add(userCuisineLabel);
         // combobox for the user to choose their cuisine preference
-        String[] cuisines = {"Italian", "Chinese", "Thai", "French", "Arabic", "Mexican", "Indian"};
+        String[] cuisines = {"No Preference", "Italian", "Chinese", "Thai", "French", "Arabic", "Mexican", "Indian", "Middle-East"};
         UserCuisineText = new JComboBox(cuisines);
         UserCuisineText.setBounds(140, 50 , 165, 25);
         panel.add(UserCuisineText);
@@ -50,7 +54,7 @@ public class UserPreferenceFrame extends JFrame {
         userMealLabel.setBounds(10, 80, 120, 25);
         panel.add(userMealLabel);
         // combobox for the user to choose their meal preference
-        String[] meals = {"Breakfast", "Lunch", "Dinner", "Snack"};
+        String[] meals = {"No Preference", "Breakfast", "Lunch", "Dinner", "Snack"};
         userMealText = new JComboBox(meals);
         userMealText.setBounds(140, 80 , 165, 25);
         panel.add(userMealText);
@@ -59,36 +63,14 @@ public class UserPreferenceFrame extends JFrame {
         // Submit button.
         submitButton = new JButton("Submit Preferences");
         submitButton.setBounds(10, 110, 160, 25);
+        submitButton.addActionListener(this);
         panel.add(submitButton);
-
-        middle = new JPanel(new BorderLayout());
-        middle.setBackground(Color.WHITE);
-        middle.setPreferredSize(new Dimension(420,500));
-
-        //TODO Use presenter here
-        String week[]= { "Monday","Tuesday","Wednesday",
-                "Thursday","Friday","Saturday","Sunday", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "Sunday"};
-
-
-        //create list
-        restaurants = new JList(week);
-
-        //set a selected index
-        restaurants.setSelectedIndex(2);
-
-        //create scroll plane
-        scroll = new JScrollPane();
-        scroll.setViewportView(restaurants);
-
-        //configure scroll plane
-        restaurants.setLayoutOrientation(JList.VERTICAL);
-
-        //add scroll plane to panel
-        middle.add(scroll);
-
-
         this.add(panel);
-        this.add(middle);
+
+        restaurantPresenter = new restaurantsPanel();
+        restaurants = restaurantPresenter.allRestaurants();
+        this.add(restaurants);
+
         this.pack();
         this.setVisible(true);
 
@@ -96,5 +78,13 @@ public class UserPreferenceFrame extends JFrame {
 
     public static void main(String[] args) {
         new UserPreferenceFrame();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        this.remove(restaurants);
+        restaurants = restaurantPresenter.updateRestaurants((String) userPriceText.getSelectedItem(), (String) UserCuisineText.getSelectedItem(), (String) userMealText.getSelectedItem());
+        this.add(restaurants);
+        this.validate();
     }
 }
