@@ -5,8 +5,6 @@ public class Budget {
     protected static double currentBudget;
 
     public Budget () {
-        this.initialBudget = 1000000;
-        currentBudget = 1000000;
     }
 
     public Budget (double initialBudget, double currentBudget){
