@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class SingleRestaurant extends JFrame{
+public class SingleRestaurant extends JPanel{
     // Table
     JTable j;
     private Object name;
