@@ -32,6 +32,5 @@ public class Budget {
         if (currentBudget < 0)
             throw new IllegalArgumentException("Current Budget cannot be less than 0");
         Budget.currentBudget = currentBudget;
-
     }
 }
