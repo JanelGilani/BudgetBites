@@ -58,37 +58,7 @@ public class mainMongoDB {
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
     public static void main(String[] args) {
-//        foodItem f1 = new foodItem("Barbeque Pizza Slice", 4);
-//        foodItem f2 = new foodItem("Chicken Pizza Slice", 4);
-//        foodItem f3 = new foodItem("Cheese Pizza Slice", 4);
-//        foodItem f4 = new foodItem("Vegetable Pizza Slice", 4);
-//        foodItem f5 = new foodItem("Barbeque Pizza", 12);
-//        foodItem f6 = new foodItem("Chicken Pizza", 12);
-//        foodItem f7 = new foodItem("Cheese Pizza", 12);
-//        foodItem f8 = new foodItem("Vegetable Pizza", 12);
-//        foodItem f9 = new foodItem("Chicken Calzone", 8);
-//        foodItem f10 = new foodItem("Cheese Calzone", 8);
-//        foodItem f11 = new foodItem("Vegetable Calzone", 8);
-//        ArrayList menu = new ArrayList();
-//        menu.add(f1);
-//        menu.add(f2);
-//        menu.add(f3);
-//        menu.add(f4);
-//        menu.add(f5);
-//        menu.add(f6);
-//        menu.add(f7);
-//        menu.add(f8);
-//        menu.add(f9);
-//        menu.add(f10);
-//        menu.add(f11);
-//        Restaurant restaurant = new Restaurant("Stone Oven Pizzeria", "Cheap", "Italian", "Lunch", 7, menu);
-//        saveRestaurant(restaurant);
-        foodItem f1 = new foodItem("Falafel", 4);
-        foodItem f2 = new foodItem("Falafel Wrap", 7);
-        Order o1 = new Order(LocalDateTime.now().toString(), "Food from East");
-        o1.addToOrder(f1);
-        o1.addToOrder(f2);
-        addToPastOrders("aryangoel24", o1);
+        System.out.println(userExists("aryangoel24"));
     }
 
 //    Save new User or Restaurant to Database

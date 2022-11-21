@@ -1,8 +1,11 @@
 package Frames;
 
+import Use_Cases.mainMongoDB;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+//import Use_Cases.Login.logiccode;
 
 public class SignUpFrame extends JFrame{
 
@@ -42,14 +45,14 @@ public class SignUpFrame extends JFrame{
         firstNameText.setBounds(200, 20 , 165, 25);
         panel.add(firstNameText);
 
-        lastNameLabel = new JLabel("Enter your First Name:");
+        lastNameLabel = new JLabel("Enter your Last Name:");
         lastNameLabel.setBounds(10, 50, 200, 25);
         panel.add(lastNameLabel);
         lastNameText = new JTextField();
         lastNameText.setBounds(200, 50 , 165, 25);
         panel.add(lastNameText);
 
-        budgetLabel = new JLabel("Enter your First Name:");
+        budgetLabel = new JLabel("Enter your Budget:");
         budgetLabel.setBounds(10, 80, 200, 25);
         panel.add(budgetLabel);
         budgetText = new JTextField();
@@ -92,6 +95,23 @@ public class SignUpFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 exit();
                 UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+                String firstName = firstNameText.getText();
+                String lastName = lastNameText.getText();
+                String budget = budgetText.getText();
+                String user = userText.getText();
+                String password = passwordText.getText();
+                String confirmPassword = confirmPasswordText.getText();
+
+//                if (logiccode.signUpCheck(user, password, confirmPassword)){
+//                    // help me get user saved
+//                    //mainMongoDB.saveUser();
+//                    // proceeds to next page
+//                    System.out.println("Success");
+//                } else {
+//                    // the next page shouldn't come up and should say
+//                    System.out.println("Please try again, problem with sign up");
+//                }
+
             }
         });
         panel.add(signUpButton);
