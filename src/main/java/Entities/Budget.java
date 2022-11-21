@@ -2,16 +2,16 @@ package Entities;
 
 public class Budget {
     protected double initialBudget;
-    protected double currentBudget;
+    protected static double currentBudget;
 
     public Budget () {
         this.initialBudget = 1000000;
-        this.currentBudget = 1000000;
+        currentBudget = 1000000;
     }
 
-    public Budget (double initialBudget){
+    public Budget (double initialBudget, double currentBudget){
         this.initialBudget = initialBudget;
-        this.currentBudget = initialBudget;
+        Budget.currentBudget = initialBudget;
     }
 
     public double getInitialBudget() {
@@ -31,7 +31,7 @@ public class Budget {
     public void setCurrentBudget(double currentBudget) {
         if (currentBudget < 0)
             throw new IllegalArgumentException("Current Budget cannot be less than 0");
-        this.currentBudget = currentBudget;
+        Budget.currentBudget = currentBudget;
 
     }
 }

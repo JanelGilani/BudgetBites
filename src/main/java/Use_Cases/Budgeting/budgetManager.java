@@ -2,14 +2,9 @@ package Use_Cases.Budgeting;
 
 import Entities.Budget;
 import Use_Cases.ItemCart.pastOrders;
-
-import java.util.Scanner;
+import Use_Cases.mainMongoDB;
 
 public class budgetManager extends Budget {
-
-    public budgetManager(double initialBudget) {
-        super(initialBudget);
-    }
 
     public void adjustMonthlyBudget(double newBudgetSize) {
         if (newBudgetSize > initialBudget) {
@@ -30,7 +25,7 @@ public class budgetManager extends Budget {
         }
     }
 
-    public void orderedMealsBudget(pastOrders pastOrders){
-        currentBudget = currentBudget - pastOrders.getCostOfLastOrdered();
+    public static double orderedMealsBudget(pastOrders pastOrders){
+        return currentBudget - pastOrders.getCostOfLastOrdered();
     }
 }
