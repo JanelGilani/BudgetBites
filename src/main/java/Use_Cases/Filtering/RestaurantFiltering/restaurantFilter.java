@@ -6,15 +6,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class restaurantFilter {
-    private HashMap<String, ArrayList<Restaurant>> filter;
+    private HashMap<String, ArrayList<String>> filter;
     private String filterName;
 
-    public restaurantFilter(HashMap<String, ArrayList<Restaurant>> filter, String filterName){
+    public restaurantFilter(HashMap<String, ArrayList<String>> filter, String filterName){
         this.filter = filter;
         this.filterName = filterName;
     }
 
-    public ArrayList<Restaurant> filter(String choice) {
+    public ArrayList<String> filter(String choice) {
         return filter.getOrDefault(choice, null);
     }
 
