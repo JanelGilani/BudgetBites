@@ -14,8 +14,7 @@ public class budgetManager extends Budget {
         }
         if (newBudgetSize == initialBudget) {
             throw new IllegalArgumentException("Budget is the same");
-        }
-        else {
+        } else {
             initialBudget = newBudgetSize;
             double decreasingDifference = initialBudget - newBudgetSize;
             if (currentBudget > decreasingDifference) {
@@ -25,7 +24,7 @@ public class budgetManager extends Budget {
         }
     }
 
-    public static double orderedMealsBudget(pastOrders pastOrders){
+    public static double orderedMealsBudget(pastOrders pastOrders) {
         return currentBudget - pastOrders.getCostOfLastOrdered();
     }
 }
