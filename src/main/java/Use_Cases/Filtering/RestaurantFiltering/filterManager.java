@@ -1,8 +1,9 @@
-package Use_Cases.Filtering;
+package Use_Cases.Filtering.RestaurantFiltering;
 
 import Entities.Restaurant;
 import Use_Cases.Filtering.RestaurantFiltering.restaurantFilter;
-import Use_Cases.mainMongoDB;
+import Use_Cases.Filtering.RestaurantFiltering.RestaurantFilteringController;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -19,10 +20,10 @@ public class filterManager {
         this.priceFilter = priceFilter;
     }
 
-    public ArrayList<Restaurant> filter(userPreferences prefs) {
-        ArrayList<Restaurant> cuisineChoice = cuisineFilter.filter(prefs.getCuisinePreference());
-        ArrayList<Restaurant> foodTypeChoice = foodTypeFilter.filter(prefs.getFoodTypePreference());
-        ArrayList<Restaurant> priceChoice = priceFilter.filter((prefs.getPricePreference()));
+    public ArrayList<String> filter(String pricePref, String cuisinePref, String foodTypePref) {
+        ArrayList<String> cuisineChoice = cuisineFilter.filter(cuisinePref);
+        ArrayList<String> foodTypeChoice = foodTypeFilter.filter(foodTypePref);
+        ArrayList<String> priceChoice = priceFilter.filter((pricePref));
         if (!Objects.isNull(cuisineChoice)) {
             if (!Objects.isNull(foodTypeChoice)) {
                 cuisineChoice.retainAll(foodTypeChoice);
