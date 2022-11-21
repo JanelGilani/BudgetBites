@@ -2,9 +2,14 @@ package Use_Cases.Budgeting;
 
 import Entities.Budget;
 import Use_Cases.ItemCart.pastOrders;
-import Use_Cases.mainMongoDB;
+
+import java.util.Scanner;
 
 public class budgetManager extends Budget {
+
+    public budgetManager(double initialBudget) {
+        super(initialBudget);
+    }
 
     public void adjustMonthlyBudget(double newBudgetSize) {
         if (newBudgetSize > initialBudget) {
@@ -14,7 +19,8 @@ public class budgetManager extends Budget {
         }
         if (newBudgetSize == initialBudget) {
             throw new IllegalArgumentException("Budget is the same");
-        } else {
+        }
+        else {
             initialBudget = newBudgetSize;
             double decreasingDifference = initialBudget - newBudgetSize;
             if (currentBudget > decreasingDifference) {
@@ -24,7 +30,7 @@ public class budgetManager extends Budget {
         }
     }
 
-    public static double orderedMealsBudget(pastOrders pastOrders) {
-        return currentBudget - pastOrders.getCostOfLastOrdered();
+    public void orderedMealsBudget(pastOrders pastOrders){
+        currentBudget = currentBudget - pastOrders.getCostOfLastOrdered();
     }
 }
