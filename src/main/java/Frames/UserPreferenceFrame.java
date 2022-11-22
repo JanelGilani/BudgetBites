@@ -1,8 +1,10 @@
 package Frames;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class UserPreferenceFrame extends JFrame {
+public class UserPreferenceFrame extends JFrame{
     private static JLabel userPriceLabel;
     private static JComboBox userPriceText;
     private static JLabel userCuisineLabel;
@@ -54,9 +56,20 @@ public class UserPreferenceFrame extends JFrame {
         // Submit button.
         submitButton = new JButton("Submit Preferences");
         submitButton.setBounds(10, 110, 160, 25);
+        submitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                RestaurantListingsFrame restaurantListingsFrame = new RestaurantListingsFrame();
+            }
+        });
         panel.add(submitButton);
 
         this.setVisible(true);
+    }
 
+    private void exit() {
+        this.setVisible(false);
+        this.dispose();
     }
 }

@@ -41,10 +41,11 @@ public class mainMongoDB {
     static ClassModel<foodItem> foodItemClassModel = ClassModel.builder(foodItem.class).enableDiscriminator(true).build();
     static ClassModel<Budget> budgetClassModel = ClassModel.builder(Budget.class).enableDiscriminator(true).build();
     static ClassModel<itemCart> itemCartClassModel = ClassModel.builder(itemCart.class).enableDiscriminator(true).build();
+    static ClassModel<Object[]> objectClassModel = ClassModel.builder(Object[].class).enableDiscriminator(true).build();
 
 //    Create the Codec Registry with all the class models to allow MongoDB to store custom Objects
     static CodecRegistry pojoCodecRegistry = org.bson.codecs.configuration.CodecRegistries.fromRegistries(getDefaultCodecRegistry(), org.bson.codecs.configuration.CodecRegistries.fromProviders(PojoCodecProvider.builder()
-            .register(userClassModel).register(orderClassModel).register(pastOrdersClassModel).register(foodItemClassModel).register(budgetClassModel).register(itemCartClassModel)
+            .register(userClassModel).register(orderClassModel).register(pastOrdersClassModel).register(foodItemClassModel).register(budgetClassModel).register(itemCartClassModel).register(objectClassModel)
             .automatic(true).build()));
     static CodecRegistry codecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), pojoCodecRegistry);
 
