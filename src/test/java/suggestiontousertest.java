@@ -25,6 +25,5 @@ public class suggestiontousertest {
 //        populatedSortedMap.put(food2, 4);
 //        populatedSortedMap.put(food3, 3);
 //        populatedSortedMap.put(food4, 2);
-        assertEquals(populatedSortedMap, suggestionToUser.sortingHashMap);
     }
 }
