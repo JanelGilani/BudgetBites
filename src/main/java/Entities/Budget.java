@@ -12,6 +12,9 @@ public class Budget {
         Budget.currentBudget = initialBudget;
     }
 
+    public Budget(double initialBudget) {
+    }
+
     public double getInitialBudget() {
         return initialBudget;
     }

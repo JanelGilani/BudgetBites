@@ -12,11 +12,19 @@ import java.util.Set;
 import java.io.*;
 
 public class logiccode {
+    /**
+     * The following code checks if the methods below are able to execute and save the user inputs.
+     * @param args
+     */
     public static void main(String[] args) {
-        logiccode.signUpCheck("vandanpatel", "Vp@1232848327498473", "Vp@1232848327498473", 50, "Vandan", "Patel");
+        logiccode.signUpCheck("vandanpatel", "Vp@1232848327498473", "Vp@1232848327498473", 50.00, "Vandan", "Patel");
     }
 
-    //Checks the strength of the password
+    /**
+     * The following code checks the strength of the password by checking if the password entered meets the following criteria: uppercase, digit, special character and is 10 characters long.
+     * @param password
+     * @return boolean
+     */
     public static boolean strongPassword (String password){
         int n = password.length();
         boolean hasUpper = false;
@@ -34,14 +42,20 @@ public class logiccode {
                 specialChar = true;
         }
 
-        // Strength of password
-        if (hasDigit && hasUpper && specialChar && (n >= 10))
+        // checks the strength of the password by if the password has an uppercase, digit, special character and password length
+        if (hasUpper && hasDigit && specialChar && (password.length() >= 10)) {
             return true;
-        else
+        }else {
             return false;
+        }
     }
 
-    //checks if both inputted passwords are the same
+    /**
+     * checks if both passwords inputted password and confirm password are the same
+     * @param password
+     * @param confirmPassword
+     * @return boolean
+     */
     public static boolean samePassword(String password, String confirmPassword){
         if (password.equals(confirmPassword)){
             return true;
@@ -50,6 +64,16 @@ public class logiccode {
         }
     }
 
+    /**
+     * signs up and saves the user data if the user doesn't exist, password and confirm password are the same and the password is strong.
+     * @param username
+     * @param password
+     * @param confirmPassword
+     * @param initialBudget
+     * @param firstName
+     * @param lastName
+     * @return boolean
+     */
     public static boolean signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
         // help with mainMongoDB
         if (mainMongoDB.userExists(username)) {
