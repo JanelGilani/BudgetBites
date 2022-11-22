@@ -12,11 +12,11 @@ Above those features we used Java Swing to create a seamless user flow UI. We ha
 
 ![](images/Screenshot 2022-11-21 at 3.34.56 PM.png)
 
-- [ ] Go to the build.Gradle file and check the dependency. If the dependency is correct then build the gradle again. Important for MongoDB to work. 
+- [ ] Go to the `build.gradle` file and check the dependency. If the dependency is correct then build the gradle again. **Important for MongoDB to work.** 
 
-![](../../../../../var/folders/6c/sjt6g80922j0zvjyfxp8vfdm0000gn/T/TemporaryItems/NSIRD_screencaptureui_iRgq4f/Screenshot 2022-11-21 at 3.37.35 PM.png)
+![](images/dependency.png)
 
-**Now that you have build the project, it is time to start the UI. Follow the step in the next section to ensure that you correctly open the Java Swing UI**
+**Now that you have build the project, it is time to start the UI. Follow the steps in the next section to ensure that you correctly open the Java Swing UI**
 
 ## Opening the application in main
 
@@ -26,13 +26,12 @@ Above those features we used Java Swing to create a seamless user flow UI. We ha
 
 ![](images/WhatsApp Image 2022-11-21 at 3.48.32 PM.jpeg)
 
-**Finally you can also run tests in `src/test/java` to ensure the feartures not covered in the UI are working as well. We have provided other Unit Tests as well.**
+**Finally you can also run tests in `src/test/java` to ensure the features not covered in the UI are working as well. We have provided unit tests for use cases as well.**
 
 ## SOLID Principles and Clean Architecture
 
-**For implementing clean architecture we have created packaging for each class. That includes **
-- [ ] Go to `src/main/java/Use_Cases/Filtering/RestaurantFiltering`, which is example implemnation 
-- [ ] Run the main file, and new JFrame will be prompted. Enjoy the UI.
+**For implementing clean architecture we have created packaging for each class. That includes their interactor, gateways, request model, Input and Output boundary. We have provided an example of Clean Architecture implementation. Kindly follow the instruction to check out that file.**
+- [ ] Go to `src/main/java/Use_Cases/Filtering/RestaurantFiltering`, which is an example implementation.
 
 
 [//]: # ()
