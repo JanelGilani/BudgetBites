@@ -8,15 +8,15 @@ import java.util.*;
 
 public class suggestionToUser {
 
-    public static void main(String[] args) {
-        //First created order by findPastOrders
-        pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
-        assert order != null;
-        //Extracted a hashmap with datetime to order
-        final HashMap<String, Order> pastOrdersMap = order.getPastOrdersMap();
-        //Created an array of all those datetimes.
-        System.out.println(getFinalSuggestion("aryangoel24" ,sortingHashMap(itemCount(order, pastOrdersMap))));
-    }
+//    public static void main(String[] args) {
+//        //First created order by findPastOrders
+//        pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
+//        assert order != null;
+//        //Extracted a hashmap with datetime to order
+//        final HashMap<String, Order> pastOrdersMap = order.getPastOrdersMap();
+//        //Created an array of all those datetimes.
+//        System.out.println(getFinalSuggestion("aryangoel24" ,sortingHashMap(itemCount(order, pastOrdersMap))));
+//    }
 
     /**
      * Takes the userName and returns the items that can be ordered again based ont the
@@ -59,9 +59,9 @@ public class suggestionToUser {
     }
 
     /**
-     *
+     * Sort in decreasing order based on the number of times a foodItem was ordered.
      * @param populatedCountItem
-     * @return
+     * @return Linked Hashmap which is sorted of the foodItem objects
      */
     private static LinkedHashMap<foodItem, Integer> sortingHashMap(HashMap<foodItem, Integer> populatedCountItem) {
         ArrayList<Integer> list = new ArrayList<>();
@@ -81,10 +81,10 @@ public class suggestionToUser {
     }
 
     /**
-     *
+     * List of foods that can be ordered with the given current budget.
      * @param userName
      * @param populatedSortedMap
-     * @return
+     * @return Final suggestion List which contains Strings
      */
     private static ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<foodItem, Integer> populatedSortedMap) {
         double budgetSoFar = 0.00;
