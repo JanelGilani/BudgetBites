@@ -11,10 +11,6 @@ public class Budget {
         this.initialBudget = initialBudget;
         this.currentBudget = initialBudget;
     }
-
-    public Budget(double initialBudget) {
-    }
-
     public double getInitialBudget() {
         return initialBudget;
     }
