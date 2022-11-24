@@ -57,10 +57,6 @@ public class mainMongoDB {
     static MongoCollection<Restaurant> restaurantRepo = db.getCollection("restaurants", Restaurant.class);
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
-    public static void main(String[] args) {
-        System.out.println(userExists("aryangoel24"));
-    }
-
 //    Save new User or Restaurant to Database
     public static void saveUser (User user) {
         userRepo.insertOne(user);
