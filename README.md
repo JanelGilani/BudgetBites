@@ -10,7 +10,7 @@ Above those features we used Java Swing to create a seamless user flow UI. We ha
 ## Checklist for building the project ##
 - [ ] Ensure SDK version is 11.0.17 (See the image below and match it with Project Structure)
 
-![](images/Screenshot 2022-11-21 at 3.34.56 PM.png)
+![](images/version_control.png)
 
 - [ ] Go to the `build.gradle` file and check the dependency. If the dependency is correct then build the gradle again. **Important for MongoDB to work.** 
 
@@ -24,7 +24,7 @@ Above those features we used Java Swing to create a seamless user flow UI. We ha
 - [ ] Run the main file, and new JFrame will be prompted. Enjoy the UI.
 
 
-![](images/WhatsApp Image 2022-11-21 at 3.48.32 PM.jpeg)
+![](images/Ui.jpeg)
 
 **Finally you can also run tests in `src/test/java` to ensure the features not covered in the UI are working as well. We have provided unit tests for use cases as well.**
 
