@@ -38,7 +38,7 @@ public class budgetManager extends Budget {
      * @return double
      */
 
-    public double orderedMealsBudget(pastOrders orders) {
+    public static double orderedMealsBudget(pastOrders orders) {
         return currentBudget - orders.getCostOfLastOrdered();
     }
 }
