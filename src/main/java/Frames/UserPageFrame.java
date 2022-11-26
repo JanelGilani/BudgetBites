@@ -31,7 +31,7 @@ public class UserPageFrame extends JFrame{
         panel.add(userFirstNameLabel);
         // text field for the user to input their username
         userText = new JTextField();
-        userText.setBounds(100, 20 , 165, 25);
+        userText.setBounds(120, 20 , 165, 25);
         panel.add(userText);
 
         // the last name label
@@ -39,7 +39,7 @@ public class UserPageFrame extends JFrame{
         userLastNameLabel.setBounds(10, 50, 80, 25);
         panel.add(userLastNameLabel);
         userText = new JTextField();
-        userText.setBounds(100, 50 , 165, 25);
+        userText.setBounds(120, 50 , 165, 25);
         panel.add(userText);
 
         // the initial monthly budget label
