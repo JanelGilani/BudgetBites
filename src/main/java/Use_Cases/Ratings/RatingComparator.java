@@ -1,9 +1,13 @@
-package Use_Cases.RatingManager;
+package Use_Cases.Ratings;
 
 import Entities.Restaurant;
 
 import java.util.Comparator;
 
+
+/**
+ * Comparator to compare the restaurants based on the average rating it has received.
+ */
 public class RatingComparator implements Comparator<Restaurant> {
     @Override
     public int compare (Restaurant r1, Restaurant r2) {

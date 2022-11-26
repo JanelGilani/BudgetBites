@@ -1,3 +1,4 @@
+
 package Frames;
 
 import javax.swing.*;
@@ -39,8 +40,8 @@ public class OnboardingFrame extends JFrame{
         });
         panel.add(loginButton);
 
-        // sign in button
-        signinButton = new JButton("Sign In");
+        // SignUp button
+        signinButton = new JButton("Sign Up");
         signinButton.setBounds(160, 100, 80, 25);
         signinButton.addActionListener(new ActionListener() {
             @Override

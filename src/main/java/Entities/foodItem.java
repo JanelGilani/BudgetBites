@@ -1,6 +1,6 @@
 package Entities;
 
-import Use_Cases.itemCart;
+import Use_Cases.ItemCart.itemCart;
 
 public class foodItem {
     public String itemName;
@@ -9,6 +9,10 @@ public class foodItem {
     public foodItem (String itemName, double itemCost) {
         this.itemName = itemName;
         this.itemCost = itemCost;
+    }
+
+    public foodItem () {
+
     }
 
     public double getItemCost () {

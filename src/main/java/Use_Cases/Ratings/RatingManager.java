@@ -1,11 +1,7 @@
-package Use_Cases.RatingManager;
+package Use_Cases.Ratings;
 
 import Entities.Restaurant;
 import Entities.User;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class RatingManager {
     private User reviewUser;
@@ -13,22 +9,42 @@ public class RatingManager {
     private Integer numStars;
     private String reviewText;
 
+    /**
+     * Saves the current user to this.reviewUser
+     * @param reviewUser User to be saved.
+     */
     private void saveUser(User reviewUser){
         this.reviewUser = reviewUser;
     }
 
+    /**
+     * Saves the Restaurant for which the review is to be written
+     * @param reviewRestaurant Restaurant to be saved.
+     */
     private void saveRestaurant(Restaurant reviewRestaurant){
         this.reviewRestaurant = reviewRestaurant;
     }
 
+    /**
+     * Saves the number of stars the restaurant has received.
+     * @param numStars Number of stars the restaurant has received.
+     */
     private void getReviewStars(int numStars){
         this.numStars = numStars;
     }
 
+    /**
+     * Saves the Review Text the restaurant has received.
+     * @param reviewText Review Text the restaurant has received.
+     */
     private void getReviewText(String reviewText){
         this.reviewText = reviewText;
     }
 
+    /**
+     * Creates an array, which contains the reviewUser, reviewRestaurant, numStars & the reviewText.
+     * @return The array as described above
+     */
     private Object[] createReview(){
         Object[] arr = new Object[4];
 
@@ -41,6 +57,9 @@ public class RatingManager {
         return arr;
     }
 
+    /**
+     * Saves the array from createReview to the reviews instance attribute of the restaurant.
+     */
     private void uploadReview(){
         // Main method to upload review to restaurant
 

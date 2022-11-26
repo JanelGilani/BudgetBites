@@ -47,6 +47,13 @@ public class LoginFrame extends JFrame{
         // login button
         loginButton = new JButton("Login");
         loginButton.setBounds(10, 80, 80, 25);
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+            }
+        });
         panel.add(loginButton);
 
         backButton = new JButton("Back");

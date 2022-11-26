@@ -1,9 +1,11 @@
-package Use_Cases;
+package Use_Cases.ItemCart;
 
 import Entities.Order;
+import Entities.Restaurant;
 import Entities.foodItem;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class itemCart {
@@ -17,9 +19,11 @@ public class itemCart {
         currentOrder.add(item);
     }
 
-    public Order makeOrder (pastOrders userPastOrders) {
-        LocalDateTime dateTime = LocalDateTime.now();
-        Order tempOrder = new Order(dateTime);
+    public Order makeOrder (pastOrders userPastOrders, String restaurantName) {
+        String dateTime = LocalDateTime.now().toString();
+        Order tempOrder = new Order(dateTime, restaurantName);
+//        Get the current date and time of when the order is being placed
+//        Create the order with the dateTime and restaurant
 
         for (foodItem item: this.currentOrder) {
             item.addToOrder(tempOrder);

@@ -1,6 +1,7 @@
-package Use_Cases;
+package Use_Cases.Filtering;
 
 import Entities.Restaurant;
+import Use_Cases.Filtering.RestaurantFiltering.restaurantFilter;
 
 import java.util.ArrayList;
 import java.util.Objects;
