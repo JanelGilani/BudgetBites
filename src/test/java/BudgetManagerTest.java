@@ -11,16 +11,56 @@ import static org.junit.Assert.assertEquals;
 
 public class BudgetManagerTest {
     @Test
-    public void orderedMealsBudgetTest() {
+    public void orderedMealsAryanBudgetTest() {
 
         Budget budget = new Budget();
-        pastOrders pastorder = mainMongoDB.findPastOrders("aryangoel24");
-        budget.setInitialBudget(1000);
+        budgetManager budgetManager = new budgetManager();
         budget.setCurrentBudget(200);
         pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
         double price = order.getCostOfLastOrdered();
-        budget.setCurrentBudget(budgetManager.orderedMealsBudget(pastorder));
+        budgetManager.orderedMealsBudget(budget, order);
+        double currBudget = 200 - price;
 
-        Assertions.assertEquals(200 - price, budget.getCurrentBudget());
+        Assertions.assertEquals(currBudget, budget.getCurrentBudget());
+    }
+
+    @Test
+    public void orderedMealsVandanBudgetTest() {
+
+        Budget budget = new Budget();
+        budgetManager budgetManager = new budgetManager();
+        budget.setCurrentBudget(200);
+        pastOrders order = mainMongoDB.findPastOrders("vandanpatel");
+        double price = order.getCostOfLastOrdered();
+        double cBudget= 200 - price;
+        budgetManager.orderedMealsBudget(budget, order);
+
+        Assertions.assertEquals(cBudget, budget.getCurrentBudget());
+    }
+
+    @Test
+    public void adjustBudgetDecreaseTest() {
+
+        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        budgetManager budgetManager = new budgetManager();
+        double b = budget.getInitialBudget();
+        System.out.println(b);
+        budgetManager.adjustMonthlyBudget(budget,800);
+
+        Assertions.assertEquals(800.0, budget.getInitialBudget());
+        Assertions.assertEquals(-185.0, budget.getCurrentBudget());
+    }
+
+    @Test
+    public void adjustBudgetIncreaseTest() {
+
+        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        budgetManager budgetManager = new budgetManager();
+        double b = budget.getInitialBudget();
+        System.out.println(b);
+        budgetManager.adjustMonthlyBudget(budget,1200);
+
+        Assertions.assertEquals(1200.0, budget.getInitialBudget());
+        Assertions.assertEquals(215.0, budget.getCurrentBudget());
     }
 }

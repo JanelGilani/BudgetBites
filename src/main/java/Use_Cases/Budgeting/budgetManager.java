@@ -14,21 +14,21 @@ public class budgetManager extends Budget {
      * like by inputting a new budget in the UI
      * @param newBudgetSize
      */
-    public void adjustMonthlyBudget(double newBudgetSize) {
-        if (newBudgetSize > initialBudget) {
-            initialBudget = newBudgetSize;
-            double increasingDifference = newBudgetSize - initialBudget;
-            currentBudget = currentBudget + increasingDifference;
-        }
-        if (newBudgetSize == initialBudget) {
+    public void adjustMonthlyBudget(Budget budget, double newBudgetSize) {
+        if (newBudgetSize == budget.getInitialBudget()) {
             throw new IllegalArgumentException("Budget is the same");
-        } else {
-            initialBudget = newBudgetSize;
-            double decreasingDifference = initialBudget - newBudgetSize;
-            if (currentBudget > decreasingDifference) {
-                currentBudget = currentBudget - decreasingDifference;
-            } else
-                throw new IllegalArgumentException("You've exceeded your monthly limit");
+        }
+        if (newBudgetSize > budget.getInitialBudget()) {
+            double increasingDifference = newBudgetSize - budget.getInitialBudget();
+            budget.setInitialBudget(newBudgetSize);
+            double newCurrentBudget = budget.getCurrentBudget() + increasingDifference;
+            budget.setCurrentBudget(newCurrentBudget);
+        }
+        else {
+            double decreasingDifference = budget.getInitialBudget() - newBudgetSize;
+            budget.setInitialBudget(newBudgetSize);
+            double newCBudget = budget.getCurrentBudget() - decreasingDifference;
+            budget.setCurrentBudget(newCBudget);
         }
     }
 
@@ -38,7 +38,8 @@ public class budgetManager extends Budget {
      * @return double
      */
 
-    public static double orderedMealsBudget(pastOrders orders) {
-        return currentBudget - orders.getCostOfLastOrdered();
+    public void orderedMealsBudget(Budget budget, pastOrders orders) {
+        double newCBudget = budget.getCurrentBudget() - orders.getCostOfLastOrdered();
+        budget.setCurrentBudget(newCBudget);
     }
 }
