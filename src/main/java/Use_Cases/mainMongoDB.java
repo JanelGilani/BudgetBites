@@ -130,7 +130,7 @@ public class mainMongoDB {
 
     // Find attribute by Restaurant
 
-    public static Object getRestaurantAttribute (String restaurantName, String attribute) {
+    public static String getRestaurantAttribute (String restaurantName, String attribute) {
         Restaurant restaurant = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
         assert restaurant != null;
         switch (attribute) {
@@ -143,18 +143,18 @@ public class mainMongoDB {
             case "foodType":
                 return restaurant.getFoodType();
             case "avgRating":
-                return restaurant.getAvgRating();
+                return String.valueOf(restaurant.getAvgRating());
         }
         return null;
     }
 
-    public ArrayList<String> getAllRestaurants () {
+    public static ArrayList<String> getAllRestaurants () {
         ArrayList<String> restaurants = new ArrayList<String>();
         restaurantRepo.find().forEach(restaurant -> restaurants.add(restaurant.getRestaurantName()));
         return restaurants;
     }
 
-    public ArrayList<String> getAllUsers () {
+    public static ArrayList<String> getAllUsers () {
         ArrayList<String> users = new ArrayList<String>();
         userRepo.find().forEach(user -> users.add(user.getFirstName()));
         return users;
