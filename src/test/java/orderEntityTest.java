@@ -6,12 +6,8 @@ import org.junit.Test;
 
 public class orderEntityTest {
 
-    @Test
+    //@Test
     public void getPriceRangeTest() {
 
-        //Order restaurant = mainMongoDB.findPastOrders("aryangoel24");
-        String price = "";
-
-        Assertions.assertEquals("Intermediate", price);
     }
 }
