@@ -3,15 +3,13 @@ import Use_Cases.Budgeting.budgetManager;
 import Use_Cases.ItemCart.pastOrders;
 import Use_Cases.mainMongoDB;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-import tutorial.HelloWorld;
-
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
 
-public class BudgetManagerTest {
+public class budgetManagerTest {
+
     @Test
-    public void orderedMealsAryanBudgetTest() {
+    public void orderedMealsBudgetTest() {
 
         Budget budget = new Budget();
         budgetManager budgetManager = new budgetManager();
@@ -25,14 +23,26 @@ public class BudgetManagerTest {
     }
 
     @Test
+    public void orderedMealsAryanBudgetTest() {
+
+        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        budgetManager budgetManager = new budgetManager();
+        pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
+        double price = order.getCostOfLastOrdered();
+        budgetManager.orderedMealsBudget(budget, order);
+        double currBudget = 15 - price;
+
+        Assertions.assertEquals(currBudget, budget.getCurrentBudget());
+    }
+
+    @Test
     public void orderedMealsVandanBudgetTest() {
 
-        Budget budget = new Budget();
+        Budget budget = (Budget) mainMongoDB.getUserAttribute("vandanpatel", "budget");
         budgetManager budgetManager = new budgetManager();
-        budget.setCurrentBudget(200);
         pastOrders order = mainMongoDB.findPastOrders("vandanpatel");
         double price = order.getCostOfLastOrdered();
-        double cBudget= 200 - price;
+        double cBudget= 50 - price;
         budgetManager.orderedMealsBudget(budget, order);
 
         Assertions.assertEquals(cBudget, budget.getCurrentBudget());

@@ -10,8 +10,10 @@ import java.util.Scanner;
 public class budgetManager extends Budget {
 
     /**
-     * The adjustMonthlyBudget method allows the user to voluntarily update their monthly budget whenever they would
-     * like by inputting a new budget in the UI
+     *      * The adjustMonthlyBudget method allows the user to voluntarily update their monthly budget whenever they would
+     *      * like by inputting a new budget in the UI
+     *      * @param newBudgetSize
+     * @param budget
      * @param newBudgetSize
      */
     public void adjustMonthlyBudget(Budget budget, double newBudgetSize) {
@@ -34,8 +36,8 @@ public class budgetManager extends Budget {
 
     /**
      * orderedMealsBudget method automatically decreases the user's current budget when an order is placed
+     * @param budget
      * @param orders
-     * @return double
      */
 
     public void orderedMealsBudget(Budget budget, pastOrders orders) {

@@ -8,7 +8,7 @@ public class Budget {
     }
 
     public Budget (double initialBudget){
-        currentBudget = initialBudget;
+        this.currentBudget = initialBudget;
         this.initialBudget = initialBudget;
     }
     public double getInitialBudget() {
