@@ -43,5 +43,5 @@ public class BudgetManager extends Budget {
     public void orderedMealsBudget (Budget budget, PastOrders orders){
         double newCBudget = budget.getCurrentBudget() - orders.getCostOfLastOrdered();
         budget.setCurrentBudget(newCBudget);
-        }
     }
+}
