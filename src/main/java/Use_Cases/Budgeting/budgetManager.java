@@ -17,6 +17,9 @@ public class budgetManager extends Budget {
      * @param newBudgetSize
      */
     public void adjustMonthlyBudget(Budget budget, double newBudgetSize) {
+        if (newBudgetSize < 0){
+            throw new IllegalArgumentException("Monthly Budget cannot be less than zero");
+        }
         if (newBudgetSize == budget.getInitialBudget()) {
             throw new IllegalArgumentException("Budget is the same");
         }

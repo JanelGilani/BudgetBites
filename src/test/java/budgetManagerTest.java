@@ -5,6 +5,8 @@ import Use_Cases.mainMongoDB;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class budgetManagerTest {
 
@@ -49,12 +51,37 @@ public class budgetManagerTest {
     }
 
     @Test
+    public void adjustBudgetNegativeErrorCaseTest() {
+        boolean thrown = false;
+
+        try {
+            Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+            budgetManager budgetManager = new budgetManager();
+            budgetManager.adjustMonthlyBudget(budget,-120);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+            assertTrue(thrown);
+    }
+    @Test
+    public void adjustBudgetSameErrorCaseTest() {
+        boolean thrown = false;
+
+        try {
+            Budget budget = (Budget) mainMongoDB.getUserAttribute("vandanpatel", "budget");
+            budgetManager budgetManager = new budgetManager();
+            budgetManager.adjustMonthlyBudget(budget,50);
+        } catch (IllegalArgumentException e) {
+            thrown = true;
+        }
+        assertTrue(thrown);
+    }
+
+    @Test
     public void adjustBudgetDecreaseTest() {
 
         Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
         budgetManager budgetManager = new budgetManager();
-        double b = budget.getInitialBudget();
-        System.out.println(b);
         budgetManager.adjustMonthlyBudget(budget,800);
 
         Assertions.assertEquals(800.0, budget.getInitialBudget());
@@ -66,8 +93,6 @@ public class budgetManagerTest {
 
         Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
         budgetManager budgetManager = new budgetManager();
-        double b = budget.getInitialBudget();
-        System.out.println(b);
         budgetManager.adjustMonthlyBudget(budget,1200);
 
         Assertions.assertEquals(1200.0, budget.getInitialBudget());
