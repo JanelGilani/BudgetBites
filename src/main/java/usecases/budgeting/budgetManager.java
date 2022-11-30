@@ -3,38 +3,45 @@ package usecases.budgeting;
 import entities.Budget;
 import entities.PastOrders;
 
-public class budgetManager extends Budget {
+public class BudgetManager extends Budget {
 
     /**
-     * The adjustMonthlyBudget method allows the user to voluntarily update their monthly budget whenever they would
-     * like by inputting a new budget in the UI
+     * * The adjustMonthlyBudget method allows the user to voluntarily update their monthly budget whenever they would
+     * * like by inputting a new budget in the UI
+     * * @param newBudgetSize
+     *
+     * @param budget
      * @param newBudgetSize
      */
-    public void adjustMonthlyBudget(double newBudgetSize) {
-        if (newBudgetSize > initialBudget) {
-            initialBudget = newBudgetSize;
-            double increasingDifference = newBudgetSize - initialBudget;
-            currentBudget = currentBudget + increasingDifference;
+    public void adjustMonthlyBudget(Budget budget, double newBudgetSize) {
+        if (newBudgetSize < 0) {
+            throw new IllegalArgumentException("Monthly Budget cannot be less than zero");
         }
-        if (newBudgetSize == initialBudget) {
+        if (newBudgetSize == budget.getInitialBudget()) {
             throw new IllegalArgumentException("Budget is the same");
+        }
+        if (newBudgetSize > budget.getInitialBudget()) {
+            double increasingDifference = newBudgetSize - budget.getInitialBudget();
+            budget.setInitialBudget(newBudgetSize);
+            double newCurrentBudget = budget.getCurrentBudget() + increasingDifference;
+            budget.setCurrentBudget(newCurrentBudget);
         } else {
-            initialBudget = newBudgetSize;
-            double decreasingDifference = initialBudget - newBudgetSize;
-            if (currentBudget > decreasingDifference) {
-                currentBudget = currentBudget - decreasingDifference;
-            } else
-                throw new IllegalArgumentException("You've exceeded your monthly limit");
+            double decreasingDifference = budget.getInitialBudget() - newBudgetSize;
+            budget.setInitialBudget(newBudgetSize);
+            double newCBudget = budget.getCurrentBudget() - decreasingDifference;
+            budget.setCurrentBudget(newCBudget);
         }
     }
 
     /**
      * orderedMealsBudget method automatically decreases the user's current budget when an order is placed
+     *
+     * @param budget
      * @param orders
-     * @return double
      */
 
-    public double orderedMealsBudget(PastOrders orders) {
-        return currentBudget - orders.getCostOfLastOrdered();
+    public void orderedMealsBudget (Budget budget, PastOrders orders){
+        double newCBudget = budget.getCurrentBudget() - orders.getCostOfLastOrdered();
+        budget.setCurrentBudget(newCBudget);
+        }
     }
-}

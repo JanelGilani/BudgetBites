@@ -67,7 +67,7 @@ public class UserPreferenceFrame extends JFrame implements ActionListener {
         panel.add(submitButton);
         this.add(panel);
 
-        restaurantPresenter = new restaurantsPanel();
+        restaurantPresenter = new RestaurantsPanel();
         restaurants = restaurantPresenter.allRestaurants();
         this.add(restaurants);
 

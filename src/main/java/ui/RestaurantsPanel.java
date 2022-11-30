@@ -6,12 +6,12 @@ import presenters.RestaurantFilteringPresenter;
 import javax.swing.*;
 import java.awt.*;
 
-public class restaurantsPanel implements RestaurantFilteringPresenter {
+public class RestaurantsPanel implements RestaurantFilteringPresenter {
     private JPanel panel;
     private JScrollPane scroll;
     private FilterManagerController controller;
 
-    public restaurantsPanel() {
+    public RestaurantsPanel() {
         panel = new JPanel();
         panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.WHITE);

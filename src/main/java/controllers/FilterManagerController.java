@@ -1,13 +1,13 @@
 package controllers;
 
 import gateways.RestaurantFilteringGateway;
-import usecases.filtering.restaurantfiltering.filterManager;
+import usecases.filtering.restaurantfiltering.FilterManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class FilterManagerController {
-    private filterManager restaurantFilters;
+    private FilterManager restaurantFilters;
 
     public FilterManagerController() {
         ArrayList<String> restaurants = RestaurantFilteringGateway.getListOfRestaurants();
@@ -44,7 +44,7 @@ public class FilterManagerController {
             priceFilter.get(price).add(r);
         }
 
-        restaurantFilters = new filterManager(cuisineFilter,foodTypeFilter,priceFilter);
+        restaurantFilters = new FilterManager(cuisineFilter,foodTypeFilter,priceFilter);
     }
 
     public ArrayList<String> getRestaurants(String pricePref, String cuisinePref, String foodTypePref) {

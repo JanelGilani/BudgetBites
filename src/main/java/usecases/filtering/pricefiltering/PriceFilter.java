@@ -5,7 +5,7 @@ import entities.FoodItem;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class priceFilter {
+public class PriceFilter {
 
     private HashMap<String, ArrayList<FoodItem>> filter;
 
@@ -17,7 +17,7 @@ public class priceFilter {
      * @param filterName
      * Instantiates the instances of priceFiltering
      */
-    public priceFilter(HashMap<String, ArrayList<FoodItem>> filter, String filterName) {
+    public PriceFilter(HashMap<String, ArrayList<FoodItem>> filter, String filterName) {
         this.filter = filter;
         this.filterName = filterName;
     }

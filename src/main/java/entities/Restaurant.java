@@ -38,7 +38,9 @@ public class Restaurant {
         return this.foodType;
     }
 
-    public String getRestaurantName () {return this.restaurantName;}
+    public String getRestaurantName () {
+        return this.restaurantName;
+    }
 
     public double getAvgRating () {
         return this.avgRating;

@@ -7,7 +7,7 @@ import usecases.MainMongoDB;
 
 import java.util.*;
 
-public class suggestionToUser {
+public class SuggestionToUser {
 
 //    public static void main(String[] args) {
 //        //First created order by findPastOrders
