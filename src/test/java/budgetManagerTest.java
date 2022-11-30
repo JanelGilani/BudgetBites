@@ -1,9 +1,9 @@
-import Entities.Budget;
-import Use_Cases.Budgeting.budgetManager;
-import Use_Cases.ItemCart.pastOrders;
-import Use_Cases.mainMongoDB;
+import usecases.budgeting.BudgetManager;
+import entities.Budget;
+import entities.PastOrders;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
+import usecases.MainMongoDB;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -14,9 +14,9 @@ public class budgetManagerTest {
     public void orderedMealsBudgetTest() {
 
         Budget budget = new Budget();
-        budgetManager budgetManager = new budgetManager();
+        BudgetManager budgetManager = new BudgetManager();
         budget.setCurrentBudget(200);
-        pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
+        PastOrders order = MainMongoDB.findPastOrders("aryangoel24");
         double price = order.getCostOfLastOrdered();
         budgetManager.orderedMealsBudget(budget, order);
         double currBudget = 200 - price;
@@ -27,9 +27,9 @@ public class budgetManagerTest {
     @Test
     public void orderedMealsAryanBudgetTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
-        budgetManager budgetManager = new budgetManager();
-        pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+        BudgetManager budgetManager = new BudgetManager();
+        PastOrders order = MainMongoDB.findPastOrders("aryangoel24");
         double price = order.getCostOfLastOrdered();
         budgetManager.orderedMealsBudget(budget, order);
         double currBudget = 15 - price;
@@ -40,9 +40,9 @@ public class budgetManagerTest {
     @Test
     public void orderedMealsVandanBudgetTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("vandanpatel", "budget");
-        budgetManager budgetManager = new budgetManager();
-        pastOrders order = mainMongoDB.findPastOrders("vandanpatel");
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("vandanpatel", "budget");
+        BudgetManager budgetManager = new BudgetManager();
+        PastOrders order = MainMongoDB.findPastOrders("vandanpatel");
         double price = order.getCostOfLastOrdered();
         double cBudget= 50 - price;
         budgetManager.orderedMealsBudget(budget, order);
@@ -55,8 +55,8 @@ public class budgetManagerTest {
         boolean thrown = false;
 
         try {
-            Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
-            budgetManager budgetManager = new budgetManager();
+            Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+            BudgetManager budgetManager = new BudgetManager();
             budgetManager.adjustMonthlyBudget(budget,-120);
         } catch (IllegalArgumentException e) {
             thrown = true;
@@ -68,8 +68,8 @@ public class budgetManagerTest {
         boolean thrown = false;
 
         try {
-            Budget budget = (Budget) mainMongoDB.getUserAttribute("vandanpatel", "budget");
-            budgetManager budgetManager = new budgetManager();
+            Budget budget = (Budget) MainMongoDB.getUserAttribute("vandanpatel", "budget");
+            BudgetManager budgetManager = new BudgetManager();
             budgetManager.adjustMonthlyBudget(budget,50);
         } catch (IllegalArgumentException e) {
             thrown = true;
@@ -80,8 +80,8 @@ public class budgetManagerTest {
     @Test
     public void adjustBudgetDecreaseTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
-        budgetManager budgetManager = new budgetManager();
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+        BudgetManager budgetManager = new BudgetManager();
         budgetManager.adjustMonthlyBudget(budget,800);
 
         Assertions.assertEquals(800.0, budget.getInitialBudget());
@@ -91,8 +91,8 @@ public class budgetManagerTest {
     @Test
     public void adjustBudgetIncreaseTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
-        budgetManager budgetManager = new budgetManager();
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+        BudgetManager budgetManager = new BudgetManager();
         budgetManager.adjustMonthlyBudget(budget,1200);
 
         Assertions.assertEquals(1200.0, budget.getInitialBudget());

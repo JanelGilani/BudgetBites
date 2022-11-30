@@ -1,5 +1,5 @@
-import Entities.Restaurant;
-import Use_Cases.mainMongoDB;
+import entities.Restaurant;
+import usecases.MainMongoDB;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ public class restaurantEntityTest {
     @Test
     public void getPriceRangeTest() {
 
-        Restaurant restaurant = mainMongoDB.findRestaurantByRestaurantName("Food from East");
+        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
         String price = restaurant.getPriceRange();
 
         Assertions.assertEquals("Intermediate", price);
@@ -18,7 +18,7 @@ public class restaurantEntityTest {
     @Test
     public void getCuisineTest() {
 
-        Restaurant restaurant = mainMongoDB.findRestaurantByRestaurantName("Food from East");
+        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
         String cuisine = restaurant.getCuisine();
 
         Assertions.assertEquals("Middle-East", cuisine);
@@ -27,7 +27,7 @@ public class restaurantEntityTest {
     @Test
     public void getFoodType() {
 
-        Restaurant restaurant = mainMongoDB.findRestaurantByRestaurantName("Food from East");
+        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
         String food = restaurant.getFoodType();
 
         Assertions.assertEquals("Lunch", food);
@@ -36,7 +36,7 @@ public class restaurantEntityTest {
     @Test
     public void getRestaurantNameTest() {
 
-        Restaurant restaurant = mainMongoDB.findRestaurantByRestaurantName("Food from East");
+        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
         String name = restaurant.getRestaurantName();
 
         Assertions.assertEquals("Food from East", name);
@@ -45,7 +45,7 @@ public class restaurantEntityTest {
     @Test
     public void adjustBudgetIncreaseTest() {
 
-        Restaurant restaurant = mainMongoDB.findRestaurantByRestaurantName("Food from East");
+        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
         double rating = restaurant.getAvgRating();
 
         Assertions.assertEquals(5, rating);

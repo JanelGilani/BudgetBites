@@ -1,5 +1,5 @@
-import Entities.Budget;
-import Use_Cases.mainMongoDB;
+import entities.Budget;
+import usecases.MainMongoDB;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class budgetEntityTest {
     @Test
     public void getUserInitialBudgetTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
         double initialBudget = budget.getInitialBudget();
 
         Assertions.assertEquals(1000, initialBudget);
@@ -36,7 +36,7 @@ public class budgetEntityTest {
     @Test
     public void getUserCurrentBudgetTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
         double currentBudget = budget.getCurrentBudget();
 
         Assertions.assertEquals(15.0, currentBudget);
@@ -54,7 +54,7 @@ public class budgetEntityTest {
     @Test
     public void setUserInitialBudgetTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
         budget.setInitialBudget(2000);
 
         Assertions.assertEquals(2000, budget.getInitialBudget());
@@ -72,7 +72,7 @@ public class budgetEntityTest {
     @Test
     public void setUserCurrentBudgetTest() {
 
-        Budget budget = (Budget) mainMongoDB.getUserAttribute("aryangoel24", "budget");
+        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
         budget.setCurrentBudget(5000);
 
         Assertions.assertEquals(5000, budget.getCurrentBudget());
