@@ -1,4 +1,5 @@
 package usecases.foodsuggestions;
+import com.sun.tools.javac.Main;
 import entities.Budget;
 import entities.FoodItem;
 import entities.Order;
@@ -9,15 +10,15 @@ import java.util.*;
 
 public class SuggestionToUser {
     public static void main(String[] args) {
-        //First created order by findPastOrders
-//        pastOrders order = mainMongoDB.findPastOrders("aryangoel24");
+//        //First created order by findPastOrders
+//        PastOrders order = MainMongoDB.findPastOrders("aryangoel24");
 //        assert order != null;
-//        //Extracted a hashmap with datetime to order
+////        //Extracted a hashmap with datetime to order
 //        final HashMap<String, Order> pastOrdersMap = order.getPastOrdersMap();
-//        final HashMap<foodItem, Integer> testItemCount = itemCount(order, pastOrdersMap);
-//        final LinkedHashMap<foodItem, Integer> testSortingHashMap = sortingHashMap(testItemCount);
-//        //Created an array of all those datetimes.
-//        System.out.println(getFinalSuggestion("aryangoel24", testSortingHashMap));
+//        final HashMap<FoodItem, Integer> testItemCount = itemCount(order, pastOrdersMap);
+//        final LinkedHashMap<FoodItem, Integer> testSortingHashMap = sortingHashMap(testItemCount);
+////        //Created an array of all those datetimes.
+//        System.out.println(getSuggestionToUser("darpanmi"));
     }
 
     /**
@@ -83,8 +84,8 @@ public class SuggestionToUser {
 
     /**
      * List of foods that can be ordered with the given current budget.
-     * @param userName
-     * @param populatedSortedMap
+     * @param userName userName of the current user
+     * @param populatedSortedMap populatedSorted Map contains FoodItem object and their repeation value.
      * @return Final suggestion List which contains Strings
      */
     public static ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<FoodItem, Integer> populatedSortedMap) {
