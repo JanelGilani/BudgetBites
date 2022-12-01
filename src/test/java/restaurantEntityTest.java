@@ -1,5 +1,6 @@
+import entities.FoodItem;
 import entities.Restaurant;
-import usecases.MainMongoDB;
+import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
@@ -8,26 +9,28 @@ public class restaurantEntityTest {
 
     @Test
     public void getPriceRangeTest() {
-
-        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
+        ArrayList<FoodItem> menu = new ArrayList<>();
+        Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
         String price = restaurant.getPriceRange();
 
-        Assertions.assertEquals("Intermediate", price);
+        Assertions.assertEquals("Cheap", price);
     }
 
     @Test
     public void getCuisineTest() {
 
-        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
+        ArrayList<FoodItem> menu = new ArrayList<>();
+        Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
         String cuisine = restaurant.getCuisine();
 
-        Assertions.assertEquals("Middle-East", cuisine);
+        Assertions.assertEquals("Fast-food", cuisine);
     }
 
     @Test
     public void getFoodType() {
 
-        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
+        ArrayList<FoodItem> menu = new ArrayList<>();
+        Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
         String food = restaurant.getFoodType();
 
         Assertions.assertEquals("Lunch", food);
@@ -36,18 +39,30 @@ public class restaurantEntityTest {
     @Test
     public void getRestaurantNameTest() {
 
-        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
+        ArrayList<FoodItem> menu = new ArrayList<>();
+        Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
         String name = restaurant.getRestaurantName();
 
-        Assertions.assertEquals("Food from East", name);
+        Assertions.assertEquals("McDonald's", name);
     }
 
     @Test
-    public void adjustBudgetIncreaseTest() {
+    public void getAvgRatingTest() {
 
-        Restaurant restaurant = MainMongoDB.findRestaurantByRestaurantName("Food from East");
+        ArrayList<FoodItem> menu = new ArrayList<>();
+        Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
         double rating = restaurant.getAvgRating();
 
         Assertions.assertEquals(5, rating);
+    }
+
+    @Test
+    public void getMenuTest() {
+
+        ArrayList<FoodItem> menu = new ArrayList<>();
+        Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
+        ArrayList testMenu = restaurant.getMenu();
+
+        Assertions.assertEquals(menu, testMenu);
     }
 }

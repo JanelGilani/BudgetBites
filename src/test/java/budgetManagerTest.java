@@ -1,3 +1,4 @@
+import entities.Order;
 import usecases.budgeting.BudgetManager;
 import entities.Budget;
 import entities.PastOrders;
@@ -5,57 +6,35 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import usecases.MainMongoDB;
 
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class budgetManagerTest {
 
-    @Test
+    /*@Test
     public void orderedMealsBudgetTest() {
 
         Budget budget = new Budget();
         BudgetManager budgetManager = new BudgetManager();
         budget.setCurrentBudget(200);
-        PastOrders order = MainMongoDB.findPastOrders("aryangoel24");
+        HashMap<String, Order> pastOrdersMap = new HashMap<>();
+        PastOrders order = new PastOrders(pastOrdersMap, "Pizza");
+        String b = order.getLastOrdered();
         double price = order.getCostOfLastOrdered();
         budgetManager.orderedMealsBudget(budget, order);
         double currBudget = 200 - price;
 
         Assertions.assertEquals(currBudget, budget.getCurrentBudget());
-    }
-
-    @Test
-    public void orderedMealsAryanBudgetTest() {
-
-        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
-        BudgetManager budgetManager = new BudgetManager();
-        PastOrders order = MainMongoDB.findPastOrders("aryangoel24");
-        double price = order.getCostOfLastOrdered();
-        budgetManager.orderedMealsBudget(budget, order);
-        double currBudget = 15 - price;
-
-        Assertions.assertEquals(currBudget, budget.getCurrentBudget());
-    }
-
-    @Test
-    public void orderedMealsVandanBudgetTest() {
-
-        Budget budget = (Budget) MainMongoDB.getUserAttribute("vandanpatel", "budget");
-        BudgetManager budgetManager = new BudgetManager();
-        PastOrders order = MainMongoDB.findPastOrders("vandanpatel");
-        double price = order.getCostOfLastOrdered();
-        double cBudget= 50 - price;
-        budgetManager.orderedMealsBudget(budget, order);
-
-        Assertions.assertEquals(cBudget, budget.getCurrentBudget());
-    }
+    }*/
 
     @Test
     public void adjustBudgetNegativeErrorCaseTest() {
         boolean thrown = false;
 
         try {
-            Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+            Budget budget = new Budget(500);
             BudgetManager budgetManager = new BudgetManager();
             budgetManager.adjustMonthlyBudget(budget,-120);
         } catch (IllegalArgumentException e) {
@@ -68,9 +47,9 @@ public class budgetManagerTest {
         boolean thrown = false;
 
         try {
-            Budget budget = (Budget) MainMongoDB.getUserAttribute("vandanpatel", "budget");
+            Budget budget = new Budget(750);
             BudgetManager budgetManager = new BudgetManager();
-            budgetManager.adjustMonthlyBudget(budget,50);
+            budgetManager.adjustMonthlyBudget(budget,750);
         } catch (IllegalArgumentException e) {
             thrown = true;
         }
@@ -80,7 +59,8 @@ public class budgetManagerTest {
     @Test
     public void adjustBudgetDecreaseTest() {
 
-        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+        Budget budget = new Budget(1000);
+        budget.setCurrentBudget(15);
         BudgetManager budgetManager = new BudgetManager();
         budgetManager.adjustMonthlyBudget(budget,800);
 
@@ -91,7 +71,8 @@ public class budgetManagerTest {
     @Test
     public void adjustBudgetIncreaseTest() {
 
-        Budget budget = (Budget) MainMongoDB.getUserAttribute("aryangoel24", "budget");
+        Budget budget = new Budget(1000);
+        budget.setCurrentBudget(15);
         BudgetManager budgetManager = new BudgetManager();
         budgetManager.adjustMonthlyBudget(budget,1200);
 
