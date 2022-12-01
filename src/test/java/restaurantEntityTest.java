@@ -61,8 +61,8 @@ public class restaurantEntityTest {
 
         ArrayList<FoodItem> menu = new ArrayList<>();
         Restaurant restaurant = new Restaurant("McDonald's", "Cheap", "Fast-food", "Lunch", 5, menu);
-        ArrayList testMenu = restaurant.getMenu();
+        ArrayList test = restaurant.getMenu();
 
-        Assertions.assertEquals(menu, testMenu);
+        Assertions.assertEquals(menu, test);
     }
 }
