@@ -64,4 +64,5 @@ public class BudgetEntityTest {
 
         Assertions.assertEquals(2003, budget.getCurrentBudget());
     }
+}
 
