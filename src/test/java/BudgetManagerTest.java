@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class budgetManagerTest {
+public class BudgetManagerTest {
 
     private PastOrders p1;
     private Order o1;

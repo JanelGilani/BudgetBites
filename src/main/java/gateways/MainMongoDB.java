@@ -54,8 +54,16 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManager
         userRepo.insertOne(user);
     }
 
+    public void deleteUser (String username) {
+        userRepo.deleteOne(eq("username", username));
+    }
+
     public void saveRestaurant (Restaurant restaurant) {
         restaurantRepo.insertOne(restaurant);
+    }
+
+    public static void deleteRestaurant (String restaurantName) {
+        restaurantRepo.deleteOne(eq("restaurantName", restaurantName));
     }
 
 //    Find User or Restaurant by username or restaurantname
