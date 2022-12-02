@@ -43,6 +43,9 @@ public class PastOrders {
     }
 
     public double getCostOfLastOrdered () {
+        if (this.getPastOrdersMap().isEmpty()){
+            return 0;
+        }
         return this.getOrderByDate(this.lastOrdered).getTotalCost();
     }
 
