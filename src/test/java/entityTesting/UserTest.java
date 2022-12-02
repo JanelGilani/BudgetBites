@@ -75,4 +75,5 @@ public class UserTest {
                 pastOrders, budget);
         Assertions.assertEquals(budget, newUser.getBudget());
     }
+    //
 }
