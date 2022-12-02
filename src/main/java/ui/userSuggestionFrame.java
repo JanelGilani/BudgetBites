@@ -30,4 +30,6 @@ public class userSuggestionFrame extends JFrame {
         this.setVisible(true);
     }
 
+    // use for implementation
+
 }
