@@ -1,11 +1,24 @@
 package ui;
 
+import entities.Budget;
+import entities.PastOrders;
+import entities.User;
+import gateways.MainMongoDB;
+import usecases.LoginDAI;
+import usecases.login.LogicCode;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static java.lang.Double.parseDouble;
 //import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
+
+    private final LoginDAI loginDAI = new MainMongoDB();
+
+    private final LogicCode logicCode = new LogicCode();
 
     private static JLabel firstNameLabel;
     private static JTextField firstNameText;
@@ -85,14 +98,14 @@ public class SignUpFrame extends JFrame{
         panel.add(confirmPasswordText);
 
 
-        // Login button
+        // SignUp button
         signUpButton = new JButton("SignUp");
         signUpButton.setBounds(10, 200, 165, 25);
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exit();
-                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+//                exit();
+//                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
                 String firstName = firstNameText.getText();
                 String lastName = lastNameText.getText();
                 String budget = budgetText.getText();
@@ -100,18 +113,28 @@ public class SignUpFrame extends JFrame{
                 String password = passwordText.getText();
                 String confirmPassword = confirmPasswordText.getText();
 
-//                if (LogicCode.signUpCheck(user, password, confirmPassword)){
-//                    // help me get user saved
-//                    //MainMongoDB.saveUser();
-//                    // proceeds to next page
-//                    System.out.println("Success");
-//                } else {
-//                    // the next page shouldn't come up and should say
-//                    System.out.println("Please try again, problem with sign up");
-//                }
+                User signupUser = new User(firstName, lastName, user, password, new PastOrders(), new Budget(parseDouble(budget)));
+
+                if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName)){
+                    // saves the user
+                    loginDAI.saveUser(signupUser);
+                    // prints a success message to the user
+                    System.out.println("Success");
+                    // will go to next page
+                    exit();
+                    UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+
+                } else {
+                    // if the sign up criteria are not met then the next frame will not
+                    // created, the user will have to try again to sign up
+                    System.out.println("Insufficient Sign-Up, please try again.");
+                }
 
             }
         });
+
+
         panel.add(signUpButton);
 
         backButton = new JButton("Back");
