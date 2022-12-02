@@ -1,3 +1,5 @@
+package entityTesting;
+
 import entities.FoodItem;
 import entities.Restaurant;
 import org.junit.Before;
