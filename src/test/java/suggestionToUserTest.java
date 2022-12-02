@@ -1,8 +1,7 @@
-import com.sun.tools.javac.Main;
 import entities.FoodItem;
 import entities.Order;
 import entities.PastOrders;
-import usecases.MainMongoDB;
+import gateways.MainMongoDB;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 import usecases.SuggestionToUserDAI;
@@ -11,8 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
-
-import static usecases.foodsuggestions.SuggestionToUser.*;
 
 public class suggestionToUserTest {
 

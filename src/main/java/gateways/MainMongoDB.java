@@ -1,4 +1,4 @@
-package usecases;
+package gateways;
 
 import entities.*;
 import entities.PastOrders;
@@ -13,6 +13,9 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import usecases.FilterManagerDAI;
+import usecases.LoginDAI;
+import usecases.SuggestionToUserDAI;
 
 import java.util.ArrayList;
 

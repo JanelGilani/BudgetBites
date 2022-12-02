@@ -1,8 +1,7 @@
 package controllers;
 
-import gateways.RestaurantFilteringGateway;
 import usecases.FilterManagerDAI;
-import usecases.MainMongoDB;
+import gateways.MainMongoDB;
 import usecases.filtering.restaurantfiltering.FilterManager;
 
 import java.util.ArrayList;

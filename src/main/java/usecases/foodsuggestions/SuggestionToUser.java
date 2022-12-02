@@ -1,10 +1,9 @@
 package usecases.foodsuggestions;
-import com.sun.tools.javac.Main;
 import entities.Budget;
 import entities.FoodItem;
 import entities.Order;
 import entities.PastOrders;
-import usecases.MainMongoDB;
+import gateways.MainMongoDB;
 import usecases.SuggestionToUserDAI;
 
 import java.util.*;

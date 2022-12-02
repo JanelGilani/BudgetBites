@@ -4,7 +4,7 @@ import entities.Budget;
 import entities.PastOrders;
 import entities.User;
 import usecases.LoginDAI;
-import usecases.MainMongoDB;
+import gateways.MainMongoDB;
 
 import java.util.Arrays;
 import java.util.HashSet;
