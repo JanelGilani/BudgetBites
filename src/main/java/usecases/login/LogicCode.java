@@ -75,7 +75,7 @@ public class LogicCode {
      * @param lastName
      * @return boolean
      */
-    public static boolean signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
+    public boolean signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
         // help with MainMongoDB
         if (loginDAI.userExists(username)) {
             return false;

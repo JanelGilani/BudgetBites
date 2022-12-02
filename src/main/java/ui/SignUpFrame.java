@@ -5,6 +5,7 @@ import entities.PastOrders;
 import entities.User;
 import gateways.MainMongoDB;
 import usecases.login.LogicCode;
+import usecases.login.NewUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -14,6 +15,8 @@ import static java.lang.Double.parseDouble;
 //import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
+
+    private final LogicCode logicCode = new LogicCode();
 
     private static JLabel firstNameLabel;
     private static JTextField firstNameText;
@@ -93,38 +96,10 @@ public class SignUpFrame extends JFrame{
         panel.add(confirmPasswordText);
 
 
-        // Login button
+        // SignUp button
         signUpButton = new JButton("SignUp");
         signUpButton.setBounds(10, 200, 165, 25);
         signUpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exit();
-                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
-                String firstName = firstNameText.getText();
-                String lastName = lastNameText.getText();
-                String budget = budgetText.getText();
-                String user = userText.getText();
-                String password = passwordText.getText();
-                String confirmPassword = confirmPasswordText.getText();
-
-//                if (LogicCode.signUpCheck(user, password, confirmPassword)){
-//                    // help me get user saved
-//                    //MainMongoDB.saveUser();
-//                    // proceeds to next page
-//                    System.out.println("Success");
-//                } else {
-//                    // the next page shouldn't come up and should say
-//                    System.out.println("Please try again, problem with sign up");
-//                }
-
-            }
-        });
-        panel.add(signUpButton);
-
-        backButton = new JButton("Back");
-        backButton.setBounds(10, 230, 165, 25);
-        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 //                exit();
@@ -138,8 +113,8 @@ public class SignUpFrame extends JFrame{
 
                 User signupUser = new User(firstName, lastName, user, password, new PastOrders(), new Budget(parseDouble(budget)));
 
-                if (LogicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
-                        firstName, lastName)) {
+                if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName)){
                     // saves the user
                     MainMongoDB.saveUser(signupUser);
                     // prints a success message to the user
@@ -154,6 +129,19 @@ public class SignUpFrame extends JFrame{
                     System.out.println("Insufficient Sign-Up, please try again.");
                 }
 
+            }
+        });
+
+
+        panel.add(signUpButton);
+
+        backButton = new JButton("Back");
+        backButton.setBounds(10, 230, 165, 25);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                OnboardingFrame onboardingFrame = new OnboardingFrame();
             }
         });
         panel.add(backButton);
