@@ -4,8 +4,8 @@ import entities.Budget;
 import entities.PastOrders;
 import entities.User;
 import gateways.MainMongoDB;
+import usecases.LoginDAI;
 import usecases.login.LogicCode;
-import usecases.login.NewUser;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +15,8 @@ import static java.lang.Double.parseDouble;
 //import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
+
+    private final LoginDAI loginDAI = new MainMongoDB();
 
     private final LogicCode logicCode = new LogicCode();
 
@@ -116,7 +118,7 @@ public class SignUpFrame extends JFrame{
                 if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
                         firstName, lastName)){
                     // saves the user
-                    MainMongoDB.saveUser(signupUser);
+                    loginDAI.saveUser(signupUser);
                     // prints a success message to the user
                     System.out.println("Success");
                     // will go to next page
