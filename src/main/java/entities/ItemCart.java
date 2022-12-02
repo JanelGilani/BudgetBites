@@ -10,6 +10,10 @@ public class ItemCart {
         this.currentOrder = new ArrayList<FoodItem>();
     }
 
+    public ArrayList<FoodItem> getCurrentOrder () {
+        return this.currentOrder;
+    }
+
     public void addToCart (FoodItem item) {
         currentOrder.add(item);
     }

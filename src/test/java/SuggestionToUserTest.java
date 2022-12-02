@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class suggestionToUserTest {
+public class SuggestionToUserTest {
 
     private final SuggestionToUserDAI suggestionToUserDAI = new MainMongoDB();
     private final SuggestionToUser suggestionToUser = new SuggestionToUser();

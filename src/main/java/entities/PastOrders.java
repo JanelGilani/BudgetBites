@@ -17,25 +17,20 @@ public class PastOrders {
         this.lastOrdered = lastOrdered;
     }
 
-    public ArrayList<FoodItem> getOrderedItemsByDate (String dateTime) {
-        return this.pastOrdersMap.get(dateTime).getOrderedItems();
-    }
-
-    public Order getOrderByDate (String dateTime) {
-        return this.pastOrdersMap.get(dateTime);
+    public HashMap<String, Order> getPastOrdersMap () {
+        return this.pastOrdersMap;
     }
 
     public String getLastOrdered () {
         return this.lastOrdered;
     }
 
-    public HashMap<String, Order> getPastOrdersMap () {
-        return this.pastOrdersMap;
+    public Order getOrderByDate (String dateTime) {
+        return this.pastOrdersMap.get(dateTime);
     }
 
-    public void addOrder (Order order) {
-        this.pastOrdersMap.put(order.dateOrdered, order);
-        this.lastOrdered = order.dateOrdered;
+    public ArrayList<FoodItem> getOrderedItemsByDate (String dateTime) {
+        return this.pastOrdersMap.get(dateTime).getOrderedItems();
     }
 
     public double getTotalCost () {
@@ -49,5 +44,10 @@ public class PastOrders {
 
     public double getCostOfLastOrdered () {
         return this.getOrderByDate(this.lastOrdered).getTotalCost();
+    }
+
+    public void addOrder (Order order) {
+        this.pastOrdersMap.put(order.dateOrdered, order);
+        this.lastOrdered = order.dateOrdered;
     }
 }

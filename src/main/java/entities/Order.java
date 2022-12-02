@@ -27,13 +27,14 @@ public class Order {
         return this.orderedItems;
     }
 
+    public String getDateOrdered () {
+        return this.dateOrdered;
+    }
+
     public double getTotalCost () {
         return this.totalCost;
     }
 
-    public String getDateOrdered () {
-        return this.dateOrdered;
-    }
     public String getRestaurantName () {return this.restaurantName;}
 
 

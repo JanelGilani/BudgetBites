@@ -5,10 +5,12 @@ import org.junit.Test;
 
 public class BudgetEntityTest {
 
+
     /**
      * getInitialBudgetTest tests the getInitialBudget function in the Budget Entity, by checking if it returns the
      * correct initial budget
      */
+
     @Test
     public void getInitialBudgetTest() {
 
@@ -18,10 +20,12 @@ public class BudgetEntityTest {
         Assertions.assertEquals(1000, initialBudget);
     }
 
+
     /**
      * getCurrentBudgetTest tests the getCurrentBudget function in the Budget Entity, by checking if it returns the
      * correct current budget
      */
+
     @Test
     public void getCurrentBudgetTest() {
 
@@ -31,10 +35,12 @@ public class BudgetEntityTest {
         Assertions.assertEquals(1000, currentBudget);
     }
 
+
     /**
      * setInitialBudgetTest tests the setInitialBudget function in the Budget Entity, by checking if it returns the
      * sets the initial budget to the new budget
      */
+
     @Test
     public void setInitialBudgetTest() {
 
@@ -44,10 +50,12 @@ public class BudgetEntityTest {
         Assertions.assertEquals(2022, budget.getInitialBudget());
     }
 
+
     /**
      * setCurrentBudgetTest tests the setCurrentBudget function in the Budget Entity, by checking if it returns the
      * sets the current budget to the new budget
      */
+
     @Test
     public void setCurrentBudgetTest() {
 
@@ -57,4 +65,3 @@ public class BudgetEntityTest {
         Assertions.assertEquals(2003, budget.getCurrentBudget());
     }
 
-}
