@@ -1,7 +1,7 @@
 import entities.FoodItem;
 import entities.Restaurant;
 import org.junit.Before;
-import usecases.MainMongoDB;
+import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
@@ -33,7 +33,6 @@ public class restaurantEntityTest {
 
     @Test
     public void getCuisineTest() {
-
         String cuisine = restaurant.getCuisine();
 
         Assertions.assertEquals("Middle-East", cuisine);
