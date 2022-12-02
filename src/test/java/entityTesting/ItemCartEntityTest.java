@@ -1,3 +1,5 @@
+package entityTesting;
+
 import entities.FoodItem;
 import entities.ItemCart;
 import entities.Order;

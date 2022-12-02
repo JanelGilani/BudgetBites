@@ -3,19 +3,22 @@ package usecases.login;
 import entities.Budget;
 import entities.PastOrders;
 import entities.User;
-import usecases.MainMongoDB;
+import usecases.LoginDAI;
+import gateways.MainMongoDB;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public class LogicCode {
+
+    private final LoginDAI loginDAI = new MainMongoDB();
     /**
      * The following code checks if the methods below are able to execute and save the user inputs.
      * @param args
      */
-    public static void main(String[] args) {
-        LogicCode.signUpCheck("vandanpatel", "Vp@1232848327498473", "Vp@1232848327498473", 50.00, "Vandan", "Patel");
+    public void main(String[] args) {
+        signUpCheck("vandanpatel", "Vp@1232848327498473", "Vp@1232848327498473", 50.00, "Vandan", "Patel");
     }
 
     /**
@@ -23,7 +26,7 @@ public class LogicCode {
      * @param password
      * @return boolean
      */
-    public static boolean strongPassword (String password){
+    public boolean strongPassword (String password){
         int n = password.length();
         boolean hasUpper = false;
         boolean hasDigit = false;
@@ -54,7 +57,7 @@ public class LogicCode {
      * @param confirmPassword
      * @return boolean
      */
-    public static boolean samePassword(String password, String confirmPassword){
+    public boolean samePassword(String password, String confirmPassword){
         if (password.equals(confirmPassword)){
             return true;
         } else{
@@ -72,9 +75,9 @@ public class LogicCode {
      * @param lastName
      * @return boolean
      */
-    public static boolean signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
+    public boolean signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
         // help with MainMongoDB
-        if (MainMongoDB.userExists(username)) {
+        if (loginDAI.userExists(username)) {
             return false;
         } else {
             if (samePassword(password, confirmPassword)) {
@@ -82,7 +85,7 @@ public class LogicCode {
                     PastOrders p1 = new PastOrders();
                     Budget b1 = new Budget(initialBudget);
                     User user = new User(firstName, lastName, username, password, p1, b1);
-                    MainMongoDB.saveUser(user);
+                    loginDAI.saveUser(user);
                     return true;
                 } else {
                     // final code should be able to tell the user that this password isn't strong

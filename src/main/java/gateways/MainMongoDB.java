@@ -1,4 +1,4 @@
-package usecases;
+package gateways;
 
 import entities.*;
 import entities.PastOrders;
@@ -13,6 +13,9 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import usecases.FilterManagerDAI;
+import usecases.LoginDAI;
+import usecases.SuggestionToUserDAI;
 
 import java.util.ArrayList;
 
@@ -22,7 +25,7 @@ import static com.mongodb.client.model.Filters.nin;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 
-public class MainMongoDB {
+public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManagerDAI {
 //    Create all Class models
     static ClassModel<User> userClassModel = ClassModel.builder(User.class).enableDiscriminator(true).build();
     static ClassModel<Order> orderClassModel = ClassModel.builder(Order.class).enableDiscriminator(true).build();
@@ -47,15 +50,15 @@ public class MainMongoDB {
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
 //    Save new User or Restaurant to Database
-    public static void saveUser (User user) {
+    public void saveUser (User user) {
         userRepo.insertOne(user);
     }
 
-    public static void deleteUser (String username) {
+    public void deleteUser (String username) {
         userRepo.deleteOne(eq("username", username));
     }
 
-    public static void saveRestaurant (Restaurant restaurant) {
+    public void saveRestaurant (Restaurant restaurant) {
         restaurantRepo.insertOne(restaurant);
     }
 
@@ -64,21 +67,21 @@ public class MainMongoDB {
     }
 
 //    Find User or Restaurant by username or restaurantname
-    public static User findUserByUsername (String username) {
+    public User findUserByUsername (String username) {
         return userRepo.find(eq("username", username)).first();
     }
 
-    public static Restaurant findRestaurantByRestaurantName (String restaurantName) {
+    public Restaurant findRestaurantByRestaurantName (String restaurantName) {
         return restaurantRepo.find(eq("restaurantName", restaurantName)).first();
     }
 
 //    Check if user exists
-    public static boolean userExists (String username) {
+    public boolean userExists (String username) {
         return userRepo.find(eq("username", username)).first() != null;
     }
 
 //    Past Orders
-    public static PastOrders findPastOrders (String username) {
+    public PastOrders findPastOrders (String username) {
         User user = userRepo.find(eq("username", username)).first();
         if (user != null) {
             PastOrders currentPastOrder = user.getPastOrders();
@@ -91,7 +94,7 @@ public class MainMongoDB {
         return null;
     }
 
-    public static boolean addToPastOrders (String username, Order order) {
+    public boolean addToPastOrders (String username, Order order) {
         User user = userRepo.find(eq("username", username)).first();
         assert user != null;
         PastOrders pastOrders = user.getPastOrders();
@@ -107,7 +110,7 @@ public class MainMongoDB {
 
     // Find attribute by username
 
-    public static Object getUserAttribute (String username, String attribute) {
+    public Object getUserAttribute (String username, String attribute) {
         User user  = userRepo.find(eq("username", username)).first();
         assert user !=  null;
         switch (attribute) {
@@ -127,7 +130,7 @@ public class MainMongoDB {
 
     // Find attribute by Restaurant
 
-    public static String getRestaurantAttribute (String restaurantName, String attribute) {
+    public String getRestaurantAttribute (String restaurantName, String attribute) {
         Restaurant restaurant = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
         assert restaurant != null;
         switch (attribute) {
@@ -145,19 +148,19 @@ public class MainMongoDB {
         return null;
     }
 
-    public static ArrayList<String> getAllRestaurants () {
+    public ArrayList<String> getAllRestaurants () {
         ArrayList<String> restaurants = new ArrayList<String>();
         restaurantRepo.find().forEach(restaurant -> restaurants.add(restaurant.getRestaurantName()));
         return restaurants;
     }
 
-    public static ArrayList<String> getAllUsers () {
+    public ArrayList<String> getAllUsers () {
         ArrayList<String> users = new ArrayList<String>();
         userRepo.find().forEach(user -> users.add(user.getFirstName()));
         return users;
     }
 
-    public static Object getMenu (String restaurantName){
+    public Object getMenu (String restaurantName){
         Restaurant res = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
         if (res != null) {
             ArrayList<FoodItem> menu = res.getMenu();
@@ -172,7 +175,7 @@ public class MainMongoDB {
 
 //    Update basic User or Restaurant attribute
 
-    public static void updateAttributeByUsername (String username, String attribute, Object attValue) {
+    public void updateAttributeByUsername (String username, String attribute, Object attValue) {
         Document query = new Document("username", username);
 
         Bson updates = Updates.combine(
@@ -184,7 +187,7 @@ public class MainMongoDB {
         userRepo.updateOne(query, updates, options);
     }
 
-    public static void updateAttributeByRestaurantName (String restaurantName, String attribute, Object attValue) {
+    public void updateAttributeByRestaurantName (String restaurantName, String attribute, Object attValue) {
         Document query = new Document("restaurantName", restaurantName);
         Bson updates = Updates.combine(Updates.set(attribute, attValue));
         UpdateOptions options = new UpdateOptions().upsert(true);
