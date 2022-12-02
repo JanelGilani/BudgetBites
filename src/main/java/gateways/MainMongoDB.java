@@ -50,7 +50,7 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManager
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
 //    Save new User or Restaurant to Database
-    public void saveUser (User user) {
+    public static void saveUser(User user) {
         userRepo.insertOne(user);
     }
 

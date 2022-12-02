@@ -1,8 +1,16 @@
 package ui;
 
+import entities.Budget;
+import entities.PastOrders;
+import entities.User;
+import gateways.MainMongoDB;
+import usecases.login.LogicCode;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static java.lang.Double.parseDouble;
 //import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
@@ -119,8 +127,33 @@ public class SignUpFrame extends JFrame{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exit();
-                OnboardingFrame onboardingFrame = new OnboardingFrame();
+//                exit();
+//                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+                String firstName = firstNameText.getText();
+                String lastName = lastNameText.getText();
+                String budget = budgetText.getText();
+                String user = userText.getText();
+                String password = passwordText.getText();
+                String confirmPassword = confirmPasswordText.getText();
+
+                User signupUser = new User(firstName, lastName, user, password, new PastOrders(), new Budget(parseDouble(budget)));
+
+                if (LogicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName)) {
+                    // saves the user
+                    MainMongoDB.saveUser(signupUser);
+                    // prints a success message to the user
+                    System.out.println("Success");
+                    // will go to next page
+                    exit();
+                    UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+
+                } else {
+                    // if the sign up criteria are not met then the next frame will not
+                    // created, the user will have to try again to sign up
+                    System.out.println("Insufficient Sign-Up, please try again.");
+                }
+
             }
         });
         panel.add(backButton);
