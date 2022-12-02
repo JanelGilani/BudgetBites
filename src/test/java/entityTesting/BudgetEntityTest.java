@@ -3,7 +3,6 @@ import entities.Budget;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
-
 public class BudgetEntityTest {
 
     /**

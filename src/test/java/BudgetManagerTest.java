@@ -6,10 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import usecases.budgeting.BudgetManager;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BudgetManagerTest {
