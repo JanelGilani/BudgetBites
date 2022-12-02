@@ -6,10 +6,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import usecases.budgeting.BudgetManager;
-
 import java.time.LocalDateTime;
 import java.util.HashMap;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BudgetManagerTest {
@@ -44,6 +42,12 @@ public class BudgetManagerTest {
         p1.addOrder(o2);
     }
 
+
+    /**
+     * orderedMealsBudgetTest tests the orderedMealsBudget method in the BudgetManager use case, which takes
+     * the price of the last ordered meal and subtracts it from the current budget
+     */
+     
     @Test
     public void orderedMealsBudgetTest() {
         Budget budget = new Budget();
@@ -59,6 +63,13 @@ public class BudgetManagerTest {
         Assertions.assertEquals(currBudget, budget.getCurrentBudget());
     }
 
+
+    /**
+     * adjustBudgetNegativeErrorCaseTest tests the adjustBudget method in the BudgetManager use case, which takes
+     * the new budget that the user wants and returns an error if the new budget is negative since they cannot have
+     * a negative budget
+     */
+     
     @Test
     public void adjustBudgetNegativeErrorCaseTest() {
         boolean thrown = false;
@@ -73,6 +84,11 @@ public class BudgetManagerTest {
         assertTrue(thrown);
     }
 
+    /**
+     * adjustBudgetSameErrorCaseTest tests the adjustBudget method in the BudgetManager use case, which takes
+     * the new budget that the user wants and returns an error since the budget is the same as the initial budget
+     */
+     
     @Test
     public void adjustBudgetSameErrorCaseTest() {
         boolean thrown = false;
@@ -87,6 +103,12 @@ public class BudgetManagerTest {
         assertTrue(thrown);
     }
 
+    /**
+     * adjustBudgetDecreaseTest tests the adjustBudget method in the BudgetManager use case, which takes
+     * the new budget that the user wants to decrease their monthly budget to and sets the initial monthly budget and current
+     * budget accordingly
+     */
+     
     @Test
     public void adjustBudgetDecreaseTest() {
 
@@ -99,6 +121,12 @@ public class BudgetManagerTest {
         Assertions.assertEquals(-185.0, budget.getCurrentBudget());
     }
 
+    /**
+     * adjustBudgetIncreaseTest tests the adjustBudget method in the BudgetManager use case, which takes
+     * the new budget that the user wants to increase their monthly budget to and sets the initial monthly budget and current
+     * budget accordingly
+     */
+     
     @Test
     public void adjustBudgetIncreaseTest() {
 
@@ -111,4 +139,3 @@ public class BudgetManagerTest {
         Assertions.assertEquals(215.0, budget.getCurrentBudget());
     }
 }
-
