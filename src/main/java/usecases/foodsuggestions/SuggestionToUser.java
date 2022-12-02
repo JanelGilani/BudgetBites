@@ -5,21 +5,13 @@ import entities.FoodItem;
 import entities.Order;
 import entities.PastOrders;
 import usecases.MainMongoDB;
+import usecases.SuggestionToUserDAI;
 
 import java.util.*;
 
 public class SuggestionToUser {
-    public static void main(String[] args) {
-//        //First created order by findPastOrders
-//        PastOrders order = MainMongoDB.findPastOrders("aryangoel24");
-//        assert order != null;
-////        //Extracted a hashmap with datetime to order
-//        final HashMap<String, Order> pastOrdersMap = order.getPastOrdersMap();
-//        final HashMap<FoodItem, Integer> testItemCount = itemCount(order, pastOrdersMap);
-//        final LinkedHashMap<FoodItem, Integer> testSortingHashMap = sortingHashMap(testItemCount);
-////        //Created an array of all those datetimes.
-//        System.out.println(getSuggestionToUser("darpanmi"));
-    }
+
+    private final SuggestionToUserDAI suggestionToUserDAI = new MainMongoDB();
 
     /**
      * Takes the userName and returns the items that can be ordered again based ont the
@@ -27,8 +19,8 @@ public class SuggestionToUser {
      * @param userName of the current User
      * @return ArrayList of the final suggestion (list of food items) based on the budget
      */
-    public static ArrayList<String> getSuggestionToUser(String userName) {
-        PastOrders allPastOrder = MainMongoDB.findPastOrders(userName);
+    public ArrayList<String> getSuggestionToUser(String userName) {
+        PastOrders allPastOrder = suggestionToUserDAI.findPastOrders(userName);
         assert allPastOrder != null;
         final HashMap<String, Order> pastOrdersMap = allPastOrder.getPastOrdersMap();
         HashMap<FoodItem, Integer> currentItemCount = itemCount(allPastOrder, pastOrdersMap);
@@ -43,7 +35,7 @@ public class SuggestionToUser {
      * @param pastOrderMap created from MongoDB of all the pastOrder HashMap with dateTime and Order pair.
      * @return Hashmap with FoodItem and Integer key-value pair.
      */
-    public static HashMap<FoodItem, Integer> itemCount(PastOrders allPastOrder, HashMap<String, Order> pastOrderMap) {
+    public HashMap<FoodItem, Integer> itemCount(PastOrders allPastOrder, HashMap<String, Order> pastOrderMap) {
         HashMap<FoodItem, Integer> countItems = new HashMap<>();
         HashMap<String, FoodItem> visitedItem = new HashMap<>();
         ArrayList<String> allOrderDateTime = new ArrayList<>(pastOrderMap.keySet());
@@ -65,7 +57,7 @@ public class SuggestionToUser {
      * @param populatedCountItem
      * @return Linked Hashmap which is sorted of the FoodItem objects
      */
-    public static LinkedHashMap<FoodItem, Integer> sortingHashMap(HashMap<FoodItem, Integer> populatedCountItem) {
+    public LinkedHashMap<FoodItem, Integer> sortingHashMap(HashMap<FoodItem, Integer> populatedCountItem) {
         ArrayList<Integer> list = new ArrayList<>();
         LinkedHashMap<FoodItem, Integer> sortedMap = new LinkedHashMap<>();
         for (Map.Entry<FoodItem, Integer> entry : populatedCountItem.entrySet()) {
@@ -88,10 +80,10 @@ public class SuggestionToUser {
      * @param populatedSortedMap populatedSorted Map contains FoodItem object and their repeation value.
      * @return Final suggestion List which contains Strings
      */
-    public static ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<FoodItem, Integer> populatedSortedMap) {
+    public ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<FoodItem, Integer> populatedSortedMap) {
         double budgetSoFar = 0.00;
 //        double currentBudget = (double) MainMongoDB.getUserAttribute(userName, "budget");
-        double currentBudget = ((Budget) Objects.requireNonNull(MainMongoDB.getUserAttribute(userName, "budget"))).getCurrentBudget();
+        double currentBudget = ((Budget) Objects.requireNonNull(suggestionToUserDAI.getUserAttribute(userName, "budget"))).getCurrentBudget();
         ArrayList<String> finalSuggestion = new ArrayList<>();
         for (FoodItem item: populatedSortedMap.keySet()) {
             budgetSoFar += item.getItemCost();

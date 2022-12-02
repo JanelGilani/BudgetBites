@@ -1,9 +1,11 @@
+import com.sun.tools.javac.Main;
 import entities.FoodItem;
 import entities.Order;
 import entities.PastOrders;
 import usecases.MainMongoDB;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
+import usecases.SuggestionToUserDAI;
 import usecases.foodsuggestions.SuggestionToUser;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,15 +16,18 @@ import static usecases.foodsuggestions.SuggestionToUser.*;
 
 public class suggestionToUserTest {
 
+    private final SuggestionToUserDAI suggestionToUserDAI = new MainMongoDB();
+    private final SuggestionToUser suggestionToUser = new SuggestionToUser();
+
     private String testUser = "aryangoel24";
     private String testUser2 = "darpanmi";
 
     @Test
     public void testSortingHashMapMongo() {
-        PastOrders testOrder = MainMongoDB.findPastOrders(testUser);
+        PastOrders testOrder = suggestionToUserDAI.findPastOrders(testUser);
         assert testOrder != null;
         final HashMap<String, Order> pastOrdersMap = testOrder.getPastOrdersMap();
-        LinkedHashMap<FoodItem, Integer> testSortingHashMap = sortingHashMap(itemCount(testOrder, pastOrdersMap));
+        LinkedHashMap<FoodItem, Integer> testSortingHashMap = suggestionToUser.sortingHashMap(suggestionToUser.itemCount(testOrder, pastOrdersMap));
         List<Integer> expectedValues = new ArrayList<Integer>(testSortingHashMap.values());
         List<Integer> expectedSortedListValue = new ArrayList<>();
         expectedSortedListValue.add(3);
@@ -42,17 +47,17 @@ public class suggestionToUserTest {
         LinkedHashMap<FoodItem, Integer> expectedList = new LinkedHashMap<>();
         expectedList.put(foodItem2, 2);
         expectedList.put(foodItem1, 1);
-        Assertions.assertEquals(sortingHashMap(testCountPopulatedItem), expectedList);
+        Assertions.assertEquals(suggestionToUser.sortingHashMap(testCountPopulatedItem), expectedList);
     }
 
     @Test
     public void testGetFinalSuggestion() {
-        PastOrders testOrder = MainMongoDB.findPastOrders(testUser);
+        PastOrders testOrder = suggestionToUserDAI.findPastOrders(testUser);
         assert testOrder != null;
         final HashMap<String, Order> pastOrdersMap = testOrder.getPastOrdersMap();
-        HashMap<FoodItem, Integer> currentItemCount = itemCount(testOrder, pastOrdersMap);
-        LinkedHashMap<FoodItem, Integer> sortedList = sortingHashMap(currentItemCount);
-        ArrayList<String> actualList = getFinalSuggestion(testUser, sortedList);
+        HashMap<FoodItem, Integer> currentItemCount = suggestionToUser.itemCount(testOrder, pastOrdersMap);
+        LinkedHashMap<FoodItem, Integer> sortedList = suggestionToUser.sortingHashMap(currentItemCount);
+        ArrayList<String> actualList = suggestionToUser.getFinalSuggestion(testUser, sortedList);
         ArrayList<String> expectedList = new ArrayList<>();
         expectedList.add("Falafel Wrap");
         expectedList.add("Chicken Shawarma");
@@ -64,14 +69,14 @@ public class suggestionToUserTest {
         ArrayList<String> expectedList = new ArrayList<>();
         expectedList.add("Falafel Wrap");
         expectedList.add("Chicken Shawarma");
-        ArrayList<String> actualList = SuggestionToUser.getSuggestionToUser(testUser);
+        ArrayList<String> actualList = suggestionToUser.getSuggestionToUser(testUser);
         Assertions.assertEquals(actualList, expectedList);
     }
 
     @Test
     public void testGetSuggestionToUserNoItem() {
         ArrayList<String> expectedList = new ArrayList<>();
-        ArrayList<String> actualList = SuggestionToUser.getSuggestionToUser(testUser2);
+        ArrayList<String> actualList = suggestionToUser.getSuggestionToUser(testUser2);
         Assertions.assertEquals(actualList, expectedList);
     }
 
