@@ -2,7 +2,7 @@ package controllers;
 
 import usecases.FilterManagerDAI;
 import gateways.MainMongoDB;
-import usecases.filtering.restaurantfiltering.FilterManager;
+import usecases.filtering.restaurantfiltering.RestaurantFilter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class FilterManagerController {
 
     private final FilterManagerDAI filterManagerDAI = new MainMongoDB();
-    private FilterManager restaurantFilters;
+    private RestaurantFilter restaurantFilters;
 
     public FilterManagerController() {
         ArrayList<String> restaurants = filterManagerDAI.getAllRestaurants();
@@ -47,7 +47,7 @@ public class FilterManagerController {
             priceFilter.get(price).add(r);
         }
 
-        restaurantFilters = new FilterManager(cuisineFilter,foodTypeFilter,priceFilter);
+        restaurantFilters = new RestaurantFilter(cuisineFilter,foodTypeFilter,priceFilter);
     }
 
     public ArrayList<String> getRestaurants(String pricePref, String cuisinePref, String foodTypePref) {
