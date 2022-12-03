@@ -15,9 +15,11 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
     private static JLabel userMealLabel;
     private static JComboBox userMealText;
     private static JButton submitButton;
-    private JPanel restaurants;
 
     private RestaurantFilteringPresenter restaurantPresenter;
+
+    private static JButton pickRestaurant;
+    private static JPanel bottom;
 
     public RestaurantListFrame() {
 
@@ -68,8 +70,15 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         this.add(panel);
 
         restaurantPresenter = new RestaurantsPanel();
-        restaurants = restaurantPresenter.allRestaurants();
-        this.add(restaurants);
+        restaurantPresenter.allRestaurants();
+        this.add((JPanel) restaurantPresenter);
+
+        bottom = new JPanel();
+        pickRestaurant = new JButton("Pick Restaurant");
+        pickRestaurant.setBounds(10, 110, 160, 25);
+        pickRestaurant.addActionListener(this);
+        bottom.add(pickRestaurant);
+        this.add(bottom);
 
         this.pack();
         this.setVisible(true);
@@ -82,9 +91,20 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.remove(restaurants);
-        restaurants = restaurantPresenter.updateRestaurants((String) userPriceText.getSelectedItem(), (String) UserCuisineText.getSelectedItem(), (String) userMealText.getSelectedItem());
-        this.add(restaurants);
-        this.validate();
+        Object obj = e.getSource();
+        if (obj == submitButton) {
+            restaurantPresenter.updateRestaurants((String) userPriceText.getSelectedItem(), (String) UserCuisineText.getSelectedItem(), (String) userMealText.getSelectedItem());
+            this.validate();
+        } else if (obj == pickRestaurant) {
+            JList<String> selection = restaurantPresenter.getList();
+            String restaurant = selection.getSelectedValue();
+            exit();
+            new FoodItemsFrame(restaurant);
+        }
+    }
+
+    private void exit() {
+        this.setVisible(false);
+        this.dispose();
     }
 }
