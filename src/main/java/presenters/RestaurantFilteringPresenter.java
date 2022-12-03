@@ -3,7 +3,9 @@ import javax.swing.*;
 
 
 public interface RestaurantFilteringPresenter {
-    JPanel allRestaurants();
+    void allRestaurants();
 
-    JPanel updateRestaurants(String pricePref, String cuisinePref, String foodTypePref);
+    void updateRestaurants(String pricePref, String cuisinePref, String foodTypePref);
+
+    JList<String> getList();
 }
