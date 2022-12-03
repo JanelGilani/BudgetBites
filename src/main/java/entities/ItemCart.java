@@ -18,6 +18,25 @@ public class ItemCart {
         currentOrder.add(item);
     }
 
+    public CurrentOrderIterator createIterator () {
+        return new CurrentOrderIterator(this.getCurrentOrder());
+    }
+
+    public ArrayList<String> checkInByIterator (CurrentOrderIterator currentOrderIterator) {
+        ArrayList<String> itemNames = new ArrayList<>();
+        while (currentOrderIterator.hasNext()) {
+            String name = currentOrderIterator.next().getItemName();
+            itemNames.add(name);
+        }
+
+        return itemNames;
+    }
+
+    public ArrayList<String> checkIn () {
+        CurrentOrderIterator currentOrderIterator = this.createIterator();
+        return this.checkInByIterator(currentOrderIterator);
+    }
+
     public Order makeOrder (PastOrders userPastOrders, String restaurantName) {
         String dateTime = LocalDateTime.now().toString();
         Order tempOrder = new Order(dateTime, restaurantName);

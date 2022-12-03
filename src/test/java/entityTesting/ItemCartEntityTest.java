@@ -24,6 +24,7 @@ public class ItemCartEntityTest {
     private PastOrders p1;
     private FoodItem f1;
     private FoodItem f2;
+    private FoodItem f3;
 
     @Before
     public void init () {
@@ -31,28 +32,37 @@ public class ItemCartEntityTest {
         p1 = new PastOrders();
         f1 = new FoodItem("Chicken Shawarma", 8);
         f2 = new FoodItem("Hummus with Pita", 5);
+        f3 = new FoodItem("Falafel Wrap", 4);
 
         i1.addToCart(f1);
+        i1.addToCart(f2);
     }
 
     @After
     public void teardown () {
-        i1.getCurrentOrder().remove(f2);
+        i1.getCurrentOrder().remove(f3);
     }
 
     @Test
     public void getCurrentOrderTest () {
-        ArrayList<FoodItem> cart = new ArrayList<FoodItem>(Collections.singleton(f1));
+        ArrayList<FoodItem> cart = new ArrayList<FoodItem>(Arrays.asList(f1, f2));
 
         Assertions.assertEquals(cart, i1.getCurrentOrder());
     }
 
     @Test
     public void addToCartTest() {
-        ArrayList<FoodItem> cart = new ArrayList<>(Arrays.asList(f1, f2));
-        i1.addToCart(f2);
+        ArrayList<FoodItem> cart = new ArrayList<>(Arrays.asList(f1, f2, f3));
+        i1.addToCart(f3);
 
         Assertions.assertEquals(cart, i1.getCurrentOrder());
+    }
+
+    @Test
+    public void checkInTest () {
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("Chicken Shawarma", "Hummus with Pita"));
+        ArrayList<String> itemNames = i1.checkIn();
+        Assertions.assertEquals(expected, itemNames);
     }
 
     @Test
