@@ -7,12 +7,12 @@ import usecases.filtering.restaurantfiltering.RestaurantFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FilterManagerController {
+public class RestaurantFilterController {
 
     private final FilterManagerDAI filterManagerDAI = new MainMongoDB();
     private RestaurantFilter restaurantFilters;
 
-    public FilterManagerController() {
+    public RestaurantFilterController() {
         ArrayList<String> restaurants = filterManagerDAI.getAllRestaurants();
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
         cuisineFilter.put("Italian",new ArrayList<String>());

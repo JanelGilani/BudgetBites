@@ -1,6 +1,6 @@
 package ui;
 
-import controllers.FilterManagerController;
+import controllers.RestaurantFilterController;
 import presenters.RestaurantFilteringPresenter;
 
 import javax.swing.*;
@@ -9,7 +9,7 @@ import java.awt.*;
 public class RestaurantsPanel implements RestaurantFilteringPresenter {
     private JPanel panel;
     private JScrollPane scroll;
-    private FilterManagerController controller;
+    private RestaurantFilterController controller;
 
     public RestaurantsPanel() {
         panel = new JPanel();
@@ -17,7 +17,7 @@ public class RestaurantsPanel implements RestaurantFilteringPresenter {
         panel.setBackground(Color.WHITE);
         panel.setPreferredSize(new Dimension(420,500));
         scroll = new JScrollPane();
-        controller = new FilterManagerController();
+        controller = new RestaurantFilterController();
     }
 
     @Override
