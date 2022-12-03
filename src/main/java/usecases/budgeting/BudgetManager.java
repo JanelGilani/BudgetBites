@@ -14,7 +14,7 @@ public class BudgetManager {
      * * like by inputting a new budget in the UI
      * * @param newBudgetSize
      *
-     * @param user user's budget
+     * @param user user of the application
      * @param newBudgetSize the budget the user now wants to change their monthly budget into
      */
 
@@ -43,7 +43,7 @@ public class BudgetManager {
     /**
      * orderedMealsBudget method automatically decreases the user's current budget when an order is placed
      *
-     * @param user user's budget
+     * @param user user of the application
      * @param orders user's past order
      */
 
