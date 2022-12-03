@@ -13,6 +13,7 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import usecases.BudgetDAI;
 import usecases.FilterManagerDAI;
 import usecases.LoginDAI;
 import usecases.SuggestionToUserDAI;
@@ -25,7 +26,7 @@ import static com.mongodb.client.model.Filters.nin;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 
-public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManagerDAI {
+public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManagerDAI, BudgetDAI {
 //    Create all Class models
     static ClassModel<User> userClassModel = ClassModel.builder(User.class).enableDiscriminator(true).build();
     static ClassModel<Order> orderClassModel = ClassModel.builder(Order.class).enableDiscriminator(true).build();

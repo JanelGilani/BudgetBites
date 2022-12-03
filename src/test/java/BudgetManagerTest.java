@@ -1,7 +1,4 @@
-import entities.Budget;
-import entities.FoodItem;
-import entities.Order;
-import entities.PastOrders;
+import entities.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -15,17 +12,23 @@ public class BudgetManagerTest {
     private PastOrders p1;
     private Order o1;
     private Order o2;
+    private Order o3;
     private FoodItem f1;
     private FoodItem f2;
     private FoodItem f3;
     private FoodItem f4;
     private FoodItem f5;
+    private Budget b1;
+    private User user;
 
     @Before
     public void init() {
+        b1 = new Budget(1000);
+        p1 = new PastOrders();
+        user = new User("Akshayan", "Jeyakumar", "akshayan28", "akshayan", p1, b1);
+
         o1 = new Order(LocalDateTime.now().minusDays(2).toString(), "Food from East");
         o2 = new Order(LocalDateTime.now().minusDays(1).toString(), "Food from East");
-        p1 = new PastOrders();
 
         f1 = new FoodItem("Chicken Shawarma", 8);
         f2 = new FoodItem("Hummus with Pita", 5);
@@ -50,15 +53,15 @@ public class BudgetManagerTest {
      
     @Test
     public void orderedMealsBudgetTest() {
-        Budget budget = new Budget();
+        user.getBudget().setCurrentBudget(250);
+        Budget budget = user.getBudget();
         BudgetManager budgetManager = new BudgetManager();
-        budget.setCurrentBudget(200);
         HashMap<String, Order> pastOrdersMap = new HashMap<String, Order>();
         pastOrdersMap.put(o1.getDateOrdered(), o1);
         pastOrdersMap.put(o2.getDateOrdered(), o2);
         double price = p1.getCostOfLastOrdered();
-        budgetManager.orderedMealsBudget(budget, p1);
-        double currBudget = 200 - price;
+        budgetManager.orderedMealsBudget(user, p1);
+        double currBudget = 250 - price;
 
         Assertions.assertEquals(currBudget, budget.getCurrentBudget());
     }
@@ -75,9 +78,8 @@ public class BudgetManagerTest {
         boolean thrown = false;
 
         try {
-            Budget budget = new Budget(500);
             BudgetManager budgetManager = new BudgetManager();
-            budgetManager.adjustMonthlyBudget(budget, -120);
+            budgetManager.adjustMonthlyBudget(user, -120);
         } catch (IllegalArgumentException e) {
             thrown = true;
         }
@@ -94,9 +96,8 @@ public class BudgetManagerTest {
         boolean thrown = false;
 
         try {
-            Budget budget = new Budget(750);
             BudgetManager budgetManager = new BudgetManager();
-            budgetManager.adjustMonthlyBudget(budget, 750);
+            budgetManager.adjustMonthlyBudget(user, 1000);
         } catch (IllegalArgumentException e) {
             thrown = true;
         }
@@ -112,10 +113,10 @@ public class BudgetManagerTest {
     @Test
     public void adjustBudgetDecreaseTest() {
 
-        Budget budget = new Budget(1000);
-        budget.setCurrentBudget(15);
+        user.getBudget().setCurrentBudget(15);
+        Budget budget = user.getBudget();
         BudgetManager budgetManager = new BudgetManager();
-        budgetManager.adjustMonthlyBudget(budget, 800);
+        budgetManager.adjustMonthlyBudget(user, 800);
 
         Assertions.assertEquals(800.0, budget.getInitialBudget());
         Assertions.assertEquals(-185.0, budget.getCurrentBudget());
@@ -130,10 +131,10 @@ public class BudgetManagerTest {
     @Test
     public void adjustBudgetIncreaseTest() {
 
-        Budget budget = new Budget(1000);
-        budget.setCurrentBudget(15);
+        user.getBudget().setCurrentBudget(15);
+        Budget budget = user.getBudget();
         BudgetManager budgetManager = new BudgetManager();
-        budgetManager.adjustMonthlyBudget(budget, 1200);
+        budgetManager.adjustMonthlyBudget(user,1200);
 
         Assertions.assertEquals(1200.0, budget.getInitialBudget());
         Assertions.assertEquals(215.0, budget.getCurrentBudget());
