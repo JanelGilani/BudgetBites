@@ -1,6 +1,6 @@
 package restaurantFilter;
 
-import usecases.filtering.restaurantfiltering.FilterManager;
+import usecases.filtering.restaurantfiltering.RestaurantFilter;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
@@ -9,9 +9,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class filterManagerTest {
+public class RestaurantFilterTest {
 
-    public static FilterManager generateFilterManager() {
+    public static RestaurantFilter generateFilterManager() {
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
         cuisineFilter.put("Italian",new ArrayList<String>());
         cuisineFilter.put("Chinese",new ArrayList<String>());
@@ -78,62 +78,62 @@ public class filterManagerTest {
         foodTypeFilter.get("Breakfast").add(restaurant);
         priceFilter.get("Intermediate").add(restaurant);
 
-        return new FilterManager(cuisineFilter, foodTypeFilter, priceFilter);
+        return new RestaurantFilter(cuisineFilter, foodTypeFilter, priceFilter);
     }
 
     @Test
     public void filterManagerOneCuisinePreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 Arrays.asList("Chinese Lunch Cheap","Chinese Snack Expensive"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("No Preference", "Chinese", "No Preference"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "Chinese", "No Preference"));
     }
 
     @Test
     public void filterManagerOnePricePreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 Arrays.asList("Italian Breakfast Cheap","Chinese Lunch Cheap", "Arabic Snack Cheap"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("Cheap", "No Preference", "No Preference"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("Cheap", "No Preference", "No Preference"));
     }
 
     @Test
     public void filterManagerOneFoodTypePreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 Arrays.asList("Chinese Lunch Cheap", "French Lunch Intermediate", "Middle-East Lunch Expensive"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("No Preference", "No Preference", "Lunch"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "No Preference", "Lunch"));
     }
 
     @Test
     public void filterManagerPriceFoodTypePreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("Mexican Breakfast Intermediate"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("Intermediate", "No Preference", "Breakfast"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("Intermediate", "No Preference", "Breakfast"));
     }
 
     @Test
     public void filterManagerPriceCuisinePreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("Thai Dinner Expensive"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("Expensive", "Thai", "No Preference"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("Expensive", "Thai", "No Preference"));
     }
 
     @Test
     public void filterManagerFoodTypeCuisinePreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("French Lunch Intermediate"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("No Preference", "French", "Lunch"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "French", "Lunch"));
     }
 
     @Test
     public void filterManagerAllPreference() {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("Indian Dinner Intermediate"));
-        FilterManager filterManager = filterManagerTest.generateFilterManager();
-        Assertions.assertEquals(obj, filterManager.filter("Intermediate", "Indian", "Dinner"));
+        RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
+        Assertions.assertEquals(obj, restaurantFilter.filter("Intermediate", "Indian", "Dinner"));
     }
 }

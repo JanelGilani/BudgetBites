@@ -58,7 +58,7 @@ public class LoginFrame extends JFrame{
                 String password = passwordText.getText();
                 if (login.loginCheck(user, password)){
                     exit();
-                    UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
                     System.out.println("Success");
                 } else {
                     System.out.println("Fail");

@@ -7,7 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class UserPreferenceFrame extends JFrame implements ActionListener {
+public class RestaurantListFrame extends JFrame implements ActionListener {
     private static JLabel userPriceLabel;
     private static JComboBox userPriceText;
     private static JLabel userCuisineLabel;
@@ -19,7 +19,7 @@ public class UserPreferenceFrame extends JFrame implements ActionListener {
 
     private RestaurantFilteringPresenter restaurantPresenter;
 
-    public UserPreferenceFrame() {
+    public RestaurantListFrame() {
 
         JPanel panel = new JPanel();
         this.setTitle("BudgetBites-UserPreference");
@@ -77,7 +77,7 @@ public class UserPreferenceFrame extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new UserPreferenceFrame();
+        new RestaurantListFrame();
     }
 
     @Override

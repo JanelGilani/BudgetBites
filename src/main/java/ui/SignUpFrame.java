@@ -105,7 +105,7 @@ public class SignUpFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 //                exit();
-//                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+//                RestaurantListFrame userPreferenceFrame = new RestaurantListFrame();
                 String firstName = firstNameText.getText();
                 String lastName = lastNameText.getText();
                 String budget = budgetText.getText();
@@ -123,7 +123,7 @@ public class SignUpFrame extends JFrame{
                     System.out.println("Success");
                     // will go to next page
                     exit();
-                    UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
 
                 } else {
                     // if the sign up criteria are not met then the next frame will not
