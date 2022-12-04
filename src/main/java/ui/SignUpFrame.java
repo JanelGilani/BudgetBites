@@ -116,19 +116,24 @@ public class SignUpFrame extends JFrame{
                 User signupUser = new User(firstName, lastName, user, password, new PastOrders(), new Budget(parseDouble(budget)));
 
                 if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
-                        firstName, lastName)){
+                        firstName, lastName) == 3){
                     // saves the user
                     loginDAI.saveUser(signupUser);
                     // prints a success message to the user
-                    System.out.println("Success");
+//                    System.out.println("Success");
                     // will go to next page
                     exit();
                     RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
 
-                } else {
-                    // if the sign up criteria are not met then the next frame will not
-                    // created, the user will have to try again to sign up
-                    System.out.println("Insufficient Sign-Up, please try again.");
+                } else if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 2) {
+                    successSignUp.setText("Password is not strong enough");
+                } else if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 1) {
+                    successSignUp.setText("Passwords do not match");
+                }else if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 0) {
+                    successSignUp.setText("Username already exists.");
                 }
 
             }
@@ -151,7 +156,7 @@ public class SignUpFrame extends JFrame{
 
         // Login label to return message upon Login attempt
         successSignUp = new JLabel();
-        successSignUp.setBounds(10, 27, 300, 25);
+        successSignUp.setBounds(10, 270, 10000, 55);
         panel.add(successSignUp);
 
 
