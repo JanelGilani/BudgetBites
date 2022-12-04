@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions;
 import usecases.budgeting.BudgetManager;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BudgetManagerTest {
@@ -12,7 +14,6 @@ public class BudgetManagerTest {
     private PastOrders p1;
     private Order o1;
     private Order o2;
-    private Order o3;
     private FoodItem f1;
     private FoodItem f2;
     private FoodItem f3;
@@ -72,14 +73,30 @@ public class BudgetManagerTest {
      * the new budget that the user wants and returns an error if the new budget is negative since they cannot have
      * a negative budget
      */
-     
+
+    @Test
+    public void newBudgetConfirmPassTest() {
+        double b1 = 1000;
+        double cb1 = 1000;
+        BudgetManager budgetManager = new BudgetManager();
+        assertTrue(budgetManager.newBudgetConfirm(b1, cb1));
+    }
+
+    @Test
+    public void newBudgetConfirmFailTest() {
+        double b1 = 1000;
+        double cb1 = 1200;
+        BudgetManager budgetManager = new BudgetManager();
+        assertFalse(budgetManager.newBudgetConfirm(b1, cb1));
+    }
     @Test
     public void adjustBudgetNegativeErrorCaseTest() {
         boolean thrown = false;
 
         try {
+            Budget budget = user.getBudget();
             BudgetManager budgetManager = new BudgetManager();
-            budgetManager.adjustMonthlyBudget(user, -120);
+            budgetManager.adjustMonthlyBudget(budget, -120);
         } catch (IllegalArgumentException e) {
             thrown = true;
         }
@@ -97,7 +114,8 @@ public class BudgetManagerTest {
 
         try {
             BudgetManager budgetManager = new BudgetManager();
-            budgetManager.adjustMonthlyBudget(user, 1000);
+            Budget budget = user.getBudget();
+            budgetManager.adjustMonthlyBudget(budget, 1000);
         } catch (IllegalArgumentException e) {
             thrown = true;
         }
@@ -116,7 +134,7 @@ public class BudgetManagerTest {
         user.getBudget().setCurrentBudget(15);
         Budget budget = user.getBudget();
         BudgetManager budgetManager = new BudgetManager();
-        budgetManager.adjustMonthlyBudget(user, 800);
+        budgetManager.adjustMonthlyBudget(budget, 800);
 
         Assertions.assertEquals(800.0, budget.getInitialBudget());
         Assertions.assertEquals(-185.0, budget.getCurrentBudget());
@@ -134,7 +152,7 @@ public class BudgetManagerTest {
         user.getBudget().setCurrentBudget(15);
         Budget budget = user.getBudget();
         BudgetManager budgetManager = new BudgetManager();
-        budgetManager.adjustMonthlyBudget(user,1200);
+        budgetManager.adjustMonthlyBudget(budget,1200);
 
         Assertions.assertEquals(1200.0, budget.getInitialBudget());
         Assertions.assertEquals(215.0, budget.getCurrentBudget());
