@@ -5,17 +5,17 @@ import gateways.MainMongoDB;
 
 public class Login {
     private final LoginDAI loginDAI = new MainMongoDB();
-    public boolean loginCheck(String user, String password){
+    public int loginCheck(String user, String password){
         if (loginDAI.userExists(user)){
             String correctPassword = (String) loginDAI.getUserAttribute(user, "password");
             if (password.equals(correctPassword)){
-                return true;
+                return 2;
             } else {
                 // final submission on gui should be able to say "Incorrect Password"
-                return false;
+                return 1;
             }
         } else{
-            return false;
+            return 0;
             //System.out.println("username doesn't exist");
         }
     }
