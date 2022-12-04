@@ -77,7 +77,7 @@ public class UserChangeBudgetFrame extends JFrame{
                     if (BudgetManager.newBudgetConfirm(parseDouble(budget), parseDouble(confirmBudget))) {
                         Budget userBudget = (Budget) budgetDAI.getUserAttribute(userName, "budget");
                         BudgetManager.adjustMonthlyBudget(userBudget, (parseDouble(budget)));
-                        budgetDAI.updateAttributeByUsername(userName, "budget", budget);
+                        budgetDAI.updateAttributeByUsername(userName, "budget", userBudget);
                     } else {
                         System.out.println("Invalid Inputs, please enter values again.");
                     }
