@@ -1,29 +1,31 @@
 package ui;
 
+import controllers.FoodItemsController;
 import controllers.RestaurantFilterController;
-import presenters.RestaurantFilteringPresenter;
+import presenters.FoodItemsPresenter;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class RestaurantsPanel extends JPanel implements RestaurantFilteringPresenter {
+public class FoodItemsPanel extends JPanel implements FoodItemsPresenter{
+    private JPanel panel;
     private JScrollPane scroll;
-    private RestaurantFilterController controller;
-    public JList<String> list;
+    private FoodItemsController controller;
 
-    public RestaurantsPanel() {
+    private JList<String> list;
+
+    public FoodItemsPanel(String restaurantName) {
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(420,500));
         scroll = new JScrollPane();
-        controller = new RestaurantFilterController();
+        controller = new FoodItemsController(restaurantName);
         list = new JList<>();
     }
-
     @Override
-    public void allRestaurants() {
+    public void allFoods() {
         DefaultListModel<String> model = new DefaultListModel<>();
-        for(String val : controller.getRestaurants("No Preference", "No Preference", "No Preference"))
+        for(String val : controller.getAllFoodItems())
             model.addElement(val);
         list = new JList<>(model);
         scroll.setViewportView(list);
@@ -34,9 +36,9 @@ public class RestaurantsPanel extends JPanel implements RestaurantFilteringPrese
     }
 
     @Override
-    public void updateRestaurants(String pricePref, String cuisinePref, String foodTypePref) {
+    public void updateFoods(String pricePref) {
         DefaultListModel<String> updatedModel = new DefaultListModel<>();
-        for(String val : controller.getRestaurants(pricePref, cuisinePref, foodTypePref))
+        for(String val : controller.filterFoodItems(pricePref))
             updatedModel.addElement(val);
         list = new JList<>(updatedModel);
         scroll.setViewportView(list);

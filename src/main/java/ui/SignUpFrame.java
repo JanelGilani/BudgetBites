@@ -1,11 +1,24 @@
 package ui;
 
+import entities.Budget;
+import entities.PastOrders;
+import entities.User;
+import gateways.MainMongoDB;
+import usecases.LoginDAI;
+import usecases.login.LogicCode;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import static java.lang.Double.parseDouble;
 //import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
+
+    private final LoginDAI loginDAI = new MainMongoDB();
+
+    private final LogicCode logicCode = new LogicCode();
 
     private static JLabel firstNameLabel;
     private static JTextField firstNameText;
@@ -85,14 +98,14 @@ public class SignUpFrame extends JFrame{
         panel.add(confirmPasswordText);
 
 
-        // Login button
+        // SignUp button
         signUpButton = new JButton("SignUp");
         signUpButton.setBounds(10, 200, 165, 25);
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exit();
-                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+//                exit();
+//                RestaurantListFrame userPreferenceFrame = new RestaurantListFrame();
                 String firstName = firstNameText.getText();
                 String lastName = lastNameText.getText();
                 String budget = budgetText.getText();
@@ -100,18 +113,33 @@ public class SignUpFrame extends JFrame{
                 String password = passwordText.getText();
                 String confirmPassword = confirmPasswordText.getText();
 
-//                if (LogicCode.signUpCheck(user, password, confirmPassword)){
-//                    // help me get user saved
-//                    //MainMongoDB.saveUser();
-//                    // proceeds to next page
+                User signupUser = new User(firstName, lastName, user, password, new PastOrders(), new Budget(parseDouble(budget)));
+
+                if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 3){
+                    // saves the user
+                    loginDAI.saveUser(signupUser);
+                    // prints a success message to the user
 //                    System.out.println("Success");
-//                } else {
-//                    // the next page shouldn't come up and should say
-//                    System.out.println("Please try again, problem with sign up");
-//                }
+                    // will go to next page
+                    exit();
+                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
+
+                } else if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 2) {
+                    successSignUp.setText("Password is not strong enough");
+                } else if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 1) {
+                    successSignUp.setText("Passwords do not match");
+                }else if (logicCode.signUpCheck(user, password, confirmPassword, parseDouble(budget),
+                        firstName, lastName) == 0) {
+                    successSignUp.setText("Username already exists.");
+                }
 
             }
         });
+
+
         panel.add(signUpButton);
 
         backButton = new JButton("Back");
@@ -128,7 +156,7 @@ public class SignUpFrame extends JFrame{
 
         // Login label to return message upon Login attempt
         successSignUp = new JLabel();
-        successSignUp.setBounds(10, 27, 300, 25);
+        successSignUp.setBounds(10, 270, 10000, 55);
         panel.add(successSignUp);
 
 
