@@ -2,19 +2,14 @@ package entityTesting;
 
 import entities.FoodItem;
 import entities.ItemCart;
-import entities.Order;
 import entities.PastOrders;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.lang.reflect.Array;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 
 public class ItemCartEntityTest {
 
@@ -61,7 +56,7 @@ public class ItemCartEntityTest {
     @Test
     public void checkInTest () {
         ArrayList<String> expected = new ArrayList<>(Arrays.asList("Chicken Shawarma", "Hummus with Pita"));
-        ArrayList<String> itemNames = i1.checkIn();
+        ArrayList<String> itemNames = i1.getFoodNames();
         Assertions.assertEquals(expected, itemNames);
     }
 

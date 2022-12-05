@@ -22,7 +22,7 @@ public class ItemCart {
         return new CurrentOrderIterator(this.getCurrentOrder());
     }
 
-    public ArrayList<String> checkInByIterator (CurrentOrderIterator currentOrderIterator) {
+    public ArrayList<String> getFoodNamesByIterator(CurrentOrderIterator currentOrderIterator) {
         ArrayList<String> itemNames = new ArrayList<>();
         while (currentOrderIterator.hasNext()) {
             String name = currentOrderIterator.next().getItemName();
@@ -32,9 +32,24 @@ public class ItemCart {
         return itemNames;
     }
 
-    public ArrayList<String> checkIn () {
+    public double getTotalCostByIterator (CurrentOrderIterator currentOrderIterator) {
+        double totalCost = 0;
+        while (currentOrderIterator.hasNext()) {
+            double price = currentOrderIterator.next().getItemCost();
+            totalCost += price;
+        }
+
+        return totalCost;
+    }
+
+    public ArrayList<String> getFoodNames() {
         CurrentOrderIterator currentOrderIterator = this.createIterator();
-        return this.checkInByIterator(currentOrderIterator);
+        return this.getFoodNamesByIterator(currentOrderIterator);
+    }
+
+    public double getTotalCost() {
+        CurrentOrderIterator currentOrderIterator = this.createIterator();
+        return this.getTotalCostByIterator(currentOrderIterator);
     }
 
     public Order makeOrder (PastOrders userPastOrders, String restaurantName) {
