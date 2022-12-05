@@ -54,10 +54,17 @@ public class ItemCartEntityTest {
     }
 
     @Test
-    public void checkInTest () {
+    public void getFoodNamesTest () {
         ArrayList<String> expected = new ArrayList<>(Arrays.asList("Chicken Shawarma", "Hummus with Pita"));
         ArrayList<String> itemNames = i1.getFoodNames();
         Assertions.assertEquals(expected, itemNames);
+    }
+
+    @Test
+    public void getTotalCostTest () {
+        double totalCost = 13;
+        double actualCost = i1.getTotalCost();
+        Assertions.assertEquals(totalCost, actualCost);
     }
 
     @Test
