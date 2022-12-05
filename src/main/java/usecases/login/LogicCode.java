@@ -75,10 +75,10 @@ public class LogicCode {
      * @param lastName
      * @return boolean
      */
-    public boolean signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
+    public int signUpCheck(String username, String password, String confirmPassword, double initialBudget, String firstName, String lastName) {
         // help with MainMongoDB
         if (loginDAI.userExists(username)) {
-            return false;
+            return 0;
         } else {
             if (samePassword(password, confirmPassword)) {
                 if (strongPassword(password)) {
@@ -86,14 +86,14 @@ public class LogicCode {
                     Budget b1 = new Budget(initialBudget);
                     User user = new User(firstName, lastName, username, password, p1, b1);
                     loginDAI.saveUser(user);
-                    return true;
+                    return 3;
                 } else {
                     // final code should be able to tell the user that this password isn't strong
-                    return false;
+                    return 2;
                 }
             } else {
                 // final code should be able to tell the user that password and confirm password are the same
-                return false;
+                return 1;
             }
         }
     }

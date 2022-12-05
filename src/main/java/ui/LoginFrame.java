@@ -1,10 +1,14 @@
 package ui;
 
+import usecases.login.Login;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class LoginFrame extends JFrame{
+
+    private final Login login = new Login();
 
     private static JLabel userLabel;
     private static JTextField userText;
@@ -50,8 +54,20 @@ public class LoginFrame extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                exit();
-                UserPreferenceFrame userPreferenceFrame = new UserPreferenceFrame();
+                String user = userText.getText();
+                String password = passwordText.getText();
+                if (login.loginCheck(user, password) == 2){
+                    exit();
+                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
+                    successLogin.setText("Logging In...");
+//                    System.out.println("Logging In...");
+                } else if (login.loginCheck(user, password) == 1) {
+                    successLogin.setText("Incorrect Password");
+//                    System.out.println("Incorrect Password");
+                } else {
+                    successLogin.setText("Username Does Not Exist");
+//                    System.out.println("Username Does Not Exist");
+                }
             }
         });
         panel.add(loginButton);
@@ -69,7 +85,7 @@ public class LoginFrame extends JFrame{
 
         // Login label to return message upon Login attempt
         successLogin = new JLabel();
-        successLogin.setBounds(10, 110, 300, 25);
+        successLogin.setBounds(10, 160, 300, 25);
         panel.add(successLogin);
 
 

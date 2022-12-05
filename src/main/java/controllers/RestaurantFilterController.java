@@ -1,19 +1,19 @@
 package controllers;
 
-import usecases.FilterManagerDAI;
+import usecases.RestaurantFilterDAI;
 import gateways.MainMongoDB;
-import usecases.filtering.restaurantfiltering.FilterManager;
+import usecases.filtering.restaurantfiltering.RestaurantFilter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class FilterManagerController {
+public class RestaurantFilterController {
 
-    private final FilterManagerDAI filterManagerDAI = new MainMongoDB();
-    private FilterManager restaurantFilters;
+    private final RestaurantFilterDAI restaurantFilterDAI = new MainMongoDB();
+    private RestaurantFilter restaurantFilters;
 
-    public FilterManagerController() {
-        ArrayList<String> restaurants = filterManagerDAI.getAllRestaurants();
+    public RestaurantFilterController() {
+        ArrayList<String> restaurants = restaurantFilterDAI.getAllRestaurants();
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
         cuisineFilter.put("Italian",new ArrayList<String>());
         cuisineFilter.put("Chinese",new ArrayList<String>());
@@ -39,20 +39,20 @@ public class FilterManagerController {
         String price;
         String foodType;
         for (String r: restaurants) {
-            cuisine = filterManagerDAI.getRestaurantAttribute(r, "cuisine");
-            price = filterManagerDAI.getRestaurantAttribute(r, "priceRange");
-            foodType = filterManagerDAI.getRestaurantAttribute(r, "foodType");
+            cuisine = restaurantFilterDAI.getRestaurantAttribute(r, "cuisine");
+            price = restaurantFilterDAI.getRestaurantAttribute(r, "priceRange");
+            foodType = restaurantFilterDAI.getRestaurantAttribute(r, "foodType");
             cuisineFilter.get(cuisine).add(r);
             foodTypeFilter.get(foodType).add(r);
             priceFilter.get(price).add(r);
         }
 
-        restaurantFilters = new FilterManager(cuisineFilter,foodTypeFilter,priceFilter);
+        restaurantFilters = new RestaurantFilter(cuisineFilter,foodTypeFilter,priceFilter);
     }
 
     public ArrayList<String> getRestaurants(String pricePref, String cuisinePref, String foodTypePref) {
         if (pricePref.equals("No Preference") && cuisinePref.equals("No Preference") && foodTypePref.equals("No Preference")) {
-            return filterManagerDAI.getAllRestaurants();
+            return restaurantFilterDAI.getAllRestaurants();
         } else {
             return restaurantFilters.filter(pricePref, cuisinePref, foodTypePref);
         }

@@ -13,8 +13,10 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+
 import usecases.BudgetDAI;
-import usecases.FilterManagerDAI;
+import usecases.RestaurantFilterDAI;
+import usecases.FoodItemsDAI;
 import usecases.LoginDAI;
 import usecases.SuggestionToUserDAI;
 
@@ -26,7 +28,8 @@ import static com.mongodb.client.model.Filters.nin;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
 
-public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManagerDAI, BudgetDAI {
+
+public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFilterDAI, FoodItemsDAI, BudgetDAI {
 //    Create all Class models
     static ClassModel<User> userClassModel = ClassModel.builder(User.class).enableDiscriminator(true).build();
     static ClassModel<Order> orderClassModel = ClassModel.builder(Order.class).enableDiscriminator(true).build();
@@ -51,7 +54,7 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManager
     static MongoCollection<User> userRepo = db.getCollection("users", User.class);
 
 //    Save new User or Restaurant to Database
-    public void saveUser (User user) {
+    public void saveUser(User user) {
         userRepo.insertOne(user);
     }
 
@@ -161,7 +164,7 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, FilterManager
         return users;
     }
 
-    public Object getMenu (String restaurantName){
+    public ArrayList<FoodItem> getMenu (String restaurantName){
         Restaurant res = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
         if (res != null) {
             ArrayList<FoodItem> menu = res.getMenu();

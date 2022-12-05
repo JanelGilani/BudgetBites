@@ -4,16 +4,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
 
-public class FilterManager {
+public class RestaurantFilter {
     private HashMap<String, ArrayList<String>> cuisineFilter;
 
     private HashMap<String, ArrayList<String>> foodTypeFilter;
 
     private HashMap<String, ArrayList<String>> priceFilter;
 
-    public FilterManager(HashMap<String, ArrayList<String>> cuisineFilter,
-                         HashMap<String, ArrayList<String>> foodTypeFilter,
-                         HashMap<String, ArrayList<String>> priceFilter) {
+    public RestaurantFilter(HashMap<String, ArrayList<String>> cuisineFilter,
+                            HashMap<String, ArrayList<String>> foodTypeFilter,
+                            HashMap<String, ArrayList<String>> priceFilter) {
         this.cuisineFilter = cuisineFilter;
         this.foodTypeFilter = foodTypeFilter;
         this.priceFilter = priceFilter;

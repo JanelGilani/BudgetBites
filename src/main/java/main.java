@@ -1,4 +1,5 @@
 import ui.OnboardingFrame;
+import ui.userSuggestionFrame;
 
 public class main{
 
