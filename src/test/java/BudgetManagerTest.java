@@ -67,11 +67,10 @@ public class BudgetManagerTest {
         Assertions.assertEquals(currBudget, budget.getCurrentBudget());
     }
 
-
     /**
-     * adjustBudgetNegativeErrorCaseTest tests the adjustBudget method in the BudgetManager use case, which takes
-     * the new budget that the user wants and returns an error if the new budget is negative since they cannot have
-     * a negative budget
+     * newBudgetConfirmPassTest tests the newBudgetConfirm method in the BudgetManager use case, which takes
+     * the new budgets that are entered(new monthly budget and confirm monthly budget) and will return true/pass when
+     * the values entered are equal
      */
 
     @Test
@@ -82,6 +81,11 @@ public class BudgetManagerTest {
         assertTrue(budgetManager.newBudgetConfirm(b1, cb1));
     }
 
+    /**
+     * newBudgetConfirmFailTest tests the newBudgetConfirm method in the BudgetManager use case, which takes
+     * the new budgets that are entered(new monthly budget and confirm monthly budget) and will fail when
+     * the values entered are not equal
+     */
     @Test
     public void newBudgetConfirmFailTest() {
         double b1 = 1000;
@@ -89,6 +93,11 @@ public class BudgetManagerTest {
         BudgetManager budgetManager = new BudgetManager();
         assertFalse(budgetManager.newBudgetConfirm(b1, cb1));
     }
+
+    /**
+     * adjustBudgetNegativeErrorCaseTest tests the adjustBudget method in the BudgetManager use case, which takes
+     * the new budget that the user wants and returns an error since the budget entered is a negative value
+     */
     @Test
     public void adjustBudgetNegativeErrorCaseTest() {
         boolean thrown = false;
