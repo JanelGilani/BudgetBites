@@ -36,7 +36,7 @@ public class UserChangeBudgetFrame extends JFrame{
         panel.setLayout(null);
 
 
-        enterUserNameLabel = new JLabel("Enter Your Username:");
+        enterUserNameLabel = new JLabel("Enter Your UTOid:");
         enterUserNameLabel.setBounds(10, 20, 200, 25);
         panel.add(enterUserNameLabel);
         // text field for the user to input their username
