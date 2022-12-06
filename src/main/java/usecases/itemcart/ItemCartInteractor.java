@@ -39,6 +39,14 @@ public class ItemCartInteractor {
         return result;
     }
 
+    public double getItemCartCost() {
+        double result = 0;
+        for (FoodItem food :itemCart.getCurrentOrder()) {
+            result += food.getItemCost();
+        }
+        return result;
+    }
+
 
 //    public Order makeOrder() {
 //        return itemCart.makeOrder()
