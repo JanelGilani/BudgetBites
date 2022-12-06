@@ -18,6 +18,10 @@ public class ItemCart {
         currentOrder.add(item);
     }
 
+    public void removeFromCart (FoodItem item) {
+        currentOrder.remove(item);
+    }
+
     public Order makeOrder (PastOrders userPastOrders, String restaurantName) {
         String dateTime = LocalDateTime.now().toString();
         Order tempOrder = new Order(dateTime, restaurantName);
