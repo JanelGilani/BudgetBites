@@ -14,17 +14,25 @@ public class ItemCartFrame extends JFrame implements ActionListener {
     private ItemCartPresenter itemCartPresenter;
     private String restaurantName;
     private ItemCartController itemCartController;
+    private String itemCartCost;
+    private static JLabel itemCartCostLabel;
 
     public ItemCartFrame(ItemCartController itemCartController, String restaurantName) {
         this.restaurantName = restaurantName;
         this.itemCartController = itemCartController;
         this.itemCartPresenter = new ItemCartPanel(itemCartController);
+        JPanel top = new JPanel();
         JPanel bottom = new JPanel();
 
         this.setTitle("BudgetBites-ItemCart");
         this.setSize(420, 600);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
+
+        itemCartCost = "Price of Cart: $" + itemCartController.getItemCartCost();
+        itemCartCostLabel = new JLabel(itemCartCost);
+        itemCartCostLabel.setBounds(10, 20, 120, 25);
+        top.add(itemCartCostLabel);
 
         backButton = new JButton("Back");
         backButton.setBounds(10, 110, 160, 25);
@@ -44,6 +52,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
 
         itemCartPresenter.foodInCart();
 
+        this.add(top);
         this.add((JPanel) itemCartPresenter);
         this.add(bottom);
         this.pack();
@@ -67,6 +76,9 @@ public class ItemCartFrame extends JFrame implements ActionListener {
             String choice = selection.getSelectedValue();
             itemCartController.removeFromItemCart(choice);
             itemCartPresenter.foodInCart();
+            itemCartCost = "Price of Cart: $" + itemCartController.getItemCartCost();
+            itemCartCostLabel.setText(itemCartCost);
+            this.validate();
         }
 
     }
