@@ -30,4 +30,8 @@ public class ItemCartController {
     public ArrayList<String> getItems() {
         return itemCartInteractor.getFoodInItemCart();
     }
+
+    public String getItemCartCost() {
+        return itemCartInteractor.getItemCartCost() + "";
+    }
 }
