@@ -13,6 +13,9 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.ClassModel;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
+import usecases.*;
+
+import usecases.BudgetDAI;
 import usecases.RestaurantFilterDAI;
 import usecases.FoodItemsDAI;
 import usecases.LoginDAI;
@@ -22,11 +25,9 @@ import java.util.ArrayList;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Filters.nin;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-
-public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFilterDAI, FoodItemsDAI {
+public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFilterDAI, FoodItemsDAI, BudgetDAI, TestDAI {
 //    Create all Class models
     static ClassModel<User> userClassModel = ClassModel.builder(User.class).enableDiscriminator(true).build();
     static ClassModel<Order> orderClassModel = ClassModel.builder(Order.class).enableDiscriminator(true).build();
@@ -63,7 +64,7 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFil
         restaurantRepo.insertOne(restaurant);
     }
 
-    public static void deleteRestaurant (String restaurantName) {
+    public void deleteRestaurant (String restaurantName) {
         restaurantRepo.deleteOne(eq("restaurantName", restaurantName));
     }
 
@@ -102,7 +103,7 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFil
         pastOrders.addOrder(order);
 
         Document query = new Document("username", username);
-        Bson updates = Updates.set("PastOrders", pastOrders);
+        Bson updates = Updates.set("pastOrders", pastOrders);
         UpdateOptions options = new UpdateOptions().upsert(true);
 
         userRepo.updateOne(query, updates, options);

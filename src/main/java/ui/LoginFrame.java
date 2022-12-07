@@ -56,12 +56,17 @@ public class LoginFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 String user = userText.getText();
                 String password = passwordText.getText();
-                if (login.loginCheck(user, password)){
+                if (login.loginCheck(user, password) == 2){
                     exit();
                     RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
-                    System.out.println("Success");
+                    successLogin.setText("Logging In...");
+//                    System.out.println("Logging In...");
+                } else if (login.loginCheck(user, password) == 1) {
+                    successLogin.setText("Incorrect Password");
+//                    System.out.println("Incorrect Password");
                 } else {
-                    System.out.println("Fail");
+                    successLogin.setText("Username Does Not Exist");
+//                    System.out.println("Username Does Not Exist");
                 }
             }
         });
@@ -80,7 +85,7 @@ public class LoginFrame extends JFrame{
 
         // Login label to return message upon Login attempt
         successLogin = new JLabel();
-        successLogin.setBounds(10, 110, 300, 25);
+        successLogin.setBounds(10, 160, 300, 25);
         panel.add(successLogin);
 
 
