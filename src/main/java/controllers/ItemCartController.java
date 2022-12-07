@@ -2,36 +2,36 @@ package controllers;
 
 import gateways.MainMongoDB;
 import usecases.FoodItemsDAI;
-import usecases.itemcart.ItemCartInteractor;
+import usecases.itemcart.ItemCartEditor;
 
 import java.util.ArrayList;
 
 public class ItemCartController {
-    private ItemCartInteractor itemCartInteractor;
+    private ItemCartEditor itemCartEditor;
 
     private final FoodItemsDAI foodItemsDAI = new MainMongoDB();
 
     public ItemCartController(String restaurantName) {
-        itemCartInteractor = new ItemCartInteractor(foodItemsDAI.getMenu(restaurantName));
+        itemCartEditor = new ItemCartEditor(foodItemsDAI.getMenu(restaurantName));
     }
 
     public void addToItemCart(String choice) {
         String[] split = choice.split("-", 0);
         String foodName = split[0].strip();
-        itemCartInteractor.addFood(foodName);
+        itemCartEditor.addFood(foodName);
     }
 
     public void removeFromItemCart(String choice) {
         String[] split = choice.split("-", 0);
         String foodName = split[0].strip();
-        itemCartInteractor.removeFood(foodName);
+        itemCartEditor.removeFood(foodName);
     }
 
     public ArrayList<String> getItems() {
-        return itemCartInteractor.getFoodInItemCart();
+        return itemCartEditor.getFoodInItemCart();
     }
 
     public String getItemCartCost() {
-        return itemCartInteractor.getItemCartCost() + "";
+        return itemCartEditor.getItemCartCost() + "";
     }
 }

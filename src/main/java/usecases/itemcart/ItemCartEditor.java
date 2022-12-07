@@ -5,11 +5,11 @@ import entities.ItemCart;
 
 import java.util.ArrayList;
 
-public class ItemCartInteractor {
+public class ItemCartEditor {
     private ItemCart itemCart;
     private ArrayList<FoodItem> menu;
     
-    public ItemCartInteractor(ArrayList<FoodItem> menu) {
+    public ItemCartEditor(ArrayList<FoodItem> menu) {
         this.menu = menu;
         itemCart = new ItemCart();
     }
