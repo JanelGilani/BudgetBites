@@ -1,5 +1,6 @@
-package Frames;
+package ui;
 
+import ui.UserPageFrame;
 import gateways.MainMongoDB;
 import usecases.BudgetDAI;
 import entities.Budget;

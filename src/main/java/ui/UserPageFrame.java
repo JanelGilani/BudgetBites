@@ -1,6 +1,4 @@
-package Frames;
-
-import ui.OnboardingFrame;
+package ui;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +13,7 @@ public class UserPageFrame extends JFrame{
     private static JLabel userBudgetLabel;
     private static JLabel userCurrentBudgetLabel;
     private static JButton changeBudgetButton;
+    private static JButton viewPastOrdersButton;
     private static JButton backButton;
 
     public UserPageFrame() {
@@ -68,14 +67,24 @@ public class UserPageFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 exit();
-                UserChangeBudgetFrame userChangeBudgetFrame = new UserChangeBudgetFrame();
+                ui.UserChangeBudgetFrame userChangeBudgetFrame = new UserChangeBudgetFrame();
             }
         });
         panel.add(changeBudgetButton);
 
+        viewPastOrdersButton = new JButton("View Past Orders");
+        viewPastOrdersButton.setBounds(10, 175, 180, 25);
+        viewPastOrdersButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                PastOrdersFrame pastOrdersFrame = new PastOrdersFrame();
+            }
+        });
+        panel.add(viewPastOrdersButton);
 
         backButton = new JButton("Back");
-        backButton.setBounds(10, 175, 80, 25);
+        backButton.setBounds(10, 205, 80, 25);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
