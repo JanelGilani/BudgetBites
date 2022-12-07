@@ -18,6 +18,10 @@ public class ItemCart {
         currentOrder.add(item);
     }
 
+    public void removeFromCart (FoodItem item) {
+        currentOrder.remove(item);
+        }
+
     public CurrentOrderIterator createIterator () {
         return new CurrentOrderIterator(this.getCurrentOrder());
     }

@@ -1,5 +1,6 @@
 package ui;
 
+import controllers.ItemCartController;
 import presenters.FoodItemsPresenter;
 
 import javax.swing.*;
@@ -14,8 +15,14 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
     private static JButton addToItemCartButton;
     private static JButton itemCartButton;
     private FoodItemsPresenter foodItemsPresenter;
+    private ItemCartController itemCartController;
+
+    private String restaurantName;
 
     public FoodItemsFrame(String restaurantName) {
+
+        itemCartController = new ItemCartController(restaurantName);
+        this.restaurantName = restaurantName;
 
         JPanel panel = new JPanel();
         JPanel bottom = new JPanel();
@@ -73,6 +80,17 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
         if (obj == submitButton) {
             foodItemsPresenter.updateFoods((String) userPriceText.getSelectedItem());
             this.validate();
+        }else if (obj == addToItemCartButton) {
+            JList<String> selection = foodItemsPresenter.getList();
+            String choice = selection.getSelectedValue();
+            itemCartController.addToItemCart(choice);
+        }else if (obj == itemCartButton) {
+            exit();
+            new ItemCartFrame(itemCartController, restaurantName);
         }
+    }
+    private void exit() {
+        this.setVisible(false);
+        this.dispose();
     }
 }
