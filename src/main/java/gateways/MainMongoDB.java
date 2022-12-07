@@ -15,14 +15,19 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 import org.bson.conversions.Bson;
 import usecases.*;
 
+import usecases.BudgetDAI;
+import usecases.RestaurantFilterDAI;
+import usecases.FoodItemsDAI;
+import usecases.LoginDAI;
+import usecases.SuggestionToUserDAI;
+
 import java.util.ArrayList;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static com.mongodb.client.model.Filters.eq;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
-
-public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFilterDAI, FoodItemsDAI, TestDAI {
+public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFilterDAI, FoodItemsDAI, BudgetDAI, TestDAI {
 //    Create all Class models
     static ClassModel<User> userClassModel = ClassModel.builder(User.class).enableDiscriminator(true).build();
     static ClassModel<Order> orderClassModel = ClassModel.builder(Order.class).enableDiscriminator(true).build();
