@@ -1,6 +1,6 @@
 package ui;
 
-import controllers.ItemCartController;
+import controllers.ItemCartAndOrderController;
 import presenters.ItemCartPresenter;
 
 import javax.swing.*;
@@ -8,10 +8,10 @@ import java.awt.*;
 
 public class ItemCartPanel extends JPanel implements ItemCartPresenter {
     private JScrollPane scroll;
-    private ItemCartController controller;
+    private ItemCartAndOrderController controller;
     private JList<String> list;
 
-    public ItemCartPanel(ItemCartController controller) {
+    public ItemCartPanel(ItemCartAndOrderController controller) {
         this.setLayout(new BorderLayout());
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(420,500));

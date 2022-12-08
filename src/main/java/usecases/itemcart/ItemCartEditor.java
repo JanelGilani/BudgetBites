@@ -13,6 +13,10 @@ public class ItemCartEditor {
         this.menu = menu;
         itemCart = new ItemCart();
     }
+
+    public ItemCart getItemCart() {
+        return itemCart;
+    }
     
     public void addFood(String foodName){
         for (FoodItem food: menu) {
@@ -46,9 +50,4 @@ public class ItemCartEditor {
         }
         return result;
     }
-
-
-//    public Order makeOrder() {
-//        return itemCart.makeOrder()
-//    }
 }
