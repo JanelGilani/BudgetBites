@@ -54,15 +54,6 @@ public class ItemCartFrame extends JFrame implements ActionListener {
         makeOrderButton = new JButton("Order");
         makeOrderButton.setBounds(10, 110, 160, 25);
 
-        makeOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exit();
-                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
-//                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
-            }
-        });
-
         makeOrderButton.addActionListener(this);
 
 
@@ -106,7 +97,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
             BudgetManager.orderedMealsBudget(userBudget, orders);
             budgetDAI.updateAttributeByUsername(currentUser, "budget", userBudget);
             exit();
-            UserPageFrame userPageFrame = new UserPageFrame(currentUser);
+            new UserPageFrame(currentUser);
         }
 
     }
