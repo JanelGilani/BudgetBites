@@ -53,6 +53,7 @@ public class RestaurantFilterController {
         } else {
             String priceChoice = pricePref.split("\\[",0)[0].strip();
             return restaurantFilters.filter(priceChoice, cuisinePref, foodTypePref, restaurantFilterDAI.getAllRestaurants());
+
         }
     }
 }
