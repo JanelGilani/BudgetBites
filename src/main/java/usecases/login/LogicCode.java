@@ -1,5 +1,7 @@
 //Swami Shriji
 package usecases.login;
+import entities.Budget;
+import entities.PastOrders;
 import entities.User;
 import usecases.LoginDAI;
 import gateways.MainMongoDB;
@@ -90,7 +92,7 @@ public class LogicCode {
      * @param budget inputted by the user
      */
     public void saveUser(String firstName, String lastName, String username, String password, double budget){
-        User signupUser = new User(firstName, lastName, username,password, budget);
+        User signupUser = new User(firstName, lastName, username,password, new PastOrders(), new Budget(budget));
         loginDAI.saveUser(signupUser);
     }
 }
