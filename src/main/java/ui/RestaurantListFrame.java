@@ -1,7 +1,12 @@
 package ui;
 
+import controllers.FoodSuggestionsController;
 import entities.User;
+import gateways.MainMongoDB;
+import presenters.FoodSuggestionPresenter;
 import presenters.RestaurantFilteringPresenter;
+import usecases.SuggestionToUserDAI;
+import usecases.foodsuggestions.SuggestionToUser;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +22,8 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
     private static JButton profileButton;
     private static JComboBox userMealText;
     private static JButton submitButton;
+
+    private static JButton userSuggestion;
 
     private RestaurantFilteringPresenter restaurantPresenter;
 
@@ -94,6 +101,27 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         pickRestaurant.setBounds(10, 110, 160, 25);
         pickRestaurant.addActionListener(this);
         bottom.add(pickRestaurant);
+
+        userSuggestion = new JButton("Food Suggestions");
+        userSuggestion.setBounds(10, 110, 180, 25);
+        userSuggestion.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                SuggestionToUserDAI dataBase = new MainMongoDB();
+                FoodSuggestionPresenter presenter = new FoodSuggestionPresenter();
+                SuggestionToUser suggestionToUser = new SuggestionToUser(dataBase);
+                FoodSuggestionsController controller = new FoodSuggestionsController();
+                userSuggestionFrame test = new userSuggestionFrame(currentUser);
+
+                controller.setUseCase(suggestionToUser);
+                suggestionToUser.setPresenter(presenter);
+                presenter.setViewer(test);
+                test.setFoodSuggestionsController(controller);
+                controller.callUseCase(currentUser);
+            }
+        });
+        bottom.add(userSuggestion);
         this.add(bottom);
 
         this.pack();
@@ -102,7 +130,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        new RestaurantListFrame("persistentUser");
+        new RestaurantListFrame("darpanmi");
     }
 
     @Override
