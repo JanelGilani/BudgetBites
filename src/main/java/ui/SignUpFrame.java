@@ -1,20 +1,13 @@
 package ui;
 
 import controllers.UserRegisterController;
-import entities.Budget;
-import entities.PastOrders;
-import entities.User;
-import gateways.MainMongoDB;
 import presenters.UserRegisterPresenter;
-import usecases.LoginDAI;
-import usecases.login.LogicCode;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static java.lang.Double.parseDouble;
-//import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
     private static JLabel firstNameLabel;
