@@ -1,9 +1,12 @@
 package ui;
 
 import controllers.ItemCartAndOrderController;
+import entities.Budget;
+import entities.PastOrders;
 import gateways.MainMongoDB;
 import presenters.ItemCartPresenter;
 import usecases.BudgetDAI;
+import usecases.budgeting.BudgetManager;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -11,6 +14,7 @@ import java.awt.event.ActionListener;
 
 public class ItemCartFrame extends JFrame implements ActionListener {
     private final BudgetDAI budgetDAI = new MainMongoDB();
+    private final BudgetManager budgetManager = new BudgetManager();
     private static JButton backButton;
     private static JButton removeFromCartButton;
     private static JButton makeOrderButton;
@@ -86,6 +90,10 @@ public class ItemCartFrame extends JFrame implements ActionListener {
             this.validate();
         } else if (obj == makeOrderButton) {
             itemCartAndOrderController.makeOrder(restaurantName, currentUser);
+            Budget userBudget = (Budget) budgetDAI.getUserAttribute(currentUser, "budget");
+            PastOrders orders = (PastOrders) budgetDAI.findPastOrders(currentUser);
+            BudgetManager.orderedMealsBudget(userBudget, orders);
+            budgetDAI.updateAttributeByUsername(currentUser, "budget", userBudget);
             exit();
             UserPageFrame userPageFrame = new UserPageFrame(currentUser);
         }
