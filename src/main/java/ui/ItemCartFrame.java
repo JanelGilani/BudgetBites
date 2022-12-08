@@ -54,6 +54,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 exit();
                 UserPageFrame userPageFrame = new UserPageFrame(currentUser);
+//                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
             }
         });
 
