@@ -41,7 +41,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         userPriceLabel.setBounds(10, 20, 120, 25);
         panel.add(userPriceLabel);
         // combobox for the user to choose their price preference
-        String[] priceRanges = {"No Preference", "Cheap", "Intermediate", "Expensive"};
+        String[] priceRanges = {"No Preference", "Cheap ($5-$10)", "Intermediate ($10-$20)", "Expensive (20+)"};
         userPriceText = new JComboBox(priceRanges);
         userPriceText.setBounds(140, 20 , 165, 25);
         panel.add(userPriceText);
@@ -114,8 +114,10 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         } else if (obj == pickRestaurant) {
             JList<String> selection = restaurantPresenter.getList();
             String restaurant = selection.getSelectedValue();
-            exit();
-            new FoodItemsFrame(restaurant, this.currentUser);
+            if (restaurant.length() > 0) {
+                exit();
+                new FoodItemsFrame(restaurant, this.currentUser);
+            }
         }
     }
 
