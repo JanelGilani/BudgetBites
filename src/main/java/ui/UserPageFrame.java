@@ -94,8 +94,7 @@ public class UserPageFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 exit();
-                PastOrderController pastOrderController = new PastOrderController(currentUser);
-                PastOrdersFrame pastOrdersFrame = new PastOrdersFrame(pastOrderController, currentUser);
+                PastOrdersFrame pastOrdersFrame = new PastOrdersFrame(currentUser);
             }
         });
         panel.add(viewPastOrdersButton);
