@@ -1,5 +1,6 @@
 package ui;
 
+import entities.User;
 import presenters.RestaurantFilteringPresenter;
 
 import javax.swing.*;
@@ -13,6 +14,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
     private static JLabel userCuisineLabel;
     private static JComboBox UserCuisineText;
     private static JLabel userMealLabel;
+    private static JButton profileButton;
     private static JComboBox userMealText;
     private static JButton submitButton;
 
@@ -20,8 +22,11 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
 
     private static JButton pickRestaurant;
     private static JPanel bottom;
+    private String currentUser;
 
-    public RestaurantListFrame() {
+    public RestaurantListFrame(String currentUser) {
+
+        this.currentUser = currentUser;
 
         JPanel panel = new JPanel();
         this.setTitle("BudgetBites-UserPreference");
@@ -69,6 +74,17 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         panel.add(submitButton);
         this.add(panel);
 
+        profileButton = new JButton("Profile");
+        profileButton.setBounds(10, 140, 165, 25);
+        profileButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
+            }
+        });
+        panel.add(profileButton);
+
         restaurantPresenter = new RestaurantsPanel();
         restaurantPresenter.allRestaurants();
         this.add((JPanel) restaurantPresenter);
@@ -85,9 +101,9 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new RestaurantListFrame();
-    }
+//    public static void main(String[] args) {
+//        new RestaurantListFrame(this.currentUser);
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -99,7 +115,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
             JList<String> selection = restaurantPresenter.getList();
             String restaurant = selection.getSelectedValue();
             exit();
-            new FoodItemsFrame(restaurant);
+            new FoodItemsFrame(restaurant, this.currentUser);
         }
     }
 
