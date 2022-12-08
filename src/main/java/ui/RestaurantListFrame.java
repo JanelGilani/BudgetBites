@@ -1,7 +1,6 @@
 package ui;
 
 import controllers.FoodSuggestionsController;
-import entities.User;
 import gateways.MainMongoDB;
 import presenters.FoodSuggestionPresenter;
 import presenters.RestaurantFilteringPresenter;

@@ -4,7 +4,6 @@ import entities.PastOrders;
 import gateways.MainMongoDB;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import usecases.SuggestionToUserDAI;
 import usecases.foodsuggestions.SuggestionToUser;
 
@@ -21,14 +20,6 @@ public class SuggestionToUserTest {
     private String testUser = "aryangoel24";
     private String testUser2 = "darpanmi";
 
-    //    @BeforeEach
-//    public void setUp() {
-//        FoodSuggestionsController foodSuggestionsController = new FoodSuggestionsController(suggestionToUserInteractor);
-//        userSuggestionFrame foodSuggestionViewer = new userSuggestionFrame(foodSuggestionsController);
-//        IUserSuggestion.Presenter foodSuggestionsPresenter = new FoodSuggestionPresenter(foodSuggestionViewer);
-//        suggestionToUserDatabase = new MainMongoDB();
-//        suggestionToUserInteractor = new SuggestionToUser(suggestionToUserDatabase, foodSuggestionsPresenter);
-//    }
     @Test
     public void testSortingHashMapMongo() {
         PastOrders testOrder = suggestionToUserDatabase.findPastOrders(testUser);
@@ -83,6 +74,8 @@ public class SuggestionToUserTest {
     @Test
     public void testGetSuggestionToUserNoItem() {
         ArrayList<String> expectedList = new ArrayList<>();
+        expectedList.add("Oops " + testUser2 + " it looks like you don't have enough past orders");
+        expectedList.add("for me to suggest you your favourite food items");
         ArrayList<String> actualList = suggestionToUserInteractor.getSuggestionToUser(testUser2);
         Assertions.assertEquals(actualList, expectedList);
     }

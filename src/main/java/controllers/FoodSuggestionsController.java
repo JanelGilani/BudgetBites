@@ -11,7 +11,6 @@ public class FoodSuggestionsController {
 
 
     public void callUseCase(String username) {
-//        System.out.println("line 11 controller");
         suggestionToUser.toPresenter(username);
     }
 

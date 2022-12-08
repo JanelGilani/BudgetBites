@@ -1,8 +1,5 @@
 package ui;
-
-import controllers.FoodItemsController;
 import controllers.FoodSuggestionsController;
-import presenters.FoodSuggestionPresenter;
 import view.FoodSuggestionViewer;
 
 import javax.swing.*;
@@ -33,6 +30,11 @@ public class userSuggestionFrame extends JFrame implements FoodSuggestionViewer,
     public void setFoodSuggestionsController(FoodSuggestionsController foodSuggestionsController) {
         this.foodSuggestionsController = foodSuggestionsController;
     }
+
+    /**
+     * Creating UI JPanel and Jframe
+     * @param currentUser
+     */
 
     public userSuggestionFrame(String currentUser) {
         this.currentUser = currentUser;
@@ -87,32 +89,15 @@ public class userSuggestionFrame extends JFrame implements FoodSuggestionViewer,
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (returnArrayList.size() != 0) {
-            DefaultListModel<String> model = new DefaultListModel<>();
-            for(String val : returnArrayList)
-                model.addElement(val);
-            list = new JList<>(model);
-            scroll.setViewportView(list);
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for(String val : returnArrayList)
+            model.addElement(val);
+        list = new JList<>(model);
+        scroll.setViewportView(list);
 
-            list.setLayoutOrientation(JList.VERTICAL);
-
-//        panel.remove(button);
-            System.out.println(returnArrayList.toString());
-            this.validate();
-        }
-        else {
-            DefaultListModel<String> model = new DefaultListModel<>();
-            model.add(0, "Oops, " + currentUser + " you got no suggestions");
-            model.add(1, "Either, you have low budget or got no past orders");
-            list = new JList<>(model);
-            scroll.setViewportView(list);
-
-            list.setLayoutOrientation(JList.VERTICAL);
-
-//        panel.remove(button);
-            System.out.println(returnArrayList.toString());
-            this.validate();
-        }
+        list.setLayoutOrientation(JList.VERTICAL);
+        System.out.println(returnArrayList.toString());
+        this.validate();
 
     }
     @Override
