@@ -1,13 +1,16 @@
 package ui;
 
 import controllers.ItemCartController;
+import gateways.MainMongoDB;
 import presenters.ItemCartPresenter;
+import usecases.BudgetDAI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ItemCartFrame extends JFrame implements ActionListener {
+    private final BudgetDAI budgetDAI = new MainMongoDB();
     private static JButton backButton;
     private static JButton removeFromCartButton;
     private static JButton makeOrderButton;
@@ -16,8 +19,10 @@ public class ItemCartFrame extends JFrame implements ActionListener {
     private ItemCartController itemCartController;
     private String itemCartCost;
     private static JLabel itemCartCostLabel;
+    private String currentUser;
 
-    public ItemCartFrame(ItemCartController itemCartController, String restaurantName) {
+    public ItemCartFrame(ItemCartController itemCartController, String restaurantName, String currentUser) {
+        this.currentUser = currentUser;
         this.restaurantName = restaurantName;
         this.itemCartController = itemCartController;
         this.itemCartPresenter = new ItemCartPanel(itemCartController);
@@ -44,7 +49,13 @@ public class ItemCartFrame extends JFrame implements ActionListener {
 
         makeOrderButton = new JButton("Order");
         makeOrderButton.setBounds(10, 110, 160, 25);
-        makeOrderButton.addActionListener(this);
+        makeOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
+            }
+        });
 
         bottom.add(backButton);
         bottom.add(removeFromCartButton);
@@ -62,7 +73,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
     public static void main(String[] args) {
         ItemCartController controller = new ItemCartController("Food from East");
         controller.addToItemCart("Chicken Shawarma - Price $5");
-        new ItemCartFrame(controller, "Food from East");
+        new ItemCartFrame(controller, "Food from East", "mann1234");
     }
 
     @Override
@@ -70,7 +81,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
         Object obj = e.getSource();
         if (obj == backButton) {
             exit();
-            new FoodItemsFrame(restaurantName);
+            new FoodItemsFrame(restaurantName, currentUser);
         } else if (obj == removeFromCartButton) {
             JList<String> selection = itemCartPresenter.getList();
             String choice = selection.getSelectedValue();

@@ -14,15 +14,17 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
     private static JButton submitButton;
     private static JButton addToItemCartButton;
     private static JButton itemCartButton;
+    private static JButton backButton;
     private FoodItemsPresenter foodItemsPresenter;
     private ItemCartController itemCartController;
-
+    private String currentUser;
     private String restaurantName;
 
-    public FoodItemsFrame(String restaurantName) {
+    public FoodItemsFrame(String restaurantName, String currentUser) {
 
         itemCartController = new ItemCartController(restaurantName);
         this.restaurantName = restaurantName;
+        this.currentUser = currentUser;
 
         JPanel panel = new JPanel();
         JPanel bottom = new JPanel();
@@ -50,6 +52,17 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
         panel.add(submitButton);
         this.add(panel);
 
+        backButton = new JButton("Back");
+        backButton.setBounds(10, 150, 165, 25);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                RestaurantListFrame restaurantListFrame = new RestaurantListFrame(currentUser);
+            }
+        });
+        panel.add(backButton);
+
         foodItemsPresenter = new FoodItemsPanel(restaurantName);
         foodItemsPresenter.allFoods();
         this.add((JPanel) foodItemsPresenter);
@@ -70,9 +83,9 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
 
     }
 
-    public static void main(String[] args) {
-        new FoodItemsFrame("Food from East");
-    }
+    /*public static void main(String[] args) {
+        new FoodItemsFrame("Food from East", this.currentUser);
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -86,7 +99,7 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
             itemCartController.addToItemCart(choice);
         }else if (obj == itemCartButton) {
             exit();
-            new ItemCartFrame(itemCartController, restaurantName);
+            new ItemCartFrame(itemCartController, restaurantName, currentUser);
         }
     }
     private void exit() {

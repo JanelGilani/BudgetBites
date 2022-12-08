@@ -81,20 +81,20 @@ public class MainMongoDBTest {
     }
 
     @Test
-    public void saveRestaurantTest () {
+    public void saveRestaurantTest() {
         testDAI.saveRestaurant(restaurant);
 
         Assertions.assertEquals(testDAI.findRestaurantByRestaurantName("Mongo Test Restaurant").getRestaurantName(), restaurant.getRestaurantName());
     }
 
     @Test
-    public void userExistsTest () {
+    public void userExistsTest() {
         Assertions.assertTrue(testDAI.userExists("persistentUser"));
         Assertions.assertFalse(testDAI.userExists("falseUser"));
     }
 
     @Test
-    public void getUserAttributeTest () {
+    public void getUserAttributeTest() {
         Assertions.assertEquals(testDAI.getUserAttribute("persistentUser", "username"), "persistentUser");
         Assertions.assertEquals(testDAI.getUserAttribute("persistentUser", "firstName"), "Persistent");
         Assertions.assertEquals(testDAI.getUserAttribute("persistentUser", "lastName"), "Mongo");
@@ -102,7 +102,7 @@ public class MainMongoDBTest {
     }
 
     @Test
-    public void getRestaurantAttributeTest () {
+    public void getRestaurantAttributeTest() {
         Assertions.assertEquals(testDAI.getRestaurantAttribute("Persistent Restaurant", "restaurantName"), "Persistent Restaurant");
         Assertions.assertEquals(testDAI.getRestaurantAttribute("Persistent Restaurant", "cuisine"), "Indian");
         Assertions.assertEquals(testDAI.getRestaurantAttribute("Persistent Restaurant", "foodType"), "Dinner");
@@ -117,7 +117,7 @@ public class MainMongoDBTest {
                 Arrays.asList("Chicken Shawarma", "Hummus with Pita", "Falafel Wrap", "Beef Shawarma", "Chicken Saj"));
 
         ArrayList<String> mongoFoodNames = new ArrayList<>();
-        for (FoodItem foodItem: testDAI.getMenu("Persistent Restaurant")) {
+        for (FoodItem foodItem : testDAI.getMenu("Persistent Restaurant")) {
             mongoFoodNames.add(foodItem.getItemName());
         }
 
@@ -125,14 +125,14 @@ public class MainMongoDBTest {
     }
 
     @Test
-    public void updateAttributeByUsernameTest () {
+    public void updateAttributeByUsernameTest() {
         testDAI.updateAttributeByUsername("persistentUser", "firstName", "testchange");
 
         Assertions.assertEquals(testDAI.getUserAttribute("persistentUser", "firstName"), "testchange");
     }
 
     @Test
-    public void findPastOrdersTest () {
+    public void findPastOrdersTest() {
         PastOrders pastOrders = testDAI.findPastOrders("persistentUser");
 
 //        From the database, we can see the cost of the last ordered is 12, and the number of orders in the map is 2
@@ -142,7 +142,7 @@ public class MainMongoDBTest {
     }
 
     @Test
-    public void addToPastOrdersTest () {
+    public void addToPastOrdersTest() {
         testDAI.addToPastOrders("persistentUser", o3);
         PastOrders pastOrders = testDAI.findPastOrders("persistentUser");
 
@@ -151,6 +151,4 @@ public class MainMongoDBTest {
         Assertions.assertEquals(pastOrders.getPastOrdersMap().size(), 3);
         Assertions.assertEquals(pastOrders.getTotalCost(), 57);
     }
-
-
 }

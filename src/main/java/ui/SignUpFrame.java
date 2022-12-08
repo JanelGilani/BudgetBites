@@ -122,7 +122,7 @@ public class SignUpFrame extends JFrame{
 //                    System.out.println("Success");
                     // will go to next page
                     exit();
-                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame();
+                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame(user);
 
                 } else if (logicCode.signUpCheck(user, password, confirmPassword) == 2) {
                     successSignUp.setText("Password is not strong enough");
