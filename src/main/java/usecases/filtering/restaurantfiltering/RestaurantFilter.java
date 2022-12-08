@@ -1,8 +1,4 @@
 package usecases.filtering.restaurantfiltering;
-
-import gateways.MainMongoDB;
-import usecases.RestaurantFilterDAI;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Objects;
@@ -13,7 +9,6 @@ public class RestaurantFilter {
     private HashMap<String, ArrayList<String>> foodTypeFilter;
 
     private HashMap<String, ArrayList<String>> priceFilter;
-    private RestaurantFilterDAI restaurantFilterDAI = new MainMongoDB();
 
     public RestaurantFilter(HashMap<String, ArrayList<String>> cuisineFilter,
                             HashMap<String, ArrayList<String>> foodTypeFilter,
