@@ -29,7 +29,7 @@ public class PastOrdersFrame extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-        JPanel panel = new JPanel();
+        JPanel panel = new JPanel();;
         backButton = new JButton("Back");
         backButton.setBounds(10, 140, 165, 25);
         backButton.addActionListener(new ActionListener() {
