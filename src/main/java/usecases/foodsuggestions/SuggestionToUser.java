@@ -21,8 +21,10 @@ public class SuggestionToUser {
         this.foodSuggestionsPresenter = foodSuggestionsPresenter;
     }
 
-
-
+    /**
+     * Called by controller for Clean architecture
+     * @param username username of the currentUser.
+     */
     public void toPresenter(String username) {
         ArrayList<String> finalSuggestion = getSuggestionToUser(username);
         foodSuggestionsPresenter.presentData(finalSuggestion);
@@ -97,15 +99,25 @@ public class SuggestionToUser {
      */
     public ArrayList<String> getFinalSuggestion(String userName, LinkedHashMap<FoodItem, Integer> populatedSortedMap) {
         double budgetSoFar = 0.00;
-//        double currentBudget = (double) MainMongoDB.getUserAttribute(userName, "budget");
         double currentBudget = ((Budget) Objects.requireNonNull(suggestionToUserDAI.getUserAttribute(userName, "budget"))).getCurrentBudget();
         ArrayList<String> finalSuggestion = new ArrayList<>();
-        for (FoodItem item: populatedSortedMap.keySet()) {
-            budgetSoFar += item.getItemCost();
-            if (budgetSoFar > currentBudget) {
-                break;
+        if (populatedSortedMap.isEmpty()) {
+            finalSuggestion.add("Oops " + userName + " it looks like you don't have enough past orders");
+            finalSuggestion.add("for me to suggest you your favourite food items");
+            return finalSuggestion;
+        }
+        else {
+            for (FoodItem item: populatedSortedMap.keySet()) {
+                budgetSoFar += item.getItemCost();
+                if (budgetSoFar > currentBudget) {
+                    break;
+                }
+                finalSuggestion.add(item.getItemName());
             }
-            finalSuggestion.add(item.getItemName());
+        }
+        if (finalSuggestion.size() == 0) {
+            finalSuggestion.add("Oops " + userName + " it looks like you finally realize");
+            finalSuggestion.add("you are broke student");
         }
         return finalSuggestion;
     }
