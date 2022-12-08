@@ -1,9 +1,6 @@
 package ui;
 
 import controllers.PastOrderController;
-import entities.FoodItem;
-import entities.PastOrders;
-import entities.Order;
 import presenters.PastOrderPresenter;
 
 import javax.swing.*;
@@ -27,25 +24,7 @@ public class PastOrderPanel extends JPanel implements PastOrderPresenter {
     }
     @Override
     public void foodInCart() {
-        DefaultListModel<String> updatedModel = new DefaultListModel<>();
-        PastOrders pastOrders = controller.getItems();
-        String eachPastOrder = "";
-        for(Order currOrder : pastOrders.getPastOrdersMap().values()) {
-            eachPastOrder += currOrder.dateOrdered.substring(5,10);
-            eachPastOrder += "   ";
-            eachPastOrder += currOrder.restaurantName;
-            eachPastOrder += "   ";
-
-            String t = eachPastOrder;
-            for(FoodItem ft : currOrder.getOrderedItems()){
-                t += ft.getItemName();
-                updatedModel.addElement(t);
-                t = eachPastOrder;
-            }
-
-            eachPastOrder = "";
-        }
-        list = new JList<>(updatedModel);
+        list = new JList<>(controller.getPastOrder());
         scroll.setViewportView(list);
     }
 
