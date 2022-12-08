@@ -1,13 +1,10 @@
-# Budget Bites (Group 90) ReadMe Document
+# BudgetBites CSC207 Project (Group 90)
 
-Welcome to Budget Bites. The project is aimed at giving the students cheap food options around the UofT campus.
+Are you a student at UofT and trying to find food around campus, but are tight on your budget? You have come to the right place, welcome to BudgetBites! This UofT-based application allows you to find budget-friendly food options at the UTSG campus. You can then search for restaurants and specific food items by a number of parameters such as cuisine type, price range, food type, etc. Not only will you be given customised food suggestions, but you will also make use of ourextensive budgeting feature: every time you buy food from a restaurant, your monthly budget will reflect the spending and you can follow your budget restrictions rigorously.
 
-This project consist of several features such as PriceFiltering, RestaurantFiltering, suggestionToUser and Reviews (which can be found in their subsequent UseCases Folder).
-Above those features we used Java Swing to create a seamless user flow UI. We have also implemented MongoDB for the backend which saves all the entities. 
+Above those features we used MongoDB and Java Swing to create a seamless graphical user interface and persistent functionality. 
 
-**Kindly follow the instruction below**
-
-## Checklist for building the project ##
+## How to Build and Run BudgetBites ##
 - [ ] Ensure SDK version is 11.0.17 (See the image below and match it with Project Structure)
 
 ![](images/version_control.png)
@@ -18,20 +15,8 @@ Above those features we used Java Swing to create a seamless user flow UI. We ha
 
 **Now that you have build the project, it is time to start the UI. Follow the steps in the next section to ensure that you correctly open the Java Swing UI**
 
-## Opening the application in main
-
 - [ ] Go to `src/main/java/main.java`
 - [ ] Run the main file, and new JFrame will be prompted. Enjoy the UI.
-
-
-![](images/Ui.jpeg)
-
-**Finally you can also run tests in `src/test/java` to ensure the features not covered in the UI are working as well. We have provided unit tests for use cases as well.**
-
-## SOLID Principles and Clean Architecture
-
-**For implementing clean architecture we have created packaging for each class. That includes their interactor, gateways, request model, Input and Output boundary. We have provided an example of Clean Architecture implementation. Kindly follow the instruction to check out that file.**
-- [ ] Go to `src/main/java/usecases/Filtering/RestaurantFiltering`, which is an example implementation.
 
 
 [//]: # ()
