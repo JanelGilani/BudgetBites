@@ -53,7 +53,16 @@ public class ItemCartFrame extends JFrame implements ActionListener {
 
         makeOrderButton = new JButton("Order");
         makeOrderButton.setBounds(10, 110, 160, 25);
-        makeOrderButton.addActionListener(this);
+
+        makeOrderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                exit();
+                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
+//                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
+            }
+        });
+
 
         bottom.add(backButton);
         bottom.add(removeFromCartButton);
