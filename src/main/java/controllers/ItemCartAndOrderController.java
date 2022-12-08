@@ -3,16 +3,19 @@ package controllers;
 import gateways.MainMongoDB;
 import usecases.FoodItemsDAI;
 import usecases.itemcart.ItemCartEditor;
+import usecases.makeorder.MakeOrderInteractor;
 
 import java.util.ArrayList;
 
-public class ItemCartController {
+public class ItemCartAndOrderController {
     private ItemCartEditor itemCartEditor;
+    private MakeOrderInteractor makeOrderInteractor;
 
     private final FoodItemsDAI foodItemsDAI = new MainMongoDB();
 
-    public ItemCartController(String restaurantName) {
+    public ItemCartAndOrderController(String restaurantName) {
         itemCartEditor = new ItemCartEditor(foodItemsDAI.getMenu(restaurantName));
+        makeOrderInteractor = new MakeOrderInteractor();
     }
 
     public void addToItemCart(String choice) {
@@ -33,5 +36,9 @@ public class ItemCartController {
 
     public String getItemCartCost() {
         return itemCartEditor.getItemCartCost() + "";
+    }
+
+    public void makeOrder(String restaurantName, String username) {
+        makeOrderInteractor.makeNewOrder(restaurantName, itemCartEditor.getItemCart(), username);
     }
 }
