@@ -1,16 +1,13 @@
 package ui;
 
-import controllers.ItemCartController;
 import controllers.PastOrderController;
 import entities.FoodItem;
 import entities.PastOrders;
 import entities.Order;
-import presenters.ItemCartPresenter;
 import presenters.PastOrderPresenter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Map;
 
 public class PastOrderPanel extends JPanel implements PastOrderPresenter {
     private JScrollPane scroll;
