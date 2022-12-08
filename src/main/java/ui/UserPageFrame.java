@@ -1,5 +1,6 @@
 package ui;
 
+import controllers.PastOrderController;
 import entities.Budget;
 import gateways.MainMongoDB;
 import usecases.BudgetDAI;
@@ -93,7 +94,8 @@ public class UserPageFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 exit();
-                PastOrdersFrame pastOrdersFrame = new PastOrdersFrame();
+                PastOrderController pastOrderController = new PastOrderController(currentUser);
+                PastOrdersFrame pastOrdersFrame = new PastOrdersFrame(pastOrderController, currentUser);
             }
         });
         panel.add(viewPastOrdersButton);

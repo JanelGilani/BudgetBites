@@ -63,10 +63,8 @@ public class BudgetManager {
      * @param orders user's past order
      */
 
-    public void orderedMealsBudget (User user, PastOrders orders){
-        Budget budget = user.getBudget();
+    public static void orderedMealsBudget (Budget budget, PastOrders orders){
         double newCBudget = budget.getCurrentBudget() - orders.getCostOfLastOrdered();
         budget.setCurrentBudget(newCBudget);
-        budgetDAI.updateAttributeByUsername (user.getUsername(), "budget", budget);
     }
 }

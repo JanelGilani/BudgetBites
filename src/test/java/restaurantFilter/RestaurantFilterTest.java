@@ -11,6 +11,11 @@ import java.util.List;
 
 public class RestaurantFilterTest {
 
+    private ArrayList<String> allRestaurants = new ArrayList<>(Arrays.asList(
+            "Italian Breakfast Cheap", "Chinese Lunch Cheap", "Thai Dinner Expensive", "French Lunch Intermediate",
+            "Arabic Snack Cheap", "Indian Dinner Intermediate", "Middle-East Lunch Expensive", "Chinese Snack Expensive",
+            "Mexican Breakfast Intermediate"));
+
     public static RestaurantFilter generateFilterManager() {
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
         cuisineFilter.put("Italian",new ArrayList<String>());
@@ -86,7 +91,7 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 Arrays.asList("Chinese Lunch Cheap","Chinese Snack Expensive"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "Chinese", "No Preference"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "Chinese", "No Preference", allRestaurants));
     }
 
     @Test
@@ -94,7 +99,7 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 Arrays.asList("Italian Breakfast Cheap","Chinese Lunch Cheap", "Arabic Snack Cheap"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("Cheap", "No Preference", "No Preference"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("Cheap", "No Preference", "No Preference", allRestaurants));
     }
 
     @Test
@@ -102,7 +107,7 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 Arrays.asList("Chinese Lunch Cheap", "French Lunch Intermediate", "Middle-East Lunch Expensive"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "No Preference", "Lunch"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "No Preference", "Lunch", allRestaurants));
     }
 
     @Test
@@ -110,7 +115,7 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("Mexican Breakfast Intermediate"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("Intermediate", "No Preference", "Breakfast"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("Intermediate", "No Preference", "Breakfast", allRestaurants));
     }
 
     @Test
@@ -118,7 +123,7 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("Thai Dinner Expensive"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("Expensive", "Thai", "No Preference"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("Expensive", "Thai", "No Preference", allRestaurants));
     }
 
     @Test
@@ -126,7 +131,7 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("French Lunch Intermediate"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "French", "Lunch"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("No Preference", "French", "Lunch", allRestaurants));
     }
 
     @Test
@@ -134,6 +139,6 @@ public class RestaurantFilterTest {
         ArrayList<String> obj = new ArrayList<String>(
                 List.of("Indian Dinner Intermediate"));
         RestaurantFilter restaurantFilter = RestaurantFilterTest.generateFilterManager();
-        Assertions.assertEquals(obj, restaurantFilter.filter("Intermediate", "Indian", "Dinner"));
+        Assertions.assertEquals(obj, restaurantFilter.filter("Intermediate", "Indian", "Dinner", allRestaurants));
     }
 }
