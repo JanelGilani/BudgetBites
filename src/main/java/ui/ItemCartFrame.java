@@ -1,6 +1,6 @@
 package ui;
 
-import controllers.ItemCartController;
+import controllers.ItemCartAndOrderController;
 import gateways.MainMongoDB;
 import presenters.ItemCartPresenter;
 import usecases.BudgetDAI;
@@ -16,16 +16,16 @@ public class ItemCartFrame extends JFrame implements ActionListener {
     private static JButton makeOrderButton;
     private ItemCartPresenter itemCartPresenter;
     private String restaurantName;
-    private ItemCartController itemCartController;
+    private ItemCartAndOrderController itemCartAndOrderController;
     private String itemCartCost;
     private static JLabel itemCartCostLabel;
     private String currentUser;
 
-    public ItemCartFrame(ItemCartController itemCartController, String restaurantName, String currentUser) {
+    public ItemCartFrame(ItemCartAndOrderController itemCartAndOrderController, String restaurantName, String currentUser) {
         this.currentUser = currentUser;
         this.restaurantName = restaurantName;
-        this.itemCartController = itemCartController;
-        this.itemCartPresenter = new ItemCartPanel(itemCartController);
+        this.itemCartAndOrderController = itemCartAndOrderController;
+        this.itemCartPresenter = new ItemCartPanel(itemCartAndOrderController);
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
 
@@ -34,7 +34,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BoxLayout(this.getContentPane(), BoxLayout.Y_AXIS));
 
-        itemCartCost = "Price of Cart: $" + itemCartController.getItemCartCost();
+        itemCartCost = "Price of Cart: $" + itemCartAndOrderController.getItemCartCost();
         itemCartCostLabel = new JLabel(itemCartCost);
         itemCartCostLabel.setBounds(10, 20, 120, 25);
         top.add(itemCartCostLabel);
@@ -49,13 +49,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
 
         makeOrderButton = new JButton("Order");
         makeOrderButton.setBounds(10, 110, 160, 25);
-        makeOrderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                exit();
-                UserPageFrame userPageFrame = new UserPageFrame(currentUser);
-            }
-        });
+        makeOrderButton.addActionListener(this);
 
         bottom.add(backButton);
         bottom.add(removeFromCartButton);
@@ -71,7 +65,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        ItemCartController controller = new ItemCartController("Food from East");
+        ItemCartAndOrderController controller = new ItemCartAndOrderController("Food from East");
         controller.addToItemCart("Chicken Shawarma - Price $5");
         new ItemCartFrame(controller, "Food from East", "mann1234");
     }
@@ -85,11 +79,15 @@ public class ItemCartFrame extends JFrame implements ActionListener {
         } else if (obj == removeFromCartButton) {
             JList<String> selection = itemCartPresenter.getList();
             String choice = selection.getSelectedValue();
-            itemCartController.removeFromItemCart(choice);
+            itemCartAndOrderController.removeFromItemCart(choice);
             itemCartPresenter.foodInCart();
-            itemCartCost = "Price of Cart: $" + itemCartController.getItemCartCost();
+            itemCartCost = "Price of Cart: $" + itemCartAndOrderController.getItemCartCost();
             itemCartCostLabel.setText(itemCartCost);
             this.validate();
+        } else if (obj == makeOrderButton) {
+            itemCartAndOrderController.makeOrder(restaurantName, currentUser);
+            exit();
+            UserPageFrame userPageFrame = new UserPageFrame(currentUser);
         }
 
     }
