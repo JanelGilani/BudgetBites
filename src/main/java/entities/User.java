@@ -13,14 +13,13 @@ public class User {
     public User () {
     }
 
-    public User (String firstName, String lastName, String username, String password, PastOrders pastOrders, Budget budget) {
+    public User (String firstName, String lastName, String username, String password, double budget) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.password = password;
-        this.budget = budget;
-        this.pastOrders = pastOrders;
-//        this.ItemCart = new ItemCart();
+        this.budget = new Budget(budget);
+        this.pastOrders = new PastOrders();
     }
 
     public String getFirstName () {
