@@ -14,9 +14,9 @@ public class PastOrdersFrame extends JFrame {
     private JButton backButton;
     private String currentUser;
 
-    public PastOrdersFrame(PastOrderController pastOrderController, String currentUser) {
+    public PastOrdersFrame(String currentUser) {
         this.currentUser = currentUser;
-        this.pastOrderController = pastOrderController;
+        this.pastOrderController = new PastOrderController(currentUser);
         this.pastOrderPresenter = new PastOrderPanel(pastOrderController);
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
@@ -48,8 +48,7 @@ public class PastOrdersFrame extends JFrame {
     }
 
     public static void main(String[] args) {
-        PastOrderController controller = new PastOrderController("aryangoel24");
-        new PastOrdersFrame(controller, "aryangoel24");
+        new PastOrdersFrame("aryangoel24");
     }
 
     private void exit() {

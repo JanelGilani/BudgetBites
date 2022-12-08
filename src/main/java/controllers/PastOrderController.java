@@ -1,21 +1,22 @@
 package controllers;
 
-import entities.PastOrders;
-import gateways.MainMongoDB;
-import usecases.FoodItemsDAI;
-import usecases.PastOrdersDAI;
+import usecases.pastOrder.PastOrderInteractor;
 
-import java.util.ArrayList;
+import javax.swing.*;
 
 public class PastOrderController {
-    private PastOrders pastOrders;
-    private final PastOrdersDAI pastOrdersDAI = new MainMongoDB();
+    private PastOrderInteractor pastOrderInteractor;
 
     public PastOrderController(String currUser){
-        this.pastOrders = pastOrdersDAI.findPastOrders(currUser);
+        this.pastOrderInteractor = new PastOrderInteractor(currUser);
     }
 
-    public PastOrders getItems(){
-        return this.pastOrders;
+    public DefaultListModel<String> getPastOrder(){
+        DefaultListModel<String> model = new DefaultListModel<>();
+        for (String s:
+                pastOrderInteractor.getPastOrder()) {
+            model.addElement(s);
+        }
+        return model;
     }
 }
