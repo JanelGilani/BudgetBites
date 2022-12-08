@@ -51,7 +51,9 @@ public class RestaurantFilterController {
         if (pricePref.equals("No Preference") && cuisinePref.equals("No Preference") && foodTypePref.equals("No Preference")) {
             return restaurantFilterDAI.getAllRestaurants();
         } else {
-            return restaurantFilters.filter(pricePref.split("\\(",0)[0].strip(), cuisinePref, foodTypePref);
+            String priceChoice = pricePref.split("\\[",0)[0].strip();
+            return restaurantFilters.filter(priceChoice, cuisinePref, foodTypePref, restaurantFilterDAI.getAllRestaurants());
+
         }
     }
 }
