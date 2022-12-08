@@ -61,7 +61,7 @@ public class BudgetManagerTest {
         pastOrdersMap.put(o1.getDateOrdered(), o1);
         pastOrdersMap.put(o2.getDateOrdered(), o2);
         double price = p1.getCostOfLastOrdered();
-        budgetManager.orderedMealsBudget(user, p1);
+        budgetManager.orderedMealsBudget(budget, p1);
         double currBudget = 250 - price;
 
         Assertions.assertEquals(currBudget, budget.getCurrentBudget());

@@ -2,6 +2,7 @@ package usecases;
 
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
+import entities.PastOrders;
 import entities.User;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -14,4 +15,6 @@ public interface BudgetDAI {
     public Object getUserAttribute(String username, String attribute);
 
     public boolean userExists (String username);
+
+    public PastOrders findPastOrders (String username);
 }
