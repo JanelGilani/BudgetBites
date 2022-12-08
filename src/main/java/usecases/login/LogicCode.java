@@ -10,17 +10,11 @@ import java.util.Set;
 public class LogicCode {
 
     private final LoginDAI loginDAI = new MainMongoDB();
-    /**
-     * The following code checks if the methods below are able to execute and save the user inputs.
-     * @param args
-     */
-    public void main(String[] args) {
-        System.out.println(signUpCheck("vandanpatel", "Vp@1232848327498473", "Vp@1232848327498473"));
-    }
+
 
     /**
      * The following code checks the strength of the password by checking if the password entered meets the following criteria: uppercase, digit, special character and is 10 characters long.
-     * @param password
+     * @param password inputted by the user
      * @return boolean
      */
     public boolean strongPassword (String password){
@@ -50,8 +44,8 @@ public class LogicCode {
 
     /**
      * checks if both passwords inputted password and confirm password are the same
-     * @param password
-     * @param confirmPassword
+     * @param password inputted by the user
+     * @param confirmPassword inputted by the user
      * @return boolean
      */
     public boolean samePassword(String password, String confirmPassword){
@@ -64,9 +58,9 @@ public class LogicCode {
 
     /**
      * signs up and saves the user data if the user doesn't exist, password and confirm password are the same and the password is strong.
-     * @param username
-     * @param password
-     * @param confirmPassword
+     * @param username inputted by the user
+     * @param password inputted by the user
+     * @param confirmPassword inputted by the user
      * @return boolean
      */
     public int signUpCheck(String username, String password, String confirmPassword) {
@@ -75,10 +69,6 @@ public class LogicCode {
         } else {
             if (samePassword(password, confirmPassword)) {
                 if (strongPassword(password)) {
-//                    PastOrders p1 = new PastOrders();
-//                    Budget b1 = new Budget(initialBudget);
-//                    User user = new User(firstName, lastName, username, password, p1, b1);
-//                    loginDAI.saveUser(user);
                     // all requirements match for user to save inputted data
                     return 3;
                 } else {

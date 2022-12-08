@@ -8,16 +8,33 @@ import java.util.ArrayList;
 public class ItemCartEditor {
     private ItemCart itemCart;
     private ArrayList<FoodItem> menu;
-    
+
+
+    /**
+     *
+     * @param menu of restaurant selected by the user
+     */
     public ItemCartEditor(ArrayList<FoodItem> menu) {
         this.menu = menu;
         itemCart = new ItemCart();
     }
 
+
+    /**
+     * getter function for the ItemCart
+     * @return the itemCart
+     */
     public ItemCart getItemCart() {
         return itemCart;
     }
-    
+
+
+    /**
+     *
+     * @param foodName name of food
+     * Adds food to the itemCart based on if the foodItem name matches the food name
+     * matches inputted.
+     */
     public void addFood(String foodName){
         for (FoodItem food: menu) {
             if (food.getItemName().equals(foodName)) {
@@ -26,6 +43,13 @@ public class ItemCartEditor {
         }
     }
 
+
+    /**
+     *
+     * @param foodName name of food
+     * Removes food to the itemCart based on if the foodItem name matches the food name
+     * matches inputted.
+     */
     public void removeFood(String foodName){
         for (FoodItem food: menu) {
             if (food.getItemName().equals(foodName)) {
@@ -34,6 +58,10 @@ public class ItemCartEditor {
         }
     }
 
+    /**
+     * Getter function for the Foods in the ItemCart
+     * @return an ArrayList with FoodItem objects
+     */
     public ArrayList<String> getFoodInItemCart() {
         ArrayList<String> result = new ArrayList<>();
         for (FoodItem food:
@@ -43,6 +71,11 @@ public class ItemCartEditor {
         return result;
     }
 
+
+    /**
+     * Getter function for the total cost of the foods in the ItemCart.
+     * @return a double of the ItemCart cost
+     */
     public double getItemCartCost() {
         double result = 0;
         for (FoodItem food :itemCart.getCurrentOrder()) {
