@@ -5,6 +5,13 @@ import gateways.MainMongoDB;
 
 public class Login {
     private final LoginDAI loginDAI = new MainMongoDB();
+
+    /**
+     * checks the login attempt of the user and returns whether the login is correct
+     * @param user inputted by the user
+     * @param password inputted by the user
+     * @return specific user message based on the password input
+     */
     public int loginCheck(String user, String password){
         if (loginDAI.userExists(user)){
             String correctPassword = (String) loginDAI.getUserAttribute(user, "password");

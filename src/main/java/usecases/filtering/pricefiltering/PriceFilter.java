@@ -12,8 +12,9 @@ public class PriceFilter {
     private ArrayList<String> foods;
 
     /**
-     *
-     * @param menu
+     * Uses the selection from the restaurantFiltering of specific restaurant
+     * and then filters by price in the single restaurant by increments of $5
+     * @param menu of the restaurant that has been selected
      * Instantiates the instances of priceFiltering
      */
     public PriceFilter(ArrayList<FoodItem> menu) {
@@ -47,13 +48,13 @@ public class PriceFilter {
 
     /**
      *
-     * @param p_range
+     * @param price_range inputted by the user
      * @return
      * the filter method returns a food item after checking whether it is included in a price range
      * if it is not in the price range it then returns null
      */
-    public ArrayList<String> filter(String p_range) {
-        return filter.getOrDefault(p_range, null);
+    public ArrayList<String> filter(String price_range) {
+        return filter.getOrDefault(price_range, null);
     }
 
     /**

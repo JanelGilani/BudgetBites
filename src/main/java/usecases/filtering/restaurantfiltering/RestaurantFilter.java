@@ -19,6 +19,15 @@ public class RestaurantFilter {
         this.priceFilter = priceFilter;
     }
 
+
+    /**
+     * @param pricePref given by the user on the userPrefernceFrame
+     * @param cuisinePref given by the user on the userPrefernceFrame
+     * @param foodTypePref given by the user on the userPrefernceFrame
+     * @return the preference given by the user and ensure that the inputted preference is not null
+     */
+
+
     public ArrayList<String> filter(String pricePref, String cuisinePref, String foodTypePref) {
         ArrayList<String> cuisineChoice = cuisineFilter.getOrDefault(cuisinePref, null);
         ArrayList<String> foodTypeChoice = foodTypeFilter.getOrDefault(foodTypePref, null);
