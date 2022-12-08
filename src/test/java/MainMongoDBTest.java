@@ -22,7 +22,7 @@ public class MainMongoDBTest {
     private Restaurant restaurant;
     private Restaurant persistentRestaurant;
 
-    /*@Before
+    @Before
     public void init () {
         Order o1 = new Order(LocalDateTime.now().minusDays(2).toString(), "Food from East");
         Order o2 = new Order(LocalDateTime.now().minusDays(1).toString(), "Food from East");
@@ -56,9 +56,9 @@ public class MainMongoDBTest {
 
         persistentUser = new User("Persistent", "Mongo", "persistentUser", "persistentUser", p1, budget);
         persistentRestaurant = new Restaurant("Persistent Restaurant", "Expensive", "Indian", "Dinner", 5, menu);
-    }*/
+    }
 
-    /*@After
+    @After
     public void teardown () {
         testDAI.deleteUser("MongoTest");
         testDAI.deleteRestaurant("Mongo Test Restaurant");
@@ -69,7 +69,7 @@ public class MainMongoDBTest {
         testDAI.deleteRestaurant("Persistent Restaurant");
         testDAI.saveRestaurant(persistentRestaurant);
 
-    }*/
+    }
 
 
     @Test
@@ -150,81 +150,5 @@ public class MainMongoDBTest {
         Assertions.assertEquals(pastOrders.getCostOfLastOrdered(), 32);
         Assertions.assertEquals(pastOrders.getPastOrdersMap().size(), 3);
         Assertions.assertEquals(pastOrders.getTotalCost(), 57);
-    }
-
-    @Test
-    public void makeRestaurant1() {
-        FoodItem f1 = new FoodItem("Risotto", 18);
-        FoodItem f2 = new FoodItem("Il Tartufo", 25);
-        FoodItem f3 = new FoodItem("Pasta", 16);
-        FoodItem f4 = new FoodItem("Lasagne", 29);
-        FoodItem f5 = new FoodItem("Ravioli", 17);
-        FoodItem f6 = new FoodItem("Fiorentina", 35);
-        ArrayList<FoodItem> menu = new ArrayList<>(Arrays.asList(f1, f2, f3, f4, f5, f6));
-
-        Restaurant restaurant1 = new Restaurant("Donatello's Restaurant", "Expensive", "Italian", "Dinner", 4.8, menu);
-
-        FoodItem f7 = new FoodItem("Cheese Pizza", 10);
-        FoodItem f8 = new FoodItem("Pepperoni Pizza", 10);
-        FoodItem f9 = new FoodItem("Veggie Pizza", 13);
-        FoodItem f10 = new FoodItem("Barbeque Chicken Pizza", 15);
-        FoodItem f11 = new FoodItem("Hawaiian Pizza", 13);
-        FoodItem f12 = new FoodItem("Meat Lover's Pizza", 12);
-        ArrayList<FoodItem> menu1 = new ArrayList<>(Arrays.asList(f7, f8, f9, f10, f11, f12));
-
-        Restaurant restaurant2 = new Restaurant("Ralph's Pizzeria", "Cheap", "Italian", "Lunch", 3.7, menu1);
-
-        FoodItem f13 = new FoodItem("Frittata", 16);
-        FoodItem f14 = new FoodItem("", 25);
-        FoodItem f15 = new FoodItem("Bruschetta", 12);
-        FoodItem f16 = new FoodItem("Cannoli", 28);
-        FoodItem f17 = new FoodItem("Panzerotti", 17);
-        ArrayList<FoodItem> menu2 = new ArrayList<>(Arrays.asList(f13, f14, f15, f16, f17));
-
-        Restaurant restaurant3 = new Restaurant("Little Italy", "Intermediate", "Italian", "Snack", 4.1, menu2);
-
-        FoodItem f18 = new FoodItem("Frittata", 12);
-        FoodItem f19 = new FoodItem("Ricotta Pancakes", 10);
-        FoodItem f20 = new FoodItem("Sausage", 8);
-        FoodItem f21 = new FoodItem("Baked Eggs", 9);
-        FoodItem f22 = new FoodItem("Brioche", 6);
-        ArrayList<FoodItem> menu3 = new ArrayList<>(Arrays.asList(f18, f19, f20, f21, f22));
-
-        Restaurant restaurant4 = new Restaurant("Wake Up Italian", "Cheap", "Italian", "Breakfast", 2.1, menu3);
-
-        FoodItem f23 = new FoodItem("Enchiladas", 12);
-        FoodItem f24 = new FoodItem("Nachos Supreme", 10);
-        FoodItem f25 = new FoodItem("Mexican Rice", 8);
-        FoodItem f26 = new FoodItem("Quesadilla", 9);
-        FoodItem f27 = new FoodItem("Tamales", 6);
-        ArrayList<FoodItem> menu4 = new ArrayList<>(Arrays.asList(f23, f24, f25, f26, f27));
-
-        Restaurant restaurant5 = new Restaurant("Mexico's Finest", "Cheap", "Mexican", "Lunch", 3.1, menu4);
-
-        FoodItem f28 = new FoodItem("Regular Taco", 10);
-        FoodItem f29 = new FoodItem("Chicken Taco", 12);
-        FoodItem f30 = new FoodItem("Veggie Taco", 15);
-        FoodItem f31 = new FoodItem("Fish Tacos", 18);
-        FoodItem f32 = new FoodItem("Lebron Tacos", 20);
-        ArrayList<FoodItem> menu5 = new ArrayList<>(Arrays.asList(f28, f29, f30, f31, f32));
-
-        Restaurant restaurant6 = new Restaurant("Lebron's Taco Tuesday", "Intermediate", "Mexican", "Snack", 3.6, menu5);
-
-        FoodItem f33 = new FoodItem("Chilaquiles", 15);
-        FoodItem f34 = new FoodItem("Burritos", 22);
-        FoodItem f35 = new FoodItem("Tamales", 25);
-        FoodItem f36 = new FoodItem("Chips with Fresh Guacamole", 28);
-        FoodItem f37 = new FoodItem("Carnitas", 30);
-        ArrayList<FoodItem> menu6 = new ArrayList<>(Arrays.asList(f33, f34, f35, f36, f37));
-
-        Restaurant restaurant7 = new Restaurant("Viva La Mexicana", "Expensive", "Mexican", "Dinner", 3.6, menu6);
-
-        testDAI.saveRestaurant(restaurant1);
-        testDAI.saveRestaurant(restaurant2);
-        testDAI.saveRestaurant(restaurant3);
-        testDAI.saveRestaurant(restaurant4);
-        testDAI.saveRestaurant(restaurant5);
-        testDAI.saveRestaurant(restaurant6);
-        testDAI.saveRestaurant(restaurant7);
     }
 }
