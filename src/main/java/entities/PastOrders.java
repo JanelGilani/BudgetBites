@@ -8,7 +8,7 @@ public class PastOrders {
     public String lastOrdered;
 
     public PastOrders() {
-        this.pastOrdersMap = new HashMap<String, Order>();
+        this.pastOrdersMap = new HashMap<>();
         this.lastOrdered = null;
     }
 

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class CurrentOrderIterator implements FoodItemIterator {
 
     private int position = 0;
-    private ArrayList<FoodItem> currentOrder;
+    private final ArrayList<FoodItem> currentOrder;
 
     public CurrentOrderIterator (ArrayList<FoodItem> currentOrder) {
         this.currentOrder = currentOrder;

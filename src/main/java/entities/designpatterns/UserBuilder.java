@@ -5,7 +5,7 @@ import entities.PastOrders;
 import entities.User;
 
 public class UserBuilder {
-    private User user;
+    private final User user;
 
     public UserBuilder () {
         this.user = new User();
