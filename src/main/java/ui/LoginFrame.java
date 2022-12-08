@@ -1,12 +1,13 @@
 package ui;
 
+import presenters.LoginPresenter;
 import usecases.login.Login;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginFrame extends JFrame{
+public class LoginFrame extends JFrame implements ActionListener{
 
     private final Login login = new Login();
 
@@ -17,6 +18,8 @@ public class LoginFrame extends JFrame{
     private static JButton loginButton;
     private static JButton backButton;
     private static JLabel successLogin;
+
+    private LoginPresenter loginPresenter;
 
     public LoginFrame() {
 
@@ -51,25 +54,7 @@ public class LoginFrame extends JFrame{
         // Login button
         loginButton = new JButton("Login");
         loginButton.setBounds(10, 80, 80, 25);
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String user = userText.getText();
-                String password = passwordText.getText();
-                if (login.loginCheck(user, password) == 2){
-                    exit();
-                    RestaurantListFrame restaurantListFrame = new RestaurantListFrame(user);
-                    successLogin.setText("Logging In...");
-//                    System.out.println("Logging In...");
-                } else if (login.loginCheck(user, password) == 1) {
-                    successLogin.setText("Incorrect Password");
-//                    System.out.println("Incorrect Password");
-                } else {
-                    successLogin.setText("Username Does Not Exist");
-//                    System.out.println("Username Does Not Exist");
-                }
-            }
-        });
+        loginButton.addActionListener(this);
         panel.add(loginButton);
 
         backButton = new JButton("Back");
@@ -84,9 +69,8 @@ public class LoginFrame extends JFrame{
         panel.add(backButton);
 
         // Login label to return message upon Login attempt
-        successLogin = new JLabel();
-        successLogin.setBounds(10, 160, 300, 25);
-        panel.add(successLogin);
+        loginPresenter = new LoginResultLabel();
+        panel.add((JLabel) loginPresenter);
 
 
         this.setVisible(true);
@@ -96,5 +80,24 @@ public class LoginFrame extends JFrame{
     private void exit() {
         this.setVisible(false);
         this.dispose();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object obj = e.getSource();
+        if (obj == loginButton){
+            String user = userText.getText();
+            String password = passwordText.getText();
+            loginPresenter.setResponse(user,password);
+
+            if (loginPresenter.getMessage().equals("Success")) {
+                exit();
+                RestaurantListFrame restaurantListFrame = new RestaurantListFrame(user);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new LoginFrame();
     }
 }
