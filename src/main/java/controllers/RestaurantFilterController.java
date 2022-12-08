@@ -52,7 +52,7 @@ public class RestaurantFilterController {
             return restaurantFilterDAI.getAllRestaurants();
         } else {
             String priceChoice = pricePref.split("\\[",0)[0].strip();
-            return restaurantFilters.filter(priceChoice, cuisinePref, foodTypePref);
+            return restaurantFilters.filter(priceChoice, cuisinePref, foodTypePref, restaurantFilterDAI.getAllRestaurants());
         }
     }
 }

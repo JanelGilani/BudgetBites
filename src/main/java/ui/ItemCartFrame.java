@@ -63,6 +63,8 @@ public class ItemCartFrame extends JFrame implements ActionListener {
             }
         });
 
+        makeOrderButton.addActionListener(this);
+
 
         bottom.add(backButton);
         bottom.add(removeFromCartButton);
