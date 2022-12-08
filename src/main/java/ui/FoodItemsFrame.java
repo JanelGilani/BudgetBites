@@ -1,6 +1,6 @@
 package ui;
 
-import controllers.ItemCartController;
+import controllers.ItemCartAndOrderController;
 import presenters.FoodItemsPresenter;
 
 import javax.swing.*;
@@ -16,13 +16,13 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
     private static JButton itemCartButton;
     private static JButton backButton;
     private FoodItemsPresenter foodItemsPresenter;
-    private ItemCartController itemCartController;
+    private ItemCartAndOrderController itemCartAndOrderController;
     private String currentUser;
     private String restaurantName;
 
     public FoodItemsFrame(String restaurantName, String currentUser) {
 
-        itemCartController = new ItemCartController(restaurantName);
+        itemCartAndOrderController = new ItemCartAndOrderController(restaurantName);
         this.restaurantName = restaurantName;
         this.currentUser = currentUser;
 
@@ -96,10 +96,10 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
         }else if (obj == addToItemCartButton) {
             JList<String> selection = foodItemsPresenter.getList();
             String choice = selection.getSelectedValue();
-            itemCartController.addToItemCart(choice);
+            itemCartAndOrderController.addToItemCart(choice);
         }else if (obj == itemCartButton) {
             exit();
-            new ItemCartFrame(itemCartController, restaurantName, currentUser);
+            new ItemCartFrame(itemCartAndOrderController, restaurantName, currentUser);
         }
     }
     private void exit() {
