@@ -17,9 +17,6 @@ public class RestaurantFilterController {
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
         cuisineFilter.put("Italian",new ArrayList<String>());
         cuisineFilter.put("Chinese",new ArrayList<String>());
-        cuisineFilter.put("Thai",new ArrayList<String>());
-        cuisineFilter.put("French",new ArrayList<String>());
-        cuisineFilter.put("Arabic",new ArrayList<String>());
         cuisineFilter.put("Mexican",new ArrayList<String>());
         cuisineFilter.put("Indian",new ArrayList<String>());
         cuisineFilter.put("Middle-East",new ArrayList<String>());

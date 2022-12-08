@@ -51,7 +51,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         userCuisineLabel.setBounds(10, 50, 120, 25);
         panel.add(userCuisineLabel);
         // combobox for the user to choose their cuisine preference
-        String[] cuisines = {"No Preference", "Italian", "Chinese", "Thai", "French", "Arabic", "Mexican", "Indian", "Middle-East"};
+        String[] cuisines = {"No Preference", "Italian", "Chinese", "Mexican", "Indian", "Middle-East"};
         UserCuisineText = new JComboBox(cuisines);
         UserCuisineText.setBounds(140, 50 , 165, 25);
         panel.add(UserCuisineText);
