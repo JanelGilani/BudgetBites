@@ -18,6 +18,22 @@ Above those features we used MongoDB and Java Swing to create a seamless graphic
 - [ ] Go to `src/main/java/main.java`
 - [ ] Run the main file, and new JFrame will be prompted. Enjoy the UI.
 
+## Final Pull Requests Document
+ - [] https://docs.google.com/document/d/1OUL4p8HVuaO4_BQnOO3YV_1Di-jaswLo1D54788NKF4/view
+
+## About Us
+
+We are the coders behind the planning, development, and testing of the BudgetBites project. 
+
+Group members:
+- Akshayan Jeyakumar
+- Aryan Goel
+- Darpan Mishra
+- Janel Gilani
+- Nathan Cai
+- Mann Thakkar
+- Vandan Patel
+
 
 [//]: # ()
 [//]: # (## Checklist For Your Project)
