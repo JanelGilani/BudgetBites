@@ -23,12 +23,12 @@ public class RestaurantFilter {
         this.priceFilter = priceFilter;
     }
 
-    public ArrayList<String> filter(String pricePref, String cuisinePref, String foodTypePref) {
-        ArrayList<String> allRestaurants = restaurantFilterDAI.getAllRestaurants();
+    public ArrayList<String> filter(String pricePref, String cuisinePref, String foodTypePref, ArrayList<String> allRestaurants) {
 
         ArrayList<String> cuisineChoice = cuisineFilter.getOrDefault(cuisinePref, null);
         ArrayList<String> foodTypeChoice = foodTypeFilter.getOrDefault(foodTypePref, null);
         ArrayList<String> priceChoice = priceFilter.getOrDefault(pricePref, null);
+
         if (!Objects.isNull(cuisineChoice)) {
             allRestaurants.retainAll(cuisineChoice);
             if (!Objects.isNull(foodTypeChoice)) {
@@ -39,8 +39,8 @@ public class RestaurantFilter {
             }
             return allRestaurants;
         } else if (!Objects.isNull(foodTypeChoice)) {
+            allRestaurants.retainAll(foodTypeChoice);
             if (!Objects.isNull(priceChoice)) {
-                allRestaurants.retainAll(foodTypeChoice);
                 allRestaurants.retainAll(priceChoice);
             }
             return allRestaurants;
