@@ -1,21 +1,20 @@
 package ui;
 
-import ui.UserPageFrame;
 import gateways.MainMongoDB;
 import usecases.BudgetDAI;
 import entities.Budget;
-import usecases.budgeting.BudgetManager;
+import usecases.budgeting.BudgetingInteractor;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import static java.lang.Double.parseDouble;
 
 
 public class UserChangeBudgetFrame extends JFrame{
 
     private final BudgetDAI budgetDAI = new MainMongoDB();
 
-    private final BudgetManager budgetManager = new BudgetManager();
+    private final BudgetingInteractor budgetingInteractor = new BudgetingInteractor();
     private static JLabel enterUserNameLabel;
     private static JLabel enterBudgetLabel;
     private static JTextField userNameText;
@@ -74,9 +73,9 @@ public class UserChangeBudgetFrame extends JFrame{
                 double confirmBudget = Double.parseDouble(confirmBudgetText.getText());
 
                 if (budgetDAI.userExists(userName)) {
-                        if (BudgetManager.newBudgetConfirm(budget, confirmBudget)) {
+                        if (BudgetingInteractor.newBudgetConfirm(budget, confirmBudget)) {
                             Budget userBudget = (Budget) budgetDAI.getUserAttribute(userName, "budget");
-                            BudgetManager.adjustMonthlyBudget(userBudget, budget);
+                            BudgetingInteractor.adjustMonthlyBudget(userBudget, budget);
                             budgetDAI.updateAttributeByUsername(userName, "budget", userBudget);
                             successChange.setText("Budget Updated");
                             exit();

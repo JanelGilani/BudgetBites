@@ -1,7 +1,7 @@
 package ui;
 
-import controllers.UserRegisterController;
-import presenters.UserRegisterPresenter;
+import controllers.UserSignUpController;
+import presenters.UserSignUpPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -26,12 +26,12 @@ public class SignUpFrame extends JFrame{
     private static JLabel successSignUp;
     private static JButton backButton;
 
-    private UserRegisterPresenter userRegisterPresenter;
-    private UserRegisterController userRegisterController;
+    private UserSignUpPresenter userSignUpPresenter;
+    private UserSignUpController userSignUpController;
 
     public SignUpFrame() {
-        userRegisterController = new UserRegisterController();
-        userRegisterPresenter = new SignUpResponseLabel(userRegisterController);
+        userSignUpController = new UserSignUpController();
+        userSignUpPresenter = new UserSignUpPresenter(userSignUpController);
 
         //sign-up frame panel
         JPanel panel = new JPanel();
@@ -104,11 +104,11 @@ public class SignUpFrame extends JFrame{
                 String password = passwordText.getText();
                 String confirmPassword = confirmPasswordText.getText();
 
-                userRegisterPresenter.setResponse(user,password,confirmPassword);
+                userSignUpPresenter.setResponse(user,password,confirmPassword);
 
-                if (userRegisterPresenter.getMessage().equals("Success")) {
+                if (userSignUpPresenter.getMessage().equals("Success")) {
                     exit();
-                    userRegisterController.register(firstName, lastName, budget, user, password);
+                    userSignUpController.register(firstName, lastName, budget, user, password);
                     RestaurantListFrame restaurantListFrame = new RestaurantListFrame(user);
                 }
 
@@ -130,7 +130,7 @@ public class SignUpFrame extends JFrame{
         panel.add(backButton);
 
 
-        panel.add((JLabel) userRegisterPresenter);
+        panel.add((JLabel) userSignUpPresenter);
         this.setVisible(true);
 
     }

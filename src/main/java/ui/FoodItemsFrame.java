@@ -1,7 +1,7 @@
 package ui;
 
-import controllers.ItemCartAndOrderController;
-import presenters.FoodItemsPresenter;
+import controllers.ModifyItemCartController;
+import presenters.PriceFilterPresenter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,14 +15,14 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
     private static JButton addToItemCartButton;
     private static JButton itemCartButton;
     private static JButton backButton;
-    private FoodItemsPresenter foodItemsPresenter;
-    private ItemCartAndOrderController itemCartAndOrderController;
+    private PriceFilterPresenter priceFilterPresenter;
+    private ModifyItemCartController modifyItemCartController;
     private String currentUser;
     private String restaurantName;
 
     public FoodItemsFrame(String restaurantName, String currentUser) {
 
-        itemCartAndOrderController = new ItemCartAndOrderController(restaurantName);
+        modifyItemCartController = new ModifyItemCartController(restaurantName);
         this.restaurantName = restaurantName;
         this.currentUser = currentUser;
 
@@ -63,9 +63,9 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
         });
         panel.add(backButton);
 
-        foodItemsPresenter = new FoodItemsPanel(restaurantName);
-        foodItemsPresenter.allFoods();
-        this.add((JPanel) foodItemsPresenter);
+        priceFilterPresenter = new PriceFilterPresenter(restaurantName);
+        priceFilterPresenter.allFoods();
+        this.add((JPanel) priceFilterPresenter);
 
         addToItemCartButton = new JButton("Add to Item Cart");
         addToItemCartButton.setBounds(10, 110, 160, 25);
@@ -83,7 +83,7 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
 
     }
 
-    /*public static void main(String[] args) {
+    /*public static void Main(String[] args) {
         new FoodItemsFrame("Food from East", this.currentUser);
     }*/
 
@@ -91,15 +91,15 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj == submitButton) {
-            foodItemsPresenter.updateFoods((String) userPriceText.getSelectedItem());
+            priceFilterPresenter.updateFoods((String) userPriceText.getSelectedItem());
             this.validate();
         }else if (obj == addToItemCartButton) {
-            JList<String> selection = foodItemsPresenter.getList();
+            JList<String> selection = priceFilterPresenter.getList();
             String choice = selection.getSelectedValue();
-            itemCartAndOrderController.addToItemCart(choice);
+            modifyItemCartController.addToItemCart(choice);
         }else if (obj == itemCartButton) {
             exit();
-            new ItemCartFrame(itemCartAndOrderController, restaurantName, currentUser);
+            new ItemCartFrame(modifyItemCartController, restaurantName, currentUser);
         }
     }
     private void exit() {

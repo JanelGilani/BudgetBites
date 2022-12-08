@@ -1,14 +1,9 @@
 package entityTesting;
 
 import entities.*;
-import org.junit.After;
-import org.junit.Before;
+import entities.designpatterns.UserBuilder;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class UserBuilderTest {
 

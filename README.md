@@ -15,8 +15,8 @@ Above those features we used MongoDB and Java Swing to create a seamless graphic
 
 **Now that you have build the project, it is time to start the UI. Follow the steps in the next section to ensure that you correctly open the Java Swing UI**
 
-- [ ] Go to `src/main/java/main.java`
-- [ ] Run the main file, and new JFrame will be prompted. Enjoy the UI.
+- [ ] Go to `src/Main/java/Main.java`
+- [ ] Run the Main file, and new JFrame will be prompted. Enjoy the UI.
 
 ## Final Pull Requests Document
  - [] https://docs.google.com/document/d/1OUL4p8HVuaO4_BQnOO3YV_1Di-jaswLo1D54788NKF4/view
@@ -51,7 +51,7 @@ Group members:
 [//]: # (- [ ] Create deveopment branches for your features)
 
 [//]: # ()
-[//]: # (- [ ] Use pull requests to merge finished features into main branch)
+[//]: # (- [ ] Use pull requests to merge finished features into Main branch)
 
 [//]: # ()
 [//]: # (- [ ] Conduct code reviews)
@@ -88,7 +88,7 @@ Group members:
 
 [//]: # ()
 [//]: # ()
-[//]: # (You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main&#40;&#41;`.)
+[//]: # (You will find HelloWorld in `src/Main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.Main&#40;&#41;`.)
 
 [//]: # ()
 [//]: # (This should run the program and print on your console.)
@@ -102,7 +102,7 @@ Group members:
 
 [//]: # ()
 [//]: # ()
-[//]: # (Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` &#40;you can keep creating more subdirectories as per your project requirement&#41;. Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.)
+[//]: # (Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/Main/java` &#40;you can keep creating more subdirectories as per your project requirement&#41;. Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.)
 
 [//]: # ()
 [//]: # ()

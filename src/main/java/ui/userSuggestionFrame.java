@@ -1,6 +1,6 @@
 package ui;
 import controllers.FoodSuggestionsController;
-import view.FoodSuggestionViewer;
+import presenters.FoodSuggestionViewer;
 
 import javax.swing.*;
 import java.awt.*;
