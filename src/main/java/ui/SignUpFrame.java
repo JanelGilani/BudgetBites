@@ -1,33 +1,21 @@
 package ui;
 
-import entities.Budget;
-import entities.PastOrders;
-import entities.User;
-import gateways.MainMongoDB;
-import usecases.LoginDAI;
-import usecases.login.LogicCode;
+import controllers.UserRegisterController;
+import presenters.UserRegisterPresenter;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import static java.lang.Double.parseDouble;
-//import Use_Cases.Login.LogicCode;
 
 public class SignUpFrame extends JFrame{
-
-    private final LoginDAI loginDAI = new MainMongoDB();
-
-    private final LogicCode logicCode = new LogicCode();
-
     private static JLabel firstNameLabel;
     private static JTextField firstNameText;
     private static JLabel lastNameLabel;
     private static JTextField lastNameText;
     private static JLabel budgetLabel;
     private static JTextField budgetText;
-
-
     private static JLabel userLabel;
     private static JTextField userText;
     private static JLabel passwordLabel;
@@ -38,7 +26,12 @@ public class SignUpFrame extends JFrame{
     private static JLabel successSignUp;
     private static JButton backButton;
 
+    private UserRegisterPresenter userRegisterPresenter;
+    private UserRegisterController userRegisterController;
+
     public SignUpFrame() {
+        userRegisterController = new UserRegisterController();
+        userRegisterPresenter = new SignUpResponseLabel(userRegisterController);
 
         //sign-up frame panel
         JPanel panel = new JPanel();
@@ -104,32 +97,19 @@ public class SignUpFrame extends JFrame{
         signUpButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-//                exit();
-//                RestaurantListFrame userPreferenceFrame = new RestaurantListFrame();
                 String firstName = firstNameText.getText();
                 String lastName = lastNameText.getText();
-                String budget = budgetText.getText();
+                double budget = parseDouble(budgetText.getText());
                 String user = userText.getText();
                 String password = passwordText.getText();
                 String confirmPassword = confirmPasswordText.getText();
 
-                User signupUser = new User(firstName, lastName, user, password, new PastOrders(), new Budget(parseDouble(budget)));
+                userRegisterPresenter.setResponse(user,password,confirmPassword);
 
-                if (logicCode.signUpCheck(user, password, confirmPassword) == 3){
-                    // saves the user
-                    loginDAI.saveUser(signupUser);
-                    // prints a success message to the user
-//                    System.out.println("Success");
-                    // will go to next page
+                if (userRegisterPresenter.getMessage().equals("Success")) {
                     exit();
+                    userRegisterController.register(firstName, lastName, budget, user, password);
                     RestaurantListFrame restaurantListFrame = new RestaurantListFrame(user);
-
-                } else if (logicCode.signUpCheck(user, password, confirmPassword) == 2) {
-                    successSignUp.setText("Password is not strong enough");
-                } else if (logicCode.signUpCheck(user, password, confirmPassword) == 1) {
-                    successSignUp.setText("Passwords do not match");
-                }else if (logicCode.signUpCheck(user, password, confirmPassword) == 0) {
-                    successSignUp.setText("Username already exists.");
                 }
 
             }
@@ -150,14 +130,13 @@ public class SignUpFrame extends JFrame{
         panel.add(backButton);
 
 
-        // Login label to return message upon Login attempt
-        successSignUp = new JLabel();
-        successSignUp.setBounds(10, 270, 10000, 55);
-        panel.add(successSignUp);
-
-
+        panel.add((JLabel) userRegisterPresenter);
         this.setVisible(true);
 
+    }
+
+    public static void main(String[] args) {
+        new SignUpFrame();
     }
 
     private void exit() {

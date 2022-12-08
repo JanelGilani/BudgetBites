@@ -1,5 +1,8 @@
 //Swami Shriji
 package usecases.login;
+import entities.Budget;
+import entities.PastOrders;
+import entities.User;
 import usecases.LoginDAI;
 import gateways.MainMongoDB;
 
@@ -57,11 +60,11 @@ public class LogicCode {
     }
 
     /**
-     * signs up and saves the user data if the user doesn't exist, password and confirm password are the same and the password is strong.
+     * checks if the user doesn't exist, if password and confirm password are the same, and if the password is strong.
      * @param username inputted by the user
      * @param password inputted by the user
      * @param confirmPassword inputted by the user
-     * @return boolean
+     * @return int
      */
     public int signUpCheck(String username, String password, String confirmPassword) {
         if (loginDAI.userExists(username)) {
@@ -69,7 +72,6 @@ public class LogicCode {
         } else {
             if (samePassword(password, confirmPassword)) {
                 if (strongPassword(password)) {
-                    // all requirements match for user to save inputted data
                     return 3;
                 } else {
                     // tell the user that this password isn't strong
@@ -80,5 +82,17 @@ public class LogicCode {
                 return 1;
             }
         }
+    }
+    /**
+     * Creates the user and adds them to the database
+     * @param firstName inputted by the user
+     * @param lastName inputted by the user
+     * @param username inputted by the user
+     * @param password inputted by the user
+     * @param budget inputted by the user
+     */
+    public void saveUser(String firstName, String lastName, String username, String password, double budget){
+        User signupUser = new User(firstName, lastName, username,password, new PastOrders(), new Budget(budget));
+        loginDAI.saveUser(signupUser);
     }
 }

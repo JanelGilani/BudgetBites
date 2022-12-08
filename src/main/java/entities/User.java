@@ -20,7 +20,6 @@ public class User {
         this.password = password;
         this.budget = budget;
         this.pastOrders = pastOrders;
-//        this.ItemCart = new ItemCart();
     }
 
     public String getFirstName () {
