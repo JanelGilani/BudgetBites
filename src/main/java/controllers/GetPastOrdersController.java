@@ -4,7 +4,7 @@ import usecases.getpastorders.GetPastOrdersInteractor;
 
 import javax.swing.*;
 
-//@SuppressWarnings({"ALL", "unused"})
+
 
 public class GetPastOrdersController {
     private final GetPastOrdersInteractor getPastOrdersInteractor;

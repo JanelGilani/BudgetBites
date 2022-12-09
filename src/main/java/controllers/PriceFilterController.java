@@ -6,7 +6,6 @@ import usecases.filtering.pricefiltering.PriceFilterInteractor;
 
 import java.util.ArrayList;
 
-//@SuppressWarnings({"ALL", "unused"})
 public class PriceFilterController {
     private final PriceFilterInteractor priceFilterInteractor;
 

@@ -1,4 +1,3 @@
-//Swami Shriji
 package usecases.signup;
 import entities.Budget;
 import entities.PastOrders;
@@ -21,11 +20,10 @@ public class UserSignUpInteractor {
      * @return boolean
      */
     public boolean strongPassword (String password){
-        int n = password.length();
         boolean hasUpper = false;
         boolean hasDigit = false;
         boolean specialChar = false;
-        Set<Character> set = new HashSet<Character>(
+        Set<Character> set = new HashSet<>(
                 Arrays.asList('!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '.', '_'));
         for (char i : password.toCharArray())
         {
@@ -38,11 +36,7 @@ public class UserSignUpInteractor {
         }
 
         // checks the strength of the password by if the password has an uppercase, digit, special character and password length
-        if (hasUpper && hasDigit && specialChar && (password.length() >= 10)) {
-            return true;
-        }else {
-            return false;
-        }
+        return hasUpper && hasDigit && specialChar && (password.length() >= 10);
     }
 
     /**
@@ -52,11 +46,7 @@ public class UserSignUpInteractor {
      * @return boolean
      */
     public boolean samePassword(String password, String confirmPassword){
-        if (password.equals(confirmPassword)){
-            return true;
-        } else{
-            return false;
-        }
+        return password.equals(confirmPassword);
     }
 
     /**

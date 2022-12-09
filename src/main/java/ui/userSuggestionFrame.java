@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-
+@SuppressWarnings({"ALL", "unused"})
 public class userSuggestionFrame extends JFrame implements FoodSuggestionViewer, ActionListener {
 
     private static JButton button;

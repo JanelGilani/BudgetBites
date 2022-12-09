@@ -10,27 +10,27 @@ import java.util.ArrayList;
 
 
 public class GetPastOrdersInteractor {
-    private PastOrders pastOrders;
-    private final PastOrdersDAI pastOrdersDAI = new MainMongoDB();
+    private final PastOrders pastOrders;
 
     public GetPastOrdersInteractor(String username) {
+        PastOrdersDAI pastOrdersDAI = new MainMongoDB();
         this.pastOrders = pastOrdersDAI.findPastOrders(username);
     }
 
     public ArrayList<String> getPastOrder() {
         ArrayList<String> result = new ArrayList<>();
-        String eachPastOrder = "";
+        StringBuilder eachPastOrder = new StringBuilder();
         for (Order currOrder : pastOrders.getPastOrdersMap().values()) {
-            eachPastOrder += currOrder.dateOrdered.substring(5,10);
-            eachPastOrder += "   ";
-            eachPastOrder += currOrder.restaurantName;
-            eachPastOrder += "   ";
+            eachPastOrder.append(currOrder.dateOrdered, 5, 10);
+            eachPastOrder.append("   ");
+            eachPastOrder.append(currOrder.restaurantName);
+            eachPastOrder.append("   ");
 
             for(FoodItem food : currOrder.getOrderedItems()) {
                 result.add(eachPastOrder + food.getItemName());
             }
 
-            eachPastOrder = "";
+            eachPastOrder = new StringBuilder();
         }
 
         return result;

@@ -6,8 +6,8 @@ import entities.ItemCart;
 import java.util.ArrayList;
 
 public class ModifyItemCartInteractor {
-    private ItemCart itemCart;
-    private ArrayList<FoodItem> menu;
+    private final ItemCart itemCart;
+    private final ArrayList<FoodItem> menu;
 
 
     /**

@@ -8,7 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+@SuppressWarnings({"ALL", "unused"})
 public class UserPageFrame extends JFrame{
 
     private final BudgetDAI budgetDAI = new MainMongoDB();

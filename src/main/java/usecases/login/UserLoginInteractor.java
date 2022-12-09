@@ -27,7 +27,4 @@ public class UserLoginInteractor {
         }
     }
 
-//    public static void Main(String[] args) {
-//        UserLoginInteractor.loginCheck("aryangoel24", "goelaryan25");
-//    }
 }

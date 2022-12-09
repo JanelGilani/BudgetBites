@@ -11,7 +11,7 @@ import usecases.budgeting.BudgetingInteractor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class ItemCartFrame extends JFrame implements ActionListener {
     private final BudgetDAI budgetDAI = new MainMongoDB();
     private final BudgetingInteractor budgetingInteractor = new BudgetingInteractor();

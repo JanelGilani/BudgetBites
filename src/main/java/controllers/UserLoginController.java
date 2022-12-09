@@ -1,7 +1,6 @@
 package controllers;
 
 import usecases.login.UserLoginInteractor;
-//@SuppressWarnings({"ALL", "unused"})
 
 public class UserLoginController {
     private final UserLoginInteractor userLoginInteractor;

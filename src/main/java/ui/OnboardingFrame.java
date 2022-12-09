@@ -4,7 +4,7 @@ package ui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class OnboardingFrame extends JFrame{
 
     private static JLabel userLabel;

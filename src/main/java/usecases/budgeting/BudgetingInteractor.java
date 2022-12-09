@@ -19,11 +19,7 @@ public class BudgetingInteractor {
      * @return boolean
      */
     public static boolean newBudgetConfirm(double newMonthlyBudget, double confirmNewMonthlyBudget) {
-        if (newMonthlyBudget == confirmNewMonthlyBudget) {
-            return true;
-        }
-        else
-            return false;
+        return newMonthlyBudget == confirmNewMonthlyBudget;
     }
     /**
      * * The adjustMonthlyBudget method allows the user to voluntarily update their monthly budget whenever they would
@@ -58,7 +54,7 @@ public class BudgetingInteractor {
     /**
      * orderedMealsBudget method automatically decreases the user's current budget when an order is placed
      *
-     * @param user user of the application
+     * @param budget budget of the user of the application
      * @param orders user's past order
      */
 

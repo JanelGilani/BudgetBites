@@ -7,7 +7,7 @@ import presenters.GetPastOrdersPresenter;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class PastOrdersFrame extends JFrame {
     private GetPastOrdersPresenter getPastOrdersPresenter;
     private GetPastOrdersController getPastOrdersController;

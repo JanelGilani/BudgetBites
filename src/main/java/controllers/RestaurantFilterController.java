@@ -6,7 +6,6 @@ import usecases.filtering.restaurantfiltering.RestaurantFilterInteractor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-//@SuppressWarnings({"ALL", "unused"})
 public class RestaurantFilterController {
 
     private final RestaurantFilterDAI restaurantFilterDAI = new MainMongoDB();

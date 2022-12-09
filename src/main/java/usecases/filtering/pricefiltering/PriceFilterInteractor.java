@@ -7,8 +7,8 @@ import java.util.HashMap;
 
 public class PriceFilterInteractor {
 
-    private HashMap<String, ArrayList<String>> filter;
-    private ArrayList<String> foods;
+    private final HashMap<String, ArrayList<String>> filter;
+    private final ArrayList<String> foods;
 
     /**
      * Uses the selection from the restaurantFiltering of specific restaurant
@@ -19,12 +19,12 @@ public class PriceFilterInteractor {
     public PriceFilterInteractor(ArrayList<FoodItem> menu) {
         filter = new HashMap<>();
         foods = new ArrayList<>();
-        filter.put("$0 to $5", new ArrayList<String>());
-        filter.put("$5 to $10", new ArrayList<String>());
-        filter.put("$10 to $15", new ArrayList<String>());
-        filter.put("$15 to $20", new ArrayList<String>());
-        filter.put("$20 to $25", new ArrayList<String>());
-        filter.put("$25+", new ArrayList<String>());
+        filter.put("$0 to $5", new ArrayList<>());
+        filter.put("$5 to $10", new ArrayList<>());
+        filter.put("$10 to $15", new ArrayList<>());
+        filter.put("$15 to $20", new ArrayList<>());
+        filter.put("$20 to $25", new ArrayList<>());
+        filter.put("$25+", new ArrayList<>());
 
         for (FoodItem food : menu) {
             String name = food.getItemName() + " - Price: $" + food.getItemCost();

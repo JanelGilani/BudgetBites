@@ -6,7 +6,7 @@ import usecases.login.UserLoginInteractor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class LoginFrame extends JFrame implements ActionListener{
 
     private final UserLoginInteractor userLoginInteractor = new UserLoginInteractor();

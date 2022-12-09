@@ -4,11 +4,11 @@ import java.util.HashMap;
 import java.util.Objects;
 
 public class RestaurantFilterInteractor {
-    private HashMap<String, ArrayList<String>> cuisineFilter;
+    private final HashMap<String, ArrayList<String>> cuisineFilter;
 
-    private HashMap<String, ArrayList<String>> foodTypeFilter;
+    private final HashMap<String, ArrayList<String>> foodTypeFilter;
 
-    private HashMap<String, ArrayList<String>> priceFilter;
+    private final HashMap<String, ArrayList<String>> priceFilter;
 
     public RestaurantFilterInteractor(HashMap<String, ArrayList<String>> cuisineFilter,
                                       HashMap<String, ArrayList<String>> foodTypeFilter,

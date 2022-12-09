@@ -10,7 +10,7 @@ import java.util.*;
 
 public class FoodSuggestionsInteractor {
 
-    private SuggestionToUserDAI suggestionToUserDAI;
+    private final SuggestionToUserDAI suggestionToUserDAI;
     private FoodSuggestionsPresenter foodSuggestionsPresenter;
 
     public FoodSuggestionsInteractor(SuggestionToUserDAI mongoDAI) {
@@ -56,14 +56,14 @@ public class FoodSuggestionsInteractor {
         HashMap<FoodItem, Integer> countItems = new HashMap<>();
         HashMap<String, FoodItem> visitedItem = new HashMap<>();
         ArrayList<String> allOrderDateTime = new ArrayList<>(pastOrderMap.keySet());
-        for (int i = 0; i < allOrderDateTime.size(); i++)
-            for (FoodItem orderedItem : allPastOrder.getOrderedItemsByDate(allOrderDateTime.get(i))) {
+        for (String s : allOrderDateTime)
+            for (FoodItem orderedItem : allPastOrder.getOrderedItemsByDate(s)) {
                 if (!visitedItem.containsKey(orderedItem.getItemName())) {
                     countItems.put(orderedItem, 1);
                     visitedItem.put(orderedItem.getItemName(), orderedItem);
                 } else {
                     countItems.replace(visitedItem.get(orderedItem.getItemName()),
-                            countItems.get(visitedItem.get(orderedItem.getItemName()))+ 1);
+                            countItems.get(visitedItem.get(orderedItem.getItemName())) + 1);
                 }
             }
         return countItems;
@@ -71,7 +71,7 @@ public class FoodSuggestionsInteractor {
 
     /**
      * Sort in decreasing order based on the number of times a FoodItem was ordered.
-     * @param populatedCountItem
+     * @param populatedCountItem contains the count of the items
      * @return Linked Hashmap which is sorted of the FoodItem objects
      */
     public LinkedHashMap<FoodItem, Integer> sortingHashMap(HashMap<FoodItem, Integer> populatedCountItem) {

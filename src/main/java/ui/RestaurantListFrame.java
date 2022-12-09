@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class RestaurantListFrame extends JFrame implements ActionListener {
     private static JLabel userPriceLabel;
     private static JComboBox userPriceText;
