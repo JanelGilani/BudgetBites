@@ -45,6 +45,7 @@ We are the coders behind the planning, development, and testing of the BudgetBit
 Group members:
 - Akshayan Jeyakumar
 - Aryan Goel
+- Aviral Bhardwaj
 - Darpan Mishra
 - Janel Gilani
 - Nathan Cai
