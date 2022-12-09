@@ -130,6 +130,12 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFil
         return null;
     }
 
+    public Budget getUserBudget (String username) {
+        User user  = userRepo.find(eq("username", username)).first();
+        assert user !=  null;
+        return user.getBudget();
+    }
+
     // Find attribute by Restaurant
 
     public String getRestaurantAttribute (String restaurantName, String attribute) {
