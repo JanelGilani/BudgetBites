@@ -19,7 +19,24 @@ Above those features we used MongoDB and Java Swing to create a seamless graphic
 - [ ] Run the Main file, and new JFrame will be prompted. Enjoy the UI.
 
 ## Final Pull Requests Document
- - [] https://docs.google.com/document/d/1OUL4p8HVuaO4_BQnOO3YV_1Di-jaswLo1D54788NKF4/view
+- [ ] https://docs.google.com/document/d/1OUL4p8HVuaO4_BQnOO3YV_1Di-jaswLo1D54788NKF4/view
+
+## Changes after Milestone 4
+- Added price range values in price preferences for filtering food items.
+- Added back buttons and made every frame interconnected for better navigation.
+- Made all pull requests with consistent titles and detailed descriptions of the modifications made.
+- Packaged all the code using ‘by CA Layer’ packaging strategy.
+- Extensively tested all functionalities, including corner (happy and unhappy flows) cases.
+- Followed the suggested Java naming style where all packages are in lowercase (e.g. entities), all classes and tests have capitalized first letters (e.g. PriceFilterInteractor), and all methods follow camel case (e.g. addFood).
+- Included explanatory Javadocs for every functionality and test case. Also added comments in non-trivial places for better readability.
+- Thoroughly used Github features such as pull requests, actions, branches and issues, while also learning and incorporating new features such as projects and discussions.
+- Identified and removed all code smells, addressed all IntelliJ warnings, and removed every redundant file.
+- Used design patterns such as Iterator, Simple Factory, and Builder based on feedback received.
+- Implemented Model-View-Controller architecture pattern in order to adhere to clean architecture and SOLID principles.
+- Apart from user login, use sign-up and restaurant filtering in Milestone 4, we implemented more functionality such as price-filtering food items in a specific restaurant, budgeting (including viewing and modifying budget), item cart (and making orders), viewing past orders, getting customised food suggestions.
+- Implemented Data Access Interfaces to allow use cases to interact with the database through dependency inversion to adhere with SOLID principles
+
+
 
 ## About Us
 
