@@ -15,10 +15,9 @@ import java.util.List;
 public class FoodSuggestionsInteractorTest {
 
     private final SuggestionToUserDAI suggestionToUserDatabase = new MainMongoDB();
-    private FoodSuggestionsInteractor foodSuggestionsInteractorInteractor = new FoodSuggestionsInteractor(suggestionToUserDatabase);
+    private final FoodSuggestionsInteractor foodSuggestionsInteractorInteractor = new FoodSuggestionsInteractor(suggestionToUserDatabase);
 
-    private String testUser = "aryangoel24";
-    private String testUser2 = "darpanmi";
+    private final String testUser = "aryangoel24";
 
     @Test
     public void testSortingHashMapMongo() {
@@ -26,7 +25,7 @@ public class FoodSuggestionsInteractorTest {
         assert testOrder != null;
         final HashMap<String, Order> pastOrdersMap = testOrder.getPastOrdersMap();
         LinkedHashMap<FoodItem, Integer> testSortingHashMap = foodSuggestionsInteractorInteractor.sortingHashMap(foodSuggestionsInteractorInteractor.itemCount(testOrder, pastOrdersMap));
-        List<Integer> expectedValues = new ArrayList<Integer>(testSortingHashMap.values());
+        List<Integer> expectedValues = new ArrayList<>(testSortingHashMap.values());
         List<Integer> expectedSortedListValue = new ArrayList<>();
         expectedSortedListValue.add(3);
         expectedSortedListValue.add(2);
@@ -74,6 +73,7 @@ public class FoodSuggestionsInteractorTest {
     @Test
     public void testGetSuggestionToUserNoItem() {
         ArrayList<String> expectedList = new ArrayList<>();
+        String testUser2 = "darpanmi";
         expectedList.add("Oops " + testUser2 + " it looks like you don't have enough past orders");
         expectedList.add("for me to suggest you your favourite food items");
         ArrayList<String> actualList = foodSuggestionsInteractorInteractor.getSuggestionToUser(testUser2);

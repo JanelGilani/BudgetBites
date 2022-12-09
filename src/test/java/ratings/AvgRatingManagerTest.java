@@ -4,7 +4,7 @@ import usecases.ratings.AvgRatingManager;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-public class avgRatingManagerTest {
+public class AvgRatingManagerTest {
 
     @Test
     public void avgRatingManagerAverage(){

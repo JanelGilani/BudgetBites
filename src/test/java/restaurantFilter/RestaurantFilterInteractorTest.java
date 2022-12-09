@@ -11,32 +11,32 @@ import java.util.List;
 
 public class RestaurantFilterInteractorTest {
 
-    private ArrayList<String> allRestaurants = new ArrayList<>(Arrays.asList(
+    private final ArrayList<String> allRestaurants = new ArrayList<>(Arrays.asList(
             "Italian Breakfast Cheap", "Chinese Lunch Cheap", "Thai Dinner Expensive", "French Lunch Intermediate",
             "Arabic Snack Cheap", "Indian Dinner Intermediate", "Middle-East Lunch Expensive", "Chinese Snack Expensive",
             "Mexican Breakfast Intermediate"));
 
     public static RestaurantFilterInteractor generateFilterManager() {
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
-        cuisineFilter.put("Italian",new ArrayList<String>());
-        cuisineFilter.put("Chinese",new ArrayList<String>());
-        cuisineFilter.put("Thai",new ArrayList<String>());
-        cuisineFilter.put("French",new ArrayList<String>());
-        cuisineFilter.put("Arabic",new ArrayList<String>());
-        cuisineFilter.put("Mexican",new ArrayList<String>());
-        cuisineFilter.put("Indian",new ArrayList<String>());
-        cuisineFilter.put("Middle-East",new ArrayList<String>());
+        cuisineFilter.put("Italian",new ArrayList<>());
+        cuisineFilter.put("Chinese",new ArrayList<>());
+        cuisineFilter.put("Thai",new ArrayList<>());
+        cuisineFilter.put("French",new ArrayList<>());
+        cuisineFilter.put("Arabic",new ArrayList<>());
+        cuisineFilter.put("Mexican",new ArrayList<>());
+        cuisineFilter.put("Indian",new ArrayList<>());
+        cuisineFilter.put("Middle-East",new ArrayList<>());
 
         HashMap<String, ArrayList<String>> foodTypeFilter = new HashMap<>();
-        foodTypeFilter.put("Breakfast",new ArrayList<String>());
-        foodTypeFilter.put("Lunch",new ArrayList<String>());
-        foodTypeFilter.put("Dinner",new ArrayList<String>());
-        foodTypeFilter.put("Snack",new ArrayList<String>());
+        foodTypeFilter.put("Breakfast",new ArrayList<>());
+        foodTypeFilter.put("Lunch",new ArrayList<>());
+        foodTypeFilter.put("Dinner",new ArrayList<>());
+        foodTypeFilter.put("Snack",new ArrayList<>());
 
         HashMap<String, ArrayList<String>> priceFilter = new HashMap<>();
-        priceFilter.put("Cheap",new ArrayList<String>());
-        priceFilter.put("Intermediate",new ArrayList<String>());
-        priceFilter.put("Expensive",new ArrayList<String>());
+        priceFilter.put("Cheap",new ArrayList<>());
+        priceFilter.put("Intermediate",new ArrayList<>());
+        priceFilter.put("Expensive",new ArrayList<>());
 
         String restaurant = "Italian Breakfast Cheap";
         cuisineFilter.get("Italian").add(restaurant);
@@ -88,7 +88,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerOneCuisinePreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 Arrays.asList("Chinese Lunch Cheap","Chinese Snack Expensive"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("No Preference", "Chinese", "No Preference", allRestaurants));
@@ -96,7 +96,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerOnePricePreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 Arrays.asList("Italian Breakfast Cheap","Chinese Lunch Cheap", "Arabic Snack Cheap"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("Cheap", "No Preference", "No Preference", allRestaurants));
@@ -104,7 +104,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerOneFoodTypePreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 Arrays.asList("Chinese Lunch Cheap", "French Lunch Intermediate", "Middle-East Lunch Expensive"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("No Preference", "No Preference", "Lunch", allRestaurants));
@@ -112,7 +112,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerPriceFoodTypePreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 List.of("Mexican Breakfast Intermediate"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("Intermediate", "No Preference", "Breakfast", allRestaurants));
@@ -120,7 +120,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerPriceCuisinePreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 List.of("Thai Dinner Expensive"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("Expensive", "Thai", "No Preference", allRestaurants));
@@ -128,7 +128,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerFoodTypeCuisinePreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 List.of("French Lunch Intermediate"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("No Preference", "French", "Lunch", allRestaurants));
@@ -136,7 +136,7 @@ public class RestaurantFilterInteractorTest {
 
     @Test
     public void filterManagerAllPreference() {
-        ArrayList<String> obj = new ArrayList<String>(
+        ArrayList<String> obj = new ArrayList<>(
                 List.of("Indian Dinner Intermediate"));
         RestaurantFilterInteractor restaurantFilterInteractor = RestaurantFilterInteractorTest.generateFilterManager();
         Assertions.assertEquals(obj, restaurantFilterInteractor.filter("Intermediate", "Indian", "Dinner", allRestaurants));

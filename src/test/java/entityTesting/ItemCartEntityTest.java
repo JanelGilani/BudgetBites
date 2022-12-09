@@ -40,7 +40,7 @@ public class ItemCartEntityTest {
 
     @Test
     public void getCurrentOrderTest () {
-        ArrayList<FoodItem> cart = new ArrayList<FoodItem>(Arrays.asList(f1, f2));
+        ArrayList<FoodItem> cart = new ArrayList<>(Arrays.asList(f1, f2));
 
         Assertions.assertEquals(cart, i1.getCurrentOrder());
     }

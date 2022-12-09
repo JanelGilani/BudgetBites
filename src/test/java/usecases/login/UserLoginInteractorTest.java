@@ -1,4 +1,3 @@
-// Swami Shriji
 package usecases.login;
 
 import org.junit.Test;
