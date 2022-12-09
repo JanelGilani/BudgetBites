@@ -82,7 +82,7 @@ public class PastOrders {
 
     /**
      * Adding the order into pastOrder map
-     * @param order order of the user 
+     * @param order order of the user
      */
     public void addOrder (Order order) {
         this.pastOrdersMap.put(order.getDateOrdered(), order);
