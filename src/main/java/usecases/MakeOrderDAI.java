@@ -2,8 +2,8 @@ package usecases;
 
 import entities.Order;
 import entities.PastOrders;
-
+@SuppressWarnings({"ALL", "unused"})
 public interface MakeOrderDAI {
-    public PastOrders findPastOrders (String username);
-    public boolean addToPastOrders (String username, Order order);
+    PastOrders findPastOrders (String username);
+    boolean addToPastOrders (String username, Order order);
 }

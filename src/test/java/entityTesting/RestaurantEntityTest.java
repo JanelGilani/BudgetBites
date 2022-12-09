@@ -7,11 +7,10 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 
-public class restaurantEntityTest {
+public class RestaurantEntityTest {
 
     private Restaurant restaurant;
     private ArrayList<FoodItem> menu;

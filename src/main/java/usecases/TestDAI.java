@@ -1,7 +1,7 @@
 package usecases;
 import entities.*;
 import java.util.ArrayList;
-
+@SuppressWarnings({"ALL", "unused"})
 public interface TestDAI {
     public void saveUser(User user);
 

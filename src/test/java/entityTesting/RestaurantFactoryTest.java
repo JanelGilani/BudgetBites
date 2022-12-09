@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-
+@SuppressWarnings({"ALL"})
 public class RestaurantFactoryTest {
     private final String restaurantName = "Food from East";
     private final String cuisine = "Middle-East";

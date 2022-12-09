@@ -3,16 +3,14 @@ package entityTesting;
 import entities.FoodItem;
 import entities.Order;
 import entities.PastOrders;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-
+@SuppressWarnings({"ALL"})
 public class PastOrdersEntityTest {
 
     // Test cases for the getter functionalities of the Order Entity
