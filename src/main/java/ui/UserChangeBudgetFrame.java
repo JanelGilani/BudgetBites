@@ -1,8 +1,7 @@
 package ui;
 
-import gateways.MainMongoDB;
-import usecases.BudgetDAI;
-import entities.Budget;
+import presenters.BudgetingPresenter;
+
 import usecases.budgeting.BudgetingInteractor;
 
 import javax.swing.*;
@@ -12,7 +11,6 @@ import java.awt.event.ActionListener;
 @SuppressWarnings({"ALL", "unused"})
 public class UserChangeBudgetFrame extends JFrame{
 
-    private final BudgetDAI budgetDAI = new MainMongoDB();
 
     private final BudgetingInteractor budgetingInteractor = new BudgetingInteractor();
     private static JLabel enterUserNameLabel;
@@ -26,7 +24,10 @@ public class UserChangeBudgetFrame extends JFrame{
     private static JLabel successChange;
     private String currentUser;
 
+    private BudgetingPresenter budgetingPresenter;
+
     public UserChangeBudgetFrame(String currentUser) {
+        budgetingPresenter = new BudgetingPresenter();
 
         JPanel panel = new JPanel();
         this.currentUser = currentUser;
@@ -72,19 +73,11 @@ public class UserChangeBudgetFrame extends JFrame{
                 double budget = Double.parseDouble(budgetText.getText());
                 double confirmBudget = Double.parseDouble(confirmBudgetText.getText());
 
-                if (budgetDAI.userExists(userName)) {
-                        if (BudgetingInteractor.newBudgetConfirm(budget, confirmBudget)) {
-                            Budget userBudget = (Budget) budgetDAI.getUserAttribute(userName, "budget");
-                            BudgetingInteractor.adjustMonthlyBudget(userBudget, budget);
-                            budgetDAI.updateAttributeByUsername(userName, "budget", userBudget);
-                            successChange.setText("Budget Updated");
-                            exit();
-                            UserPageFrame userPageFrame = new UserPageFrame(currentUser);
-                        } else {
-                            successChange.setText("Invalid Inputs, please enter values again.");
-                        }
-                    } else
-                        successChange.setText("User does not exist");
+                budgetingPresenter.setResponse(budget, confirmBudget, userName);
+                if (budgetingPresenter.getMessage().equals("Success")) {
+                    exit();
+                    new UserPageFrame(userName);
+                }
                 }
             });
 
@@ -101,9 +94,7 @@ public class UserChangeBudgetFrame extends JFrame{
         });
         panel.add(backButton);
 
-        successChange = new JLabel();
-        successChange.setBounds(10, 180, 300, 25);
-        panel.add(successChange);
+        panel.add((JLabel) budgetingPresenter);
 
 
         this.setVisible(true);

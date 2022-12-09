@@ -174,12 +174,21 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFil
         return null;
     }
 
+
+    public Budget getUserBudget (String username) {
+        User user  = userRepo.find(eq("username", username)).first();
+        assert user !=  null;
+        return user.getBudget();
+    }
+
+
     /**
      * Finds and returns a restaurant instance attribute from the database, based on the restaurant name and attribute provided
      * @param restaurantName: The name of the restaurant for which the attribute must be found
      * @param attribute: The name of the attribute that is required (restaurantName, cuisine, priceRange, foodType, avgRating)
      * @return Returns the attribute of the restaurant as a String
      */
+
     public String getRestaurantAttribute (String restaurantName, String attribute) {
         Restaurant restaurant = restaurantRepo.find(eq("restaurantName", restaurantName)).first();
         assert restaurant != null;

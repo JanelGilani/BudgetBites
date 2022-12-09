@@ -92,7 +92,7 @@ public class ItemCartFrame extends JFrame implements ActionListener {
             this.validate();
         } else if (obj == makeOrderButton) {
             modifyItemCartController.makeOrder(restaurantName, currentUser);
-            Budget userBudget = (Budget) budgetDAI.getUserAttribute(currentUser, "budget");
+            Budget userBudget = budgetDAI.getUserBudget(currentUser);
             PastOrders orders = (PastOrders) budgetDAI.findPastOrders(currentUser);
             BudgetingInteractor.orderedMealsBudget(userBudget, orders);
             budgetDAI.updateAttributeByUsername(currentUser, "budget", userBudget);
