@@ -1,15 +1,15 @@
 package ui;
 
-import presenters.LoginPresenter;
-import usecases.login.Login;
+import presenters.UserLoginPresenter;
+import usecases.login.UserLoginInteractor;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class LoginFrame extends JFrame implements ActionListener{
 
-    private final Login login = new Login();
+    private final UserLoginInteractor userLoginInteractor = new UserLoginInteractor();
 
     private static JLabel userLabel;
     private static JTextField userText;
@@ -19,7 +19,7 @@ public class LoginFrame extends JFrame implements ActionListener{
     private static JButton backButton;
     private static JLabel successLogin;
 
-    private LoginPresenter loginPresenter;
+    private UserLoginPresenter userLoginPresenter;
 
     public LoginFrame() {
 
@@ -51,7 +51,7 @@ public class LoginFrame extends JFrame implements ActionListener{
         panel.add(passwordText);
 
 
-        // Login button
+        // UserLoginInteractor button
         loginButton = new JButton("Login");
         loginButton.setBounds(10, 80, 80, 25);
         loginButton.addActionListener(this);
@@ -68,9 +68,9 @@ public class LoginFrame extends JFrame implements ActionListener{
         });
         panel.add(backButton);
 
-        // Login label to return message upon Login attempt
-        loginPresenter = new LoginResultLabel();
-        panel.add((JLabel) loginPresenter);
+        // UserLoginInteractor label to return message upon Login attempt
+        userLoginPresenter = new UserLoginPresenter();
+        panel.add((JLabel) userLoginPresenter);
 
 
         this.setVisible(true);
@@ -88,9 +88,9 @@ public class LoginFrame extends JFrame implements ActionListener{
         if (obj == loginButton){
             String user = userText.getText();
             String password = passwordText.getText();
-            loginPresenter.setResponse(user,password);
+            userLoginPresenter.setResponse(user,password);
 
-            if (loginPresenter.getMessage().equals("Success")) {
+            if (userLoginPresenter.getMessage().equals("Success")) {
                 exit();
                 RestaurantListFrame restaurantListFrame = new RestaurantListFrame(user);
             }

@@ -2,16 +2,16 @@ package ui;
 
 import controllers.FoodSuggestionsController;
 import gateways.MainMongoDB;
-import presenters.FoodSuggestionPresenter;
-import presenters.RestaurantFilteringPresenter;
+import presenters.FoodSuggestionsPresenter;
+import presenters.RestaurantFilterPresenter;
 import usecases.SuggestionToUserDAI;
-import usecases.foodsuggestions.SuggestionToUser;
+import usecases.foodsuggestions.FoodSuggestionsInteractor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class RestaurantListFrame extends JFrame implements ActionListener {
     private static JLabel userPriceLabel;
     private static JComboBox userPriceText;
@@ -24,7 +24,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
 
     private static JButton userSuggestion;
 
-    private RestaurantFilteringPresenter restaurantPresenter;
+    private RestaurantFilterPresenter restaurantPresenter;
 
     private static JButton pickRestaurant;
     private static JPanel bottom;
@@ -91,7 +91,7 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
         });
         panel.add(profileButton);
 
-        restaurantPresenter = new RestaurantsPanel();
+        restaurantPresenter = new RestaurantFilterPresenter();
         restaurantPresenter.allRestaurants();
         this.add((JPanel) restaurantPresenter);
 
@@ -108,13 +108,13 @@ public class RestaurantListFrame extends JFrame implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 exit();
                 SuggestionToUserDAI dataBase = new MainMongoDB();
-                FoodSuggestionPresenter presenter = new FoodSuggestionPresenter();
-                SuggestionToUser suggestionToUser = new SuggestionToUser(dataBase);
+                FoodSuggestionsPresenter presenter = new FoodSuggestionsPresenter();
+                FoodSuggestionsInteractor foodSuggestionsInteractor = new FoodSuggestionsInteractor(dataBase);
                 FoodSuggestionsController controller = new FoodSuggestionsController();
                 userSuggestionFrame test = new userSuggestionFrame(currentUser);
 
-                controller.setUseCase(suggestionToUser);
-                suggestionToUser.setPresenter(presenter);
+                controller.setUseCase(foodSuggestionsInteractor);
+                foodSuggestionsInteractor.setPresenter(presenter);
                 presenter.setViewer(test);
                 test.setFoodSuggestionsController(controller);
                 controller.callUseCase(currentUser);

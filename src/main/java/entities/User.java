@@ -8,8 +8,6 @@ public class User {
     public Budget budget;
     public PastOrders pastOrders;
 
-    public ItemCart itemCart;
-    
     public User () {
     }
 

@@ -2,35 +2,34 @@ package controllers;
 
 import usecases.RestaurantFilterDAI;
 import gateways.MainMongoDB;
-import usecases.filtering.restaurantfiltering.RestaurantFilter;
+import usecases.filtering.restaurantfiltering.RestaurantFilterInteractor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
 public class RestaurantFilterController {
 
     private final RestaurantFilterDAI restaurantFilterDAI = new MainMongoDB();
-    private RestaurantFilter restaurantFilters;
+    private final RestaurantFilterInteractor restaurantFiltersInteractor;
 
     public RestaurantFilterController() {
         ArrayList<String> restaurants = restaurantFilterDAI.getAllRestaurants();
         HashMap<String, ArrayList<String>> cuisineFilter = new HashMap<>();
-        cuisineFilter.put("Italian",new ArrayList<String>());
-        cuisineFilter.put("Chinese",new ArrayList<String>());
-        cuisineFilter.put("Mexican",new ArrayList<String>());
-        cuisineFilter.put("Indian",new ArrayList<String>());
-        cuisineFilter.put("Middle-East",new ArrayList<String>());
+        cuisineFilter.put("Italian",new ArrayList<>());
+        cuisineFilter.put("Chinese",new ArrayList<>());
+        cuisineFilter.put("Mexican",new ArrayList<>());
+        cuisineFilter.put("Indian",new ArrayList<>());
+        cuisineFilter.put("Middle-East",new ArrayList<>());
 
         HashMap<String, ArrayList<String>> foodTypeFilter = new HashMap<>();
-        foodTypeFilter.put("Breakfast",new ArrayList<String>());
-        foodTypeFilter.put("Lunch",new ArrayList<String>());
-        foodTypeFilter.put("Dinner",new ArrayList<String>());
-        foodTypeFilter.put("Snack",new ArrayList<String>());
+        foodTypeFilter.put("Breakfast",new ArrayList<>());
+        foodTypeFilter.put("Lunch",new ArrayList<>());
+        foodTypeFilter.put("Dinner",new ArrayList<>());
+        foodTypeFilter.put("Snack",new ArrayList<>());
 
         HashMap<String, ArrayList<String>> priceFilter = new HashMap<>();
-        priceFilter.put("Cheap",new ArrayList<String>());
-        priceFilter.put("Intermediate",new ArrayList<String>());
-        priceFilter.put("Expensive",new ArrayList<String>());
+        priceFilter.put("Cheap",new ArrayList<>());
+        priceFilter.put("Intermediate",new ArrayList<>());
+        priceFilter.put("Expensive",new ArrayList<>());
 
         String cuisine;
         String price;
@@ -44,7 +43,7 @@ public class RestaurantFilterController {
             priceFilter.get(price).add(r);
         }
 
-        restaurantFilters = new RestaurantFilter(cuisineFilter,foodTypeFilter,priceFilter);
+        restaurantFiltersInteractor = new RestaurantFilterInteractor(cuisineFilter,foodTypeFilter,priceFilter);
     }
 
     public ArrayList<String> getRestaurants(String pricePref, String cuisinePref, String foodTypePref) {
@@ -52,7 +51,7 @@ public class RestaurantFilterController {
             return restaurantFilterDAI.getAllRestaurants();
         } else {
             String priceChoice = pricePref.split("\\(",0)[0].strip();
-            return restaurantFilters.filter(priceChoice, cuisinePref, foodTypePref, restaurantFilterDAI.getAllRestaurants());
+            return restaurantFiltersInteractor.filter(priceChoice, cuisinePref, foodTypePref, restaurantFilterDAI.getAllRestaurants());
 
         }
     }

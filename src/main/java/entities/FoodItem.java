@@ -21,9 +21,6 @@ public class FoodItem {
         return this.itemName;
     }
 
-    public void addToItemCart (ItemCart cart) {
-        cart.addToCart(this);
-    }
     public void addToOrder (Order order) {
         order.addToOrder(this);
     }

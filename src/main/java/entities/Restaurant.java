@@ -50,9 +50,5 @@ public class Restaurant {
         return this.menu;
     }
 
-    public List<Object[]> getReviews () {
-        return this.reviews;
-    }
-
 
 }

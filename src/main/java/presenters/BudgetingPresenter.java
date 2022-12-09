@@ -1,4 +1,4 @@
 package presenters;
 
-public interface BudgetingPresenter {
+public class BudgetingPresenter {
 }

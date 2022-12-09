@@ -1,17 +1,17 @@
 package controllers;
 
-import usecases.foodsuggestions.SuggestionToUser;
+import usecases.foodsuggestions.FoodSuggestionsInteractor;
 
 public class FoodSuggestionsController {
-    private SuggestionToUser suggestionToUser;
+    private FoodSuggestionsInteractor foodSuggestionsInteractor;
 
-    public void setUseCase(SuggestionToUser s){
-        this.suggestionToUser = s;
+    public void setUseCase(FoodSuggestionsInteractor s){
+        this.foodSuggestionsInteractor = s;
     }
 
 
     public void callUseCase(String username) {
-        suggestionToUser.toPresenter(username);
+        foodSuggestionsInteractor.toPresenter(username);
     }
 
 }

@@ -1,5 +1,7 @@
 package entities;
 
+import entities.designpatterns.CurrentOrderIterator;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -7,7 +9,7 @@ public class ItemCart {
     public ArrayList<FoodItem> currentOrder;
 
     public ItemCart() {
-        this.currentOrder = new ArrayList<FoodItem>();
+        this.currentOrder = new ArrayList<>();
     }
 
     public ArrayList<FoodItem> getCurrentOrder () {

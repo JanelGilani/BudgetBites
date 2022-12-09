@@ -4,7 +4,7 @@ package ui;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class OnboardingFrame extends JFrame{
 
     private static JLabel userLabel;
@@ -28,7 +28,7 @@ public class OnboardingFrame extends JFrame{
         panel.add(userLabel);
 
 
-        // Login button
+        // UserLoginInteractor button
         loginButton = new JButton("Login");
         loginButton.setBounds(160, 60, 80, 25);
         loginButton.addActionListener(new ActionListener() {
@@ -53,7 +53,7 @@ public class OnboardingFrame extends JFrame{
         panel.add(signinButton);
 
 
-        // Login label to return message upon Login attempt
+        // UserLoginInteractor label to return message upon UserLoginInteractor attempt
         successLogin = new JLabel();
         successLogin.setBounds(10, 110, 300, 25);
         panel.add(successLogin);

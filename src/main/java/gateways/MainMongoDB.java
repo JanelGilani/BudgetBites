@@ -151,13 +151,13 @@ public class MainMongoDB implements SuggestionToUserDAI, LoginDAI, RestaurantFil
     }
 
     public ArrayList<String> getAllRestaurants () {
-        ArrayList<String> restaurants = new ArrayList<String>();
+        ArrayList<String> restaurants = new ArrayList<>();
         restaurantRepo.find().forEach(restaurant -> restaurants.add(restaurant.getRestaurantName()));
         return restaurants;
     }
 
     public ArrayList<String> getAllUsers () {
-        ArrayList<String> users = new ArrayList<String>();
+        ArrayList<String> users = new ArrayList<>();
         userRepo.find().forEach(user -> users.add(user.getFirstName()));
         return users;
     }

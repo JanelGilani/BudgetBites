@@ -1,6 +1,6 @@
 package ui;
 import controllers.FoodSuggestionsController;
-import view.FoodSuggestionViewer;
+import presenters.FoodSuggestionViewer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-
+@SuppressWarnings({"ALL", "unused"})
 public class userSuggestionFrame extends JFrame implements FoodSuggestionViewer, ActionListener {
 
     private static JButton button;

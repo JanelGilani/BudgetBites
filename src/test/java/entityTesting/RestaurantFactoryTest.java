@@ -1,18 +1,14 @@
 package entityTesting;
 
 import entities.FoodItem;
-import entities.Order;
 import entities.Restaurant;
-import entities.RestaurantFactory;
-import org.junit.After;
-import org.junit.Before;
+import entities.designpatterns.RestaurantFactory;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+@SuppressWarnings({"ALL"})
 public class RestaurantFactoryTest {
     private final String restaurantName = "Food from East";
     private final String cuisine = "Middle-East";

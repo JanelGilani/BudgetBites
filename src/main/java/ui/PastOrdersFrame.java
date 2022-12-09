@@ -1,23 +1,23 @@
 package ui;
 
-import controllers.PastOrderController;
-import presenters.PastOrderPresenter;
+import controllers.GetPastOrdersController;
+import presenters.GetPastOrdersPresenter;
 
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+@SuppressWarnings({"ALL", "unused"})
 public class PastOrdersFrame extends JFrame {
-    private PastOrderPresenter pastOrderPresenter;
-    private PastOrderController pastOrderController;
+    private GetPastOrdersPresenter getPastOrdersPresenter;
+    private GetPastOrdersController getPastOrdersController;
     private JButton backButton;
     private String currentUser;
 
     public PastOrdersFrame(String currentUser) {
         this.currentUser = currentUser;
-        this.pastOrderController = new PastOrderController(currentUser);
-        this.pastOrderPresenter = new PastOrderPanel(pastOrderController);
+        this.getPastOrdersController = new GetPastOrdersController(currentUser);
+        this.getPastOrdersPresenter = new GetPastOrdersPresenter(getPastOrdersController);
         JPanel top = new JPanel();
         JPanel bottom = new JPanel();
 
@@ -38,10 +38,10 @@ public class PastOrdersFrame extends JFrame {
         });
         bottom.add(backButton);
 
-        pastOrderPresenter.foodInCart();
+        getPastOrdersPresenter.foodInCart();
 
         this.add(top);
-        this.add((JPanel) pastOrderPresenter);
+        this.add((JPanel) getPastOrdersPresenter);
         this.add(bottom);
         this.pack();
         this.setVisible(true);
