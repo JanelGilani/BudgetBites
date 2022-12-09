@@ -12,11 +12,19 @@ import java.util.ArrayList;
 public class GetPastOrdersInteractor {
     private final PastOrders pastOrders;
 
+    /**
+     * Instantiating past orders interactor
+     * @param username input the current user
+     */
     public GetPastOrdersInteractor(String username) {
         PastOrdersDAI pastOrdersDAI = new MainMongoDB();
         this.pastOrders = pastOrdersDAI.findPastOrders(username);
     }
 
+    /**
+     * Return an array list of string for past order
+     * @return Array list of strings
+     */
     public ArrayList<String> getPastOrder() {
         ArrayList<String> result = new ArrayList<>();
         StringBuilder eachPastOrder = new StringBuilder();
