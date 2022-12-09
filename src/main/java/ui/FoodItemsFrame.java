@@ -83,10 +83,6 @@ public class FoodItemsFrame extends JFrame implements ActionListener {
 
     }
 
-    /*public static void Main(String[] args) {
-        new FoodItemsFrame("Food from East", this.currentUser);
-    }*/
-
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
