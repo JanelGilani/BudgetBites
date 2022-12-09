@@ -20,6 +20,9 @@ public class RestaurantFactoryTest {
             new FoodItem("Hummus with Pita", 5)));
 
 
+    /**
+     * Tests if restaurant with accurate name, price range, cuisine, food type, average rating and menu is provided
+     */
     @Test
     public void getRestaurantTest() {
         Restaurant restaurant = RestaurantFactory.getRestaurant(restaurantName, priceRange,

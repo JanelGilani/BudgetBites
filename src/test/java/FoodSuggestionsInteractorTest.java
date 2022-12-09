@@ -47,6 +47,7 @@ public class FoodSuggestionsInteractorTest {
         Assertions.assertEquals(foodSuggestionsInteractorInteractor.sortingHashMap(testCountPopulatedItem), expectedList);
     }
 
+
     @Test
     public void testGetFinalSuggestion() {
         PastOrders testOrder = suggestionToUserDatabase.findPastOrders(testUser);
@@ -79,5 +80,4 @@ public class FoodSuggestionsInteractorTest {
         ArrayList<String> actualList = foodSuggestionsInteractorInteractor.getSuggestionToUser(testUser2);
         Assertions.assertEquals(actualList, expectedList);
     }
-
 }

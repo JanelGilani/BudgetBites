@@ -21,6 +21,9 @@ public class OrderEntityTest {
     private FoodItem f3;
     private FoodItem f4;
 
+    /**
+     * Initializes an order
+     */
     @Before
     public void init () {
         o1 = new Order(LocalDateTime.of(2022, 7, 25, 1, 30).toString(),
@@ -34,18 +37,26 @@ public class OrderEntityTest {
         o1.addToOrder(f3);
     }
 
+    /**
+     * removes an item from order
+     */
     @After
     public void teardown () {
         o1.getOrderedItems().remove(f4);
     }
 
-
+    /**
+     * tests if corrected order item is returned
+     */
     @Test
     public void getOrderedItemsTest() {
         ArrayList<FoodItem> orderedItems = new ArrayList<>(Arrays.asList(f1, f2, f3));
         Assertions.assertEquals(orderedItems, o1.getOrderedItems());
     }
 
+    /**
+     * Tests if correct total cost is returned
+     */
     @Test
     public void getTotalCostTest() {
         double totalCost = 17;
@@ -53,18 +64,27 @@ public class OrderEntityTest {
 
     }
 
+    /**
+     * Tests if correcte date which the order was placed on is order
+     */
     @Test
     public void getDateOrderedTest() {
         String orderDate = "2022-07-25T01:30";
         Assertions.assertEquals(orderDate, o1.getDateOrdered());
     }
 
+    /**
+     * tests if correct restaurant from which the order was placed is returned
+     */
     @Test
     public void getRestaurantNameTest() {
         String restaurantName = "Food from East";
         Assertions.assertEquals(restaurantName, o1.getRestaurantName());
     }
 
+    /**
+     * tests if food items can be added to current order
+     */
     @Test
     public void addToOrderTest() {
         int numItemsBefore = o1.getOrderedItems().size();
