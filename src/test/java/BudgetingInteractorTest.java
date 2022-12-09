@@ -23,6 +23,9 @@ public class BudgetingInteractorTest {
     private Budget b1;
     private User user;
 
+    /**
+     * creates a past porder by creating two orders and linking it to a specific user
+     */
     @Before
     public void init() {
         b1 = new Budget(1000);

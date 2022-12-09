@@ -12,9 +12,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 @SuppressWarnings({"ALL"})
 public class PastOrdersEntityTest {
-
-    // Test cases for the getter functionalities of the Order Entity
-
+    /**
+     * Test cases for the getter functionalities of the Order Entity
+     */
     private PastOrders p1;
     private Order o1;
     private Order o2;
@@ -25,6 +25,9 @@ public class PastOrdersEntityTest {
     private FoodItem f4;
     private FoodItem f5;
 
+    /**
+     * gives all instance attribute values and creates order
+     */
     @Before
     public void init () {
         o1 = new Order(LocalDateTime.now().minusDays(2).toString(), "Food from East");
@@ -46,6 +49,9 @@ public class PastOrdersEntityTest {
         p1.addOrder(o2);
     }
 
+    /**
+     * Tests if accurate pastOrder list is being outputed through an ArrayList
+     */
     @Test
     public void getPastOrdersMapTest() {
         HashMap<String, Order> pastOrdersMap = new HashMap<String, Order>();
@@ -55,6 +61,9 @@ public class PastOrdersEntityTest {
         Assertions.assertEquals(pastOrdersMap, p1.getPastOrdersMap());
     }
 
+    /**
+     * Check is the last order is accurately outputted
+     */
     @Test
     public void getLastOrderedTest() {
         String lastOrdered = o2.getDateOrdered();
@@ -62,11 +71,17 @@ public class PastOrdersEntityTest {
         Assertions.assertEquals(lastOrdered, p1.getLastOrdered());
     }
 
+    /**
+     * Tests if acurrate order is given if searched by date of order
+     */
     @Test
     public void getOrderByDateTest() {
         Assertions.assertEquals(o1, p1.getOrderByDate(o1.getDateOrdered()));
     }
 
+    /**
+     * Tests if acurrate food item is given if searched by date of order
+     */
     @Test
     public void getOrderedItemsByDateTest() {
         ArrayList<FoodItem> orderedItems = o1.getOrderedItems();
@@ -74,6 +89,9 @@ public class PastOrdersEntityTest {
         Assertions.assertEquals(orderedItems, p1.getOrderedItemsByDate(o1.getDateOrdered()));
     }
 
+    /**
+     * Tests if correct sum of orders outputted
+     */
     @Test
     public void getTotalCostTest() {
         double totalCost = o1.getTotalCost() + o2.getTotalCost();
@@ -81,6 +99,9 @@ public class PastOrdersEntityTest {
         Assertions.assertEquals(totalCost, p1.getTotalCost());
     }
 
+    /**
+     * Tests if true value of last order cost is given
+     */
     @Test
     public void getCostOfLastOrderedTest() {
         double costOfLastOrdered = o2.getTotalCost();
@@ -88,6 +109,9 @@ public class PastOrdersEntityTest {
         Assertions.assertEquals(costOfLastOrdered, p1.getCostOfLastOrdered());
     }
 
+    /**
+     * Tests if order is able to be added to all past order
+     */
     @Test
     public void addOrderTest() {
         int pastOrdersMapLengthBefore = p1.getPastOrdersMap().size();
@@ -98,6 +122,4 @@ public class PastOrdersEntityTest {
         Assertions.assertEquals(pastOrdersMapLengthBefore + 1, p1.getPastOrdersMap().size());
         Assertions.assertEquals(o3.getDateOrdered(), p1.getLastOrdered());
     }
-
-
 }
