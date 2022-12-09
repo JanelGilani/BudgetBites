@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ModifyItemCartPresenter extends JPanel implements usecases.itemcart.ModifyItemCartOutputBoundary {
-    private JScrollPane scroll;
-    private ModifyItemCartController controller;
+    private final JScrollPane scroll;
+    private final ModifyItemCartController controller;
     private JList<String> list;
 
     public ModifyItemCartPresenter(ModifyItemCartController controller) {

@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GetPastOrdersPresenter extends JPanel implements usecases.getpastorders.GetPastOrdersOutputBoundary {
-    private JScrollPane scroll;
-    private GetPastOrdersController controller;
+    private final JScrollPane scroll;
+    private final GetPastOrdersController controller;
     private JList<String> list;
 
     public GetPastOrdersPresenter(GetPastOrdersController controller) {

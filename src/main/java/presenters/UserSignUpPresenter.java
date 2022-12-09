@@ -5,7 +5,7 @@ import controllers.UserSignUpController;
 import javax.swing.*;
 
 public class UserSignUpPresenter extends JLabel implements usecases.signup.UserSignUpOutputBoundary {
-    private UserSignUpController userSignUpController;
+    private final UserSignUpController userSignUpController;
 
     public UserSignUpPresenter(UserSignUpController controller) {
         this.setBounds(10, 270, 10000, 55);

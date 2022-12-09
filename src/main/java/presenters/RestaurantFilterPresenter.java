@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class RestaurantFilterPresenter extends JPanel implements usecases.filtering.restaurantfiltering.RestaurantFilterOutputBoundary {
-    private JScrollPane scroll;
-    private RestaurantFilterController controller;
+    private final JScrollPane scroll;
+    private final RestaurantFilterController controller;
     public JList<String> list;
 
     public RestaurantFilterPresenter() {

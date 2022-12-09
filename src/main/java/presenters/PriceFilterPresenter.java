@@ -6,9 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PriceFilterPresenter extends JPanel implements usecases.filtering.pricefiltering.PriceFilterOutputBoundary {
-    private JPanel panel;
-    private JScrollPane scroll;
-    private PriceFilterController controller;
+    private final JScrollPane scroll;
+    private final PriceFilterController controller;
 
     private JList<String> list;
 

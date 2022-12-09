@@ -5,7 +5,7 @@ import controllers.UserLoginController;
 import javax.swing.*;
 
 public class UserLoginPresenter extends JLabel implements usecases.login.UserLoginOutputBoundary {
-    private UserLoginController userLoginController;
+    private final UserLoginController userLoginController;
 
     public UserLoginPresenter() {
         this.setBounds(10, 160, 300, 25);
