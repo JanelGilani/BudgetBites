@@ -1,4 +1,4 @@
-# BudgetBites CSC207 Project (Group 90)
+# BudgetBites: Find cheap food at UofT
 
 Are you a student at UofT and trying to find food around campus, but are tight on your budget? You have come to the right place, welcome to BudgetBites! This UofT-based application allows you to find budget-friendly food options at the UTSG campus. You can then search for restaurants and specific food items by a number of parameters such as cuisine type, price range, food type, etc. Not only will you be given customised food suggestions, but you will also make use of ourextensive budgeting feature: every time you buy food from a restaurant, your monthly budget will reflect the spending and you can follow your budget restrictions rigorously.
 
